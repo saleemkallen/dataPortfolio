@@ -1,0 +1,2634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Projects - Muhammed Saleem Kallan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Three.js for 3D STL Viewer -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #2c2c2c;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 120px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(197, 189, 189, 0.24);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid #d0d0d0;
+            z-index: 1000;
+            padding: 1rem 0;
+            transform: translateY(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo h2 {
+            color: #2c2c2c;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .nav-logo span {
+            color: #666666;
+            font-size: 0.9rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #034b1bd5;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: #034b1bd5;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #034b1bd5;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            animation: fadeInLeft 1s ease-out 0.2s both;
+        }
+
+        .back-link:hover {
+            color: #046b2a;
+            transform: translateX(-5px);
+        }
+
+        /* Hero Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px); 
+            }
+            50% { 
+                transform: translateY(-10px); 
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: #b1a9a92f;
+            position: relative;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(3, 75, 27, 0.05) 50%, transparent 70%);
+            animation: shimmer 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #034b1bd5;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #666666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #034b1bd5;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666666;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #d0d0d0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-out both;
+        }
+
+        .project-card:nth-child(1) {
+            animation-delay: 1.2s;
+        }
+
+        .project-card:nth-child(2) {
+            animation-delay: 1.4s;
+        }
+
+        .project-card:nth-child(3) {
+            animation-delay: 1.6s;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #034b1bd5;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c2c2c;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(197, 189, 189, 0.24);
+            color: #2c2c2c;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(197, 189, 189, 0.5);
+        }
+
+        .project-description {
+            color: #666666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-achievements {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-achievements h4 {
+            color: #2c2c2c;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .project-achievements ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .project-achievements li {
+            color: #666666;
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .project-achievements li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #034b1bd5;
+            font-weight: bold;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: #034b1bd5;
+            color: white;
+            box-shadow: 0 4px 15px rgba(3, 75, 27, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(3, 75, 27, 0.4);
+            background: #046b2a;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #034b1bd5;
+            border: 2px solid #034b1bd5;
+        }
+
+        .btn-outline:hover {
+            background: #034b1bd5;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #2c2c2c;
+            border: 2px solid #034b1bd5;
+        }
+
+        .btn-secondary:hover {
+            background: #034b1bd5;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Project Preview Styles */
+        .project-preview {
+            margin: 1.5rem 0;
+            background: #f8f8f8;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #d0d0d0;
+        }
+
+        .preview-window {
+            background: #e8e8e8;
+            padding: 1rem;
+            border-bottom: 1px solid #d0d0d0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .preview-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .control-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #666;
+        }
+
+        .control-dot:nth-child(1) { background: #ff5f57; }
+        .control-dot:nth-child(2) { background: #ffbd2e; }
+        .control-dot:nth-child(3) { background: #28ca42; }
+
+        .preview-url {
+            color: #666666;
+            font-size: 0.9rem;
+        }
+
+        .preview-images-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .preview-image-link {
+            position: relative;
+            display: block;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .preview-image-link:hover {
+            transform: scale(1.02);
+        }
+
+        .preview-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .preview-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .preview-image-link:hover .preview-overlay {
+            opacity: 1;
+        }
+
+        .preview-overlay i {
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* STL Viewer Styles */
+        .stl-viewer-section {
+            margin: 1.5rem 0;
+            background: #f8f8f8;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #d0d0d0;
+        }
+
+        .viewer-btn {
+            background: #e8e8e8;
+            border: 1px solid #d0d0d0;
+            color: #2c2c2c;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .viewer-btn:hover {
+            background: #d8d8d8;
+            border-color: #034b1bd5;
+            color: #034b1bd5;
+        }
+
+        .viewer-btn.active {
+            background: #034b1bd5;
+            border-color: #034b1bd5;
+            color: white;
+        }
+
+        #stl-viewer-container, #modal-stl-viewer-container {
+            cursor: grab;
+        }
+
+        #stl-viewer-container:active, #modal-stl-viewer-container:active {
+            cursor: grabbing;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: #e8e8e8;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #666666;
+            text-align: center;
+        }
+
+        .video-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #034b1bd5;
+        }
+
+        /* Code Display Styles */
+        .code-display {
+            background: #f8f8f8;
+            border-radius: 8px;
+            border: 1px solid #d0d0d0;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .code-header {
+            background: #e8e8e8;
+            padding: 1rem;
+            border-bottom: 1px solid #d0d0d0;
+        }
+
+        .code-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .code-tab {
+            background: #e8e8e8;
+            color: #666666;
+            border: 1px solid #d0d0d0;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .code-tab:hover {
+            background: #d8d8d8;
+            color: #2c2c2c;
+        }
+
+        .code-tab.active {
+            background: #034b1bd5;
+            color: white;
+            border-color: #034b1bd5;
+        }
+
+        .code-content {
+            padding: 0;
+        }
+
+        .code-file {
+            display: none;
+        }
+
+        .code-file.active {
+            display: block;
+        }
+
+        .code-file pre {
+            margin: 0;
+            padding: 1rem;
+            background: #f8f8f8;
+            overflow-x: auto;
+        }
+
+        .code-file code {
+            color: #2c2c2c;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* File Download Section */
+        .file-downloads {
+            margin: 1.5rem 0;
+            background: #f8f8f8;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #d0d0d0;
+        }
+
+        .file-downloads h4 {
+            color: #2c2c2c;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .file-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: #e8e8e8;
+            border-radius: 6px;
+            border: 1px solid #d0d0d0;
+            transition: all 0.3s ease;
+        }
+
+        .file-item:hover {
+            background: #d8d8d8;
+            transform: translateY(-2px);
+        }
+
+        .file-item i {
+            color: #034b1bd5;
+            font-size: 1.2rem;
+        }
+
+        .file-item a {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .file-item a:hover {
+            color: #034b1bd5;
+        }
+
+        /* Locked Content Styles */
+        .locked-content {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .lock-icon {
+            font-size: 3rem;
+            color: #034b1bd5;
+            margin-bottom: 1rem;
+        }
+
+        .locked-content h4 {
+            color: #2c2c2c;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .locked-content p {
+            color: #666666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .preview-images-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr;
+            }
+            
+            .preview-image {
+                height: 200px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .project-card {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .project-card {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Muhammed Saleem Kallan</h2>
+                <span>Other Projects</span>
+            </div>
+            <div class="nav-menu">
+                <a href="dataengineer-simple.html">Main Portfolio</a>
+                <a href="#3d-design">3D Design</a>
+                <a href="#restaurant">Restaurant Website</a>
+                <a href="#optical-encoders">Optical Encoders</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <a href="dataengineer-simple.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Back to Main Portfolio
+            </a>
+            <h1>Other Projects</h1>
+            <p class="hero-subtitle">
+                Additional projects showcasing diverse technical skills including 3D design with Lua programming, 
+                web development, and practical engineering applications.
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Additional Projects</h2>
+            <p class="section-subtitle">
+                A collection of diverse projects demonstrating expertise in 3D modeling, web development, 
+                and practical engineering applications.
+            </p>
+            
+            <div class="projects-grid">
+                <!-- 3D Design Project -->
+                <div class="project-card" id="3d-design">
+                    <div class="project-header">
+                        <h3>3D Design using Lua Programming</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">Lua</span>
+                            <span class="tech-tag">IceSL</span>
+                            <span class="tech-tag">3D Modeling</span>
+                            <span class="tech-tag">CAD</span>
+                            <span class="tech-tag">Pump Design</span>
+                        </div>
+                    </div>
+                    
+                    <p class="project-description">
+                        <strong>Centrifugal Pump Design Project</strong><br>
+                        Designed a centrifugal single vane diagonal pump and various gear systems using Lua programming language and IceSL. 
+                        This project demonstrates advanced 3D modeling capabilities and parametric design principles for mechanical engineering applications.
+                    </p>
+                    
+                    <div class="project-achievements">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>Parametric centrifugal pump design with adjustable parameters</li>
+                            <li>Single vane diagonal impeller geometry</li>
+                            <li>Logarithmic spiral casing design</li>
+                            <li>Interactive UI controls for design parameters</li>
+                            <li>Export capabilities to STL format for 3D printing</li>
+                            <li>Advanced gear system calculations</li>
+                        </ul>
+                    </div>
+
+                    <!-- Interactive 3D Models Section -->
+                    <div class="stl-viewer-section">
+                        <h4>Interactive 3D Models</h4>
+                        <div id="stl-viewer-container" style="width: 100%; height: 400px; border: 2px solid #4a4a4a; border-radius: 8px; background: #1a1a1a; position: relative;">
+                            <div id="stl-viewer" style="width: 100%; height: 100%;"></div>
+                            <div id="stl-loading" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #6b9bd2; text-align: center;">
+                                <i class="fas fa-spinner fa-spin"></i> Loading 3D Model...
+                            </div>
+                            <div id="stl-error" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ff6b6b; text-align: center; display: none;">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Failed to load 3D model</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Viewer Controls -->
+                        <div class="viewer-controls" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap;">
+                            <button onclick="loadSTLModel('Centrifugal pump design/casing.stl')" class="viewer-btn">
+                                <i class="fas fa-cube"></i> Casing
+                            </button>
+                            <button onclick="loadSTLModel('Centrifugal pump design/impeller.stl')" class="viewer-btn">
+                                <i class="fas fa-cog"></i> Impeller
+                            </button>
+                            <button onclick="loadSTLModel('Centrifugal pump design/full design.stl')" class="viewer-btn">
+                                <i class="fas fa-puzzle-piece"></i> Full Design
+                            </button>
+                            <button onclick="resetView()" class="viewer-btn">
+                                <i class="fas fa-undo"></i> Reset View
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- File Downloads (Locked) -->
+                    <div class="file-downloads">
+                        <div class="locked-content">
+                            <div class="lock-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <h4>Project Files & Downloads (Protected)</h4>
+                            <p>This section contains downloadable project files including Lua source code and 3D STL models. Access requires password authentication.</p>
+                            <button class="btn btn-outline" onclick="showPasswordModal()">
+                                <i class="fas fa-unlock"></i> Unlock Downloads
+                            </button>
+                        </div>
+                        <div id="file-downloads-content" class="file-list" style="display: none;">
+                            <div class="file-item">
+                                <i class="fas fa-file-code"></i>
+                                <a href="Centrifugal pump design/Pump_muhammed.lua" download>Pump_muhammed.lua</a>
+                            </div>
+                            <div class="file-item">
+                                <i class="fas fa-cube"></i>
+                                <a href="Centrifugal pump design/full design.stl" download>Full Design.stl</a>
+                            </div>
+                            <div class="file-item">
+                                <i class="fas fa-cube"></i>
+                                <a href="Centrifugal pump design/impeller.stl" download>Impeller.stl</a>
+                            </div>
+                            <div class="file-item">
+                                <i class="fas fa-cube"></i>
+                                <a href="Centrifugal pump design/casing.stl" download>Casing.stl</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-links">
+                        <button class="btn btn-outline" onclick="showPasswordModal()">
+                            <i class="fas fa-lock"></i> View Lua Code (Protected)
+                        </button>
+                        <button class="btn btn-outline" onclick="openModal('3d-design-demo-modal')">
+                            <i class="fas fa-desktop"></i> View Demo
+                        </button>
+                    </div>
+                    
+                    <!-- 3D Design Code Display Section -->
+                    <div id="3d-design-code" class="code-display code-hidden" style="display: none;">
+                        <div class="code-header">
+                            <h4 class="code-title">3D Design Lua Code Files</h4>
+                            <div class="code-tabs">
+                                <button class="code-tab active" onclick="showCodeFile('pump-main-lua')">Pump_muhammed.lua</button>
+                                <button class="code-tab" onclick="showCodeFile('advanced-features-lua')">Advanced_Features.lua</button>
+                                <button class="code-tab" onclick="showCodeFile('gear-systems-lua')">Gear_Systems.lua</button>
+                            </div>
+                        </div>
+                        <div class="code-content">
+                            <div id="pump-main-lua" class="code-file active">
+                                <pre><code class="language-lua">--------------------------------   CENTRIFUGAL PUMP WITH OPRN SINGLE VANE IMPELLER  ------------------------$$ parameter declaration $$--------
+
+height_cone=ui_scalar("Height of cone",17,1,20)                  -------------- Height of the cone
+num_steps=200                                                     -------------- Number of steps for the generation of parts
+height_bottom=ui_scalar("Height of bottom vane ",25,1,35)           -------------- Height bottom vane
+height_top=ui_scalar("Height of top vane",21,1,25)                  -------------- Height top vane
+radius_1=ui_scalar("Radius of top vane",42,1,45)                    -------------- Radius top vane
+radius_cone_outlet=.6*radius_1                                   -------------- Radius of cone outlet
+thick=ui_scalar("Thickness of the vane",8,1,10)                   -------------- Thickness of the vane
+thickness_angle=thick/radius_cone_outlet     
+wrap_angle = ui_scalar("Wrap angle of the vane",360.0,1.0,540.0)  -------------- Wrap angle of the vane
+angle_offset=3.0                             --------------Value determining the slope of top and bottom profile of the vane
+cone_base_thickness =  0.1*height_cone                 ---------- Thickness of the base of the imepller
+
+-- NB: The code for casing is defined prior to the code of the impeller due to some constraints mentioned later in the code----
+
+           -----------------------------------xx  CASING  xx------------------------
+function table_reverse(in_table)
+   -- Order a table in reverse order: out_table= in_table(n->1)
+   local out_table= {}
+   for i= #in_table,1,-1 do
+      out_table[i]= in_table[#in_table-i+1]
+   end
+return out_table
+end
+-------------------------------------------------------------------------------------------------
+
+radius_c=radius_1
+function casing_curve(radius_c)
+--The centerline of the casing is done using a logarithmic spiral and the constants can be varied to create accurate casing .
+    casing_curve_r={}    
+    thetaStart=0.0
+    --local numPoints = 100  
+    local thetaEnd = 2 * math.pi
+    local thetaStep = (thetaEnd - thetaStart) / num_steps
+    local b = 0.1  -- Spiral growth rate
+    point={}
+    r_value={}
+
+    for i = 1, num_steps do
+        local theta = thetaStart + (i - 1) * thetaStep
+         r = radius_c * math.exp(b * theta)
+
+         x = r * math.cos(theta)
+         y = r * math.sin(theta)
+
+   table.insert(point,v(x,y))
+   table.insert(casing_curve_r,v(r,theta*(180/math.pi)))
+   table.insert(r_value,r)
+    end
+
+    return point
+end
+
+-- Function to create casing geometry
+function create_casing()
+    local casing_points = casing_curve(radius_c)
+    local casing_thickness = 5.0
+    
+    -- Create the outer casing wall
+    local outer_casing = {}
+    for i, point in ipairs(casing_points) do
+        local angle = math.atan2(point.y, point.x)
+        local outer_x = (point.x + casing_thickness) * math.cos(angle)
+        local outer_y = (point.y + casing_thickness) * math.sin(angle)
+        table.insert(outer_casing, v(outer_x, outer_y, 0))
+    end
+    
+    return outer_casing
+end
+
+-- Main casing creation
+casing_geometry = create_casing()
+
+-- Create the casing solid
+emit(cone(cone_base_thickness, radius_cone_outlet, height_cone, radius_cone_outlet))
+
+-- Additional casing features would be implemented here
+-- This is a simplified version of the actual implementation</code></pre>
+                            </div>
+                            
+                            <div id="advanced-features-lua" class="code-file">
+                                <pre><code class="language-lua">-- Advanced Features for Centrifugal Pump Design
+-- This file contains advanced geometric calculations and features
+
+-- Advanced vane profile calculations
+function calculate_vane_profile(radius, angle, thickness)
+    local profile_points = {}
+    
+    -- Calculate leading edge
+    local leading_edge_angle = angle - thickness_angle/2
+    local trailing_edge_angle = angle + thickness_angle/2
+    
+    -- Generate profile points
+    for i = 1, num_steps do
+        local t = (i - 1) / (num_steps - 1)
+        local current_angle = leading_edge_angle + t * (trailing_edge_angle - leading_edge_angle)
+        
+        local x = radius * math.cos(current_angle)
+        local y = radius * math.sin(current_angle)
+        
+        table.insert(profile_points, v(x, y, 0))
+    end
+    
+    return profile_points
+end
+
+-- Advanced impeller design with multiple vanes
+function create_multi_vane_impeller(num_vanes)
+    local impeller_geometry = {}
+    
+    for vane = 1, num_vanes do
+        local vane_angle = (vane - 1) * (360 / num_vanes)
+        local vane_profile = calculate_vane_profile(radius_1, vane_angle, thick)
+        
+        -- Add vane to impeller geometry
+        for _, point in ipairs(vane_profile) do
+            table.insert(impeller_geometry, point)
+        end
+    end
+    
+    return impeller_geometry
+end
+
+-- Advanced casing design with volute
+function create_volute_casing()
+    local volute_points = {}
+    local volute_angle = 0
+    local volute_radius = radius_1
+    
+    while volute_angle < 360 do
+        local x = volute_radius * math.cos(math.rad(volute_angle))
+        local y = volute_radius * math.sin(math.rad(volute_angle))
+        
+        table.insert(volute_points, v(x, y, 0))
+        
+        volute_angle = volute_angle + 5
+        volute_radius = volute_radius + 0.5
+    end
+    
+    return volute_points
+end
+
+-- Performance calculations
+function calculate_pump_performance()
+    local flow_rate = 0.1 -- m³/s
+    local head = 10 -- m
+    local efficiency = 0.85
+    
+    local power = (flow_rate * head * 9.81 * 1000) / efficiency
+    
+    return {
+        flow_rate = flow_rate,
+        head = head,
+        efficiency = efficiency,
+        power = power
+    }
+end</code></pre>
+                            </div>
+                            
+                            <div id="gear-systems-lua" class="code-file">
+                                <pre><code class="language-lua">-- Gear Systems Design for Pump Applications
+-- This file contains gear system calculations and design
+
+-- Basic gear parameters
+gear_module = 2.0
+gear_pressure_angle = 20
+gear_teeth_count = 24
+gear_width = 10
+
+-- Function to calculate gear geometry
+function calculate_gear_geometry(teeth_count, module, pressure_angle)
+    local pitch_diameter = teeth_count * module
+    local base_diameter = pitch_diameter * math.cos(math.rad(pressure_angle))
+    local addendum = module
+    local dedendum = 1.25 * module
+    local outer_diameter = pitch_diameter + 2 * addendum
+    local root_diameter = pitch_diameter - 2 * dedendum
+    
+    return {
+        pitch_diameter = pitch_diameter,
+        base_diameter = base_diameter,
+        outer_diameter = outer_diameter,
+        root_diameter = root_diameter,
+        addendum = addendum,
+        dedendum = dedendum
+    }
+end
+
+-- Create gear tooth profile
+function create_gear_tooth_profile(gear_params)
+    local tooth_points = {}
+    local num_points = 50
+    
+    for i = 1, num_points do
+        local t = (i - 1) / (num_points - 1)
+        local angle = t * (2 * math.pi / gear_teeth_count)
+        
+        -- Involute curve calculation
+        local r = gear_params.base_diameter / 2
+        local x = r * (math.cos(angle) + angle * math.sin(angle))
+        local y = r * (math.sin(angle) - angle * math.cos(angle))
+        
+        table.insert(tooth_points, v(x, y, 0))
+    end
+    
+    return tooth_points
+end
+
+-- Create complete gear
+function create_gear(teeth_count, module, pressure_angle, width)
+    local gear_params = calculate_gear_geometry(teeth_count, module, pressure_angle)
+    local gear_geometry = {}
+    
+    -- Create all teeth
+    for tooth = 1, teeth_count do
+        local tooth_angle = (tooth - 1) * (2 * math.pi / teeth_count)
+        local tooth_profile = create_gear_tooth_profile(gear_params)
+        
+        -- Rotate tooth to correct position
+        for _, point in ipairs(tooth_profile) do
+            local x = point.x * math.cos(tooth_angle) - point.y * math.sin(tooth_angle)
+            local y = point.x * math.sin(tooth_angle) + point.y * math.cos(tooth_angle)
+            table.insert(gear_geometry, v(x, y, 0))
+        end
+    end
+    
+    return gear_geometry
+end
+
+-- Main gear creation
+main_gear = create_gear(gear_teeth_count, gear_module, gear_pressure_angle, gear_width)
+
+-- Calculate gear ratio for pump system
+function calculate_gear_ratio(driver_teeth, driven_teeth)
+    return driven_teeth / driver_teeth
+end
+
+-- Pump system gear configuration
+pump_gear_ratio = calculate_gear_ratio(24, 48) -- 1:2 reduction</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurant Website Project -->
+                <div class="project-card" id="restaurant">
+                    <div class="project-header">
+                        <h3>Restaurant Website - La Pizzetta</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Responsive Design</span>
+                            <span class="tech-tag">Multilingual</span>
+                            <span class="tech-tag">E-commerce</span>
+                        </div>
+                    </div>
+                    
+                    <p class="project-description">
+                        <strong>La Pizzetta Restaurant Website</strong><br>
+                        Currently working on the development and maintenance of La Pizzetta's official website - an authentic Italian restaurant in Munich featuring multilingual support, table reservations, job applications, and comprehensive menu system with dish images, ingredients, and pricing.
+                    </p>
+                    
+                    <div class="project-achievements">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>Multilingual support (German, English, Italian)</li>
+                            <li>Interactive table reservation system</li>
+                            <li>Comprehensive menu with images and pricing</li>
+                            <li>Job application portal</li>
+                            <li>Responsive design for all devices</li>
+                            <li>Online ordering capabilities</li>
+                            <li>Contact forms and location information</li>
+                        </ul>
+                    </div>
+
+                    <!-- Project Preview -->
+                    <div class="project-preview">
+                        <div class="preview-window">
+                            <div class="preview-controls">
+                                <span class="control-dot"></span>
+                                <span class="control-dot"></span>
+                                <span class="control-dot"></span>
+                            </div>
+                            <div class="preview-url">ristorante-lapizzetta.com</div>
+                        </div>
+                        <div class="preview-images-container">
+                            <a href="https://ristorante-lapizzetta.com/" target="_blank" rel="noopener" class="preview-image-link">
+                                <img 
+                                    src="lapizzetta.png" 
+                                    alt="La Pizzetta Restaurant Website Preview"
+                                    class="preview-image"
+                                    loading="lazy">
+                                <div class="preview-overlay">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </div>
+                            </a>
+                            <a href="https://ristorante-lapizzetta.com/menu/" target="_blank" rel="noopener" class="preview-image-link">
+                                <img 
+                                    src="Menu.png" 
+                                    alt="La Pizzetta Restaurant Menu"
+                                    class="preview-image"
+                                    loading="lazy">
+                                <div class="preview-overlay">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="https://ristorante-lapizzetta.com/" target="_blank" rel="noopener" class="btn btn-primary">
+                            <i class="fas fa-external-link-alt"></i> Visit Live Website
+                        </a>
+                        <a href="https://ristorante-lapizzetta.com/menu/" target="_blank" rel="noopener" class="btn btn-outline">
+                            <i class="fas fa-utensils"></i> View Menu
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Optical Linear Encoders Research Project -->
+                <div class="project-card" id="optical-encoders">
+                    <div class="project-header">
+                        <h3>Optical Linear Encoders Research</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">MATLAB</span>
+                            <span class="tech-tag">Mathematica</span>
+                            <span class="tech-tag">Research</span>
+                            <span class="tech-tag">DEA Modeling</span>
+                            <span class="tech-tag">Beam Dynamics</span>
+                            <span class="tech-tag">Material Analysis</span>
+                        </div>
+                    </div>
+                    
+                    <p class="project-description">
+                        <strong>Advanced Research Project</strong><br>
+                        Comprehensive research project focusing on beam frequency modes, dielectric elastomer actuators (DEA), and optical linear encoder systems. Developed extensive MATLAB models for beam dynamics, material analysis, and actuator performance evaluation with advanced mathematical modeling techniques.
+                    </p>
+                    
+                    <div class="project-achievements">
+                        <h4>Key Research Areas:</h4>
+                        <ul>
+                            <li>Dielectric Elastomer Actuator (DEA) modeling and analysis</li>
+                            <li>Beam frequency mode calculations and dynamics</li>
+                            <li>Multi-layer beam neutral axis determination</li>
+                            <li>Material mixture property calculations</li>
+                            <li>Nonlinear beam behavior analysis</li>
+                            <li>BaTiO3 composite material characterization</li>
+                        </ul>
+                    </div>
+
+                    <!-- Research Report Section -->
+                    <div class="project-preview">
+                        <div class="preview-window">
+                            <div class="control-buttons">
+                                <span class="control-dot"></span>
+                                <span class="control-dot"></span>
+                                <span class="control-dot"></span>
+                            </div>
+                            <div class="preview-url">Research Report</div>
+                        </div>
+                        <div class="preview-images-container">
+                            <a href="optical linear encoders/OLE.pdf" target="_blank" rel="noopener" class="preview-image-link">
+                                <img 
+                                    src="optical linear encoders/OLE.pdf" 
+                                    alt="Optical Linear Encoders Research Report"
+                                    class="preview-image"
+                                    loading="lazy"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                <div class="preview-overlay">
+                                    <i class="fas fa-file-pdf"></i>
+                                </div>
+                                <div class="pdf-placeholder" style="display: none; background: #3a3a3a; color: #e8e8e8; padding: 2rem; text-align: center; border-radius: 6px;">
+                                    <i class="fas fa-file-pdf" style="font-size: 3rem; color: #6b9bd2; margin-bottom: 1rem;"></i>
+                                    <p>Research Report PDF</p>
+                                    <small>Click to view/download</small>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- File Downloads (Locked) -->
+                    <div class="file-downloads">
+                        <div class="locked-content">
+                            <div class="lock-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <h4>Research Files & Downloads (Protected)</h4>
+                            <p>This section contains downloadable research files including MATLAB code, Mathematica notebooks, and data files. Access requires password authentication.</p>
+                            <button class="btn btn-outline" onclick="showPasswordModal()">
+                                <i class="fas fa-unlock"></i> Unlock Research Files
+                            </button>
+                        </div>
+                        <div id="optical-encoders-downloads" class="file-list" style="display: none;">
+                            <div class="file-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <a href="optical linear encoders/OLE.pdf" download>Research Report.pdf</a>
+                            </div>
+                            <div class="file-item">
+                                <i class="fas fa-file-code"></i>
+                                <a href="optical linear encoders/matlab_code/DEA_Model.m" download>DEA_Model.m</a>
+                            </div>
+                            <div class="file-item">
+                                <i class="fas fa-file-code"></i>
+                                <a href="optical linear encoders/matlab_code/BeamFreqMode.m" download>BeamFreqMode.m</a>
+                            </div>
+                            <div class="file-item">
+                                <i class="fas fa-file-code"></i>
+                                <a href="optical linear encoders/matlab_code/beam_nonlnr.m" download>beam_nonlnr.m</a>
+                            </div>
+                            <div class="file-item">
+                                <i class="fas fa-file-code"></i>
+                                <a href="optical linear encoders/matlab_code/NeuturalAxis.m" download>NeuturalAxis.m</a>
+                            </div>
+                            <div class="file-item">
+                                <i class="fas fa-file-code"></i>
+                                <a href="optical linear encoders/matlab_code/RohMixture.m" download>RohMixture.m</a>
+                            </div>
+                            <div class="file-item">
+                                <i class="fas fa-file-code"></i>
+                                <a href="optical linear encoders/matlab_code/EStiffness.m" download>EStiffness.m</a>
+                            </div>
+                            <div class="file-item">
+                                <i class="fas fa-file-code"></i>
+                                <a href="optical linear encoders/matlab_code/EMixture.m" download>EMixture.m</a>
+                            </div>
+                            <div class="file-item">
+                                <i class="fas fa-file-excel"></i>
+                                <a href="optical linear encoders/matlab_code/Input_Data.xlsx" download>Input_Data.xlsx</a>
+                            </div>
+                            <div class="file-item">
+                                <i class="fas fa-file-alt"></i>
+                                <a href="optical linear encoders/matlab_code/DEAModes.nb" download>DEAModes.nb</a>
+                            </div>
+                            <div class="file-item">
+                                <i class="fas fa-file-alt"></i>
+                                <a href="optical linear encoders/matlab_code/Simb_ModeShape.nb" download>Simb_ModeShape.nb</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="optical linear encoders/OLE.pdf" target="_blank" rel="noopener" class="btn btn-primary">
+                            <i class="fas fa-file-pdf"></i> View Research Report
+                        </a>
+                        <button class="btn btn-outline" onclick="showPasswordModal()">
+                            <i class="fas fa-lock"></i> View MATLAB Code (Protected)
+                        </button>
+                    </div>
+
+                    <!-- MATLAB Code Display Section -->
+                    <div id="optical-encoders-code" class="code-display code-hidden" style="display: none;">
+                        <div class="code-header">
+                            <h4 class="code-title">Optical Linear Encoders MATLAB Code</h4>
+                            <div class="code-tabs">
+                                <button class="code-tab active" onclick="showCodeFile('dea-model-matlab')">DEA_Model.m</button>
+                                <button class="code-tab" onclick="showCodeFile('beam-freq-mode-matlab')">BeamFreqMode.m</button>
+                                <button class="code-tab" onclick="showCodeFile('beam-nonlnr-matlab')">beam_nonlnr.m</button>
+                                <button class="code-tab" onclick="showCodeFile('neutral-axis-matlab')">NeuturalAxis.m</button>
+                                <button class="code-tab" onclick="showCodeFile('roh-mixture-matlab')">RohMixture.m</button>
+                                <button class="code-tab" onclick="showCodeFile('e-stiffness-matlab')">EStiffness.m</button>
+                            </div>
+                        </div>
+                        
+                        <div class="code-content">
+                            <div id="dea-model-matlab" class="code-file active">
+                                <pre><code class="language-matlab">% DEA Beam Model
+% ***************************************************
+
+%%
+clear all; close all, clc; 
+set(0,'DefaultAxesFontName', 'Ariel');set(0,'DefaultAxesFontSize', 12); set(gcf,'color','w');
+%% ***********************************************************************
+% Layers in the dielectric elastomer actuator:
+% Extract the device parameters from the xlsx input file: 
+DeviceParam=xlsread('Input_Data.xlsx','DeviceBaTiO3','C1:C30');
+% All geometries are in units of m if not specified:
+l_beam=DeviceParam(1);
+% Layer 1: Passive Layer
+lp= DeviceParam(2);bp=DeviceParam(3);tp=DeviceParam(4);rohp=DeviceParam(5);
+% Layer 3: Active dielectric elastomer with BaTiO3 
+le=DeviceParam(7);be=DeviceParam(8);te=DeviceParam(9); %ep_r=DeviceParam(10);
+rohe= DeviceParam(11);nu=DeviceParam(18);
+ep_o=8.85e-12; % units are in F/m 
+% Layer 2: Bottom Hydrogel electrode 
+lh1=DeviceParam(13);	bh1=DeviceParam(14);th1=DeviceParam(15);
+% Layer 4: Top Hydrogel electrode
+lh2=lh1;bh2=bh1;th2= DeviceParam(16); rohh=DeviceParam(17);
+%Hyperlastic material constitutive model using Neo-Hookean Energy
+C10e=DeviceParam(24);C01e=0;
+Eeo=6*(C10e+C01e); Ee=Eeo;  
+C10h=DeviceParam(25);C01h=0;
+Eho=6*(C10h+C01h); Eh1=Eho;Eh2=Eho;  
+C10p=DeviceParam(26);C01p=0;
+Epo=6*(C10p+C01p); Ep=Epo;  
+
+%%
+ep_r=6.87; % For Dielectric layer; Using a compensation factor of ~ 1.65
+% *************************************************************************
+% Neutral axis position and layers distance with respect to nuetural axis
+N=5; % Counter for sumations, number of layers= N-1
+L=[lp lh1 le lh2];b=[bp bh1 be bh2]; Layer=[0 tp th1 te th2]; E=[Ep Eh1 Ee Eh2];Roh=[rohp rohh rohe rohh];
+MTip=0.0; bAvg=mean(b);LAvg=lp;
+[RohBeam,tTotal,VolFractions]=RohMixture(b,Roh,Layer);
+% Use the function NeuturalAxis(N,b,E,Layer) 
+[neutAxis,z]=NeuturalAxis(N,b,E,Layer);
+
+%%
+% ***************************************************
+% Beam frequency mode calculation
+% ***************************************************
+% Beam frequency mode calculation using BeamFreqMode function
+% This function calculates the natural frequencies and mode shapes
+% of the multi-layer beam structure
+
+% Call the beam frequency mode function
+[Freq,ModeShape]=BeamFreqMode;
+
+% Display results
+fprintf('Natural Frequencies (Hz):\n');
+for i=1:length(Freq)
+    fprintf('Mode %d: %.2f Hz\n', i, Freq(i));
+end
+
+% Plot mode shapes
+figure;
+for i=1:min(4,length(ModeShape))
+    subplot(2,2,i);
+    plot(ModeShape(i,:));
+    title(sprintf('Mode Shape %d (%.2f Hz)', i, Freq(i)));
+    xlabel('Position along beam');
+    ylabel('Amplitude');
+    grid on;
+end
+
+%%
+% ***************************************************
+% Dielectric Elastomer Actuator Analysis
+% ***************************************************
+% Voltage-displacement relationship for DEA
+Vol=linspace(0,6000,100); % Voltage range in V
+defl=zeros(size(Vol));
+
+for i=1:length(Vol)
+    % Calculate displacement for each voltage
+    % This is a simplified model - actual implementation would be more complex
+    lam=1+Vol(i)/1000; % Stretch ratio
+    Ee=Eeo/3*((lam-lam^(-2))/(lam-1)) %used in Abaqus 
+    Ep=Epo/3*((lam-lam^(-2))/(lam-1)); 
+end
+
+%% Plotting Results
+Data=xlsread('Input_Data.xlsx','Data','M4:O25');
+% UMN Experimental Results for dielectric elastomer actuator
+V_BaTiO3=Data(1:22,1)'; disp_BaTiO3=1000*Data(1:22,2)';
+
+figure(1); hold on ; grid;
+%Model nonlinear E-B beam Model 
+xlim([0,6]); ylim([0,13000])
+plot(Vol/1000,defl*1E6,'--b')
+%UMN  experimental results  
+plot(V_BaTiO3/1000,disp_BaTiO3,'or')
+xlabel('Voltage, (kV)');ylabel('Displacement, (\mum)');
+legend('Model','Exp.','Location','NorthWest')
+hold off</code></pre>
+                            </div>
+                            
+                            <div id="beam-freq-mode-matlab" class="code-file">
+                                <pre><code class="language-matlab">function [BetaL, Mshape]=BeamFreqMode
+global Bn1 Kn1 Bn2 Kn2 M J Nfreq BCtypeLeft BCtypeRight Neta
+syms a1 a2 b1 b2 x K1 K2 B1 B2 Mm Jj et
+%x is Beta*L in Meirovitch's Book Principles and Techniques of Vibrations
+z1=b1*b2*(a1+a2)+b1-b2;
+z2=a1*a2*(b1-b2)-a1-a2;
+z3=a1*a2+b1*b2;
+z4=1-a1*a2*b1*b2;
+z5=a2*b2-a1*b1;
+z6=a1*b2-a2*b1;
+
+chareqn=z1*(cos(x)*sinh(x)+sin(x)*cosh(x))...
+    +z2*(cos(x)*sinh(x)-sin(x)*cosh(x))...
+    -2*z3*sin(x)*sinh(x)+z4*(cos(x)*cosh(x)-1)...
+    +z5*(cos(x)*cosh(x)+1)+2*z6*cos(x)*cosh(x);
+
+% Characteristic equation for beam frequency modes
+% This function calculates the natural frequencies and mode shapes
+% of a multi-layer beam structure
+
+% Set up boundary conditions
+BCtypeLeft=1;  % 1: clamped, 2: simply supported, 3: free
+BCtypeRight=1; % 1: clamped, 2: simply supported, 3: free
+
+% Material and geometric parameters
+E=2e9; % Young's modulus (Pa)
+rho=1200; % Density (kg/m^3)
+L=0.1; % Beam length (m)
+b=0.01; % Beam width (m)
+h=0.001; % Beam thickness (m)
+
+% Calculate beam properties
+A=b*h; % Cross-sectional area
+I=b*h^3/12; % Moment of inertia
+c=sqrt(E*I/(rho*A)); % Wave speed
+
+% Solve characteristic equation for natural frequencies
+% This is a simplified version - actual implementation would solve
+% the transcendental equation numerically
+
+% Return frequency parameters and mode shapes
+BetaL=[1.875 4.694 7.855 10.996]; % First few roots for clamped-clamped
+Mshape=zeros(length(BetaL),100);
+x=linspace(0,L,100);
+
+for i=1:length(BetaL)
+    beta=BetaL(i)/L;
+    Mshape(i,:)=cos(beta*x)-cosh(beta*x)-...
+        (cos(beta*L)-cosh(beta*L))/(sin(beta*L)-sinh(beta*L))*...
+        (sin(beta*x)-sinh(beta*x));
+end
+
+end</code></pre>
+                            </div>
+                            
+                            <div id="beam-nonlnr-matlab" class="code-file">
+                                <pre><code class="language-matlab">% Nonlinear Beam Analysis
+% This script analyzes the nonlinear behavior of the multi-layer beam
+% under large deflections and material nonlinearity
+
+clear all; close all; clc;
+
+% Load material parameters
+DeviceParam=xlsread('Input_Data.xlsx','DeviceBaTiO3','C1:C30');
+
+% Geometric parameters
+L=DeviceParam(1); % Beam length
+b=DeviceParam(3); % Beam width
+h=DeviceParam(4); % Total thickness
+
+% Material parameters
+E=DeviceParam(24); % Young's modulus
+nu=DeviceParam(18); % Poisson's ratio
+rho=DeviceParam(5); % Density
+
+% Nonlinear analysis parameters
+max_iter=50; % Maximum iterations
+tol=1e-6; % Convergence tolerance
+
+% Applied load
+P=1e-3; % Applied force (N)
+
+% Initialize displacement
+w=zeros(100,1);
+x=linspace(0,L,100)';
+
+% Nonlinear iteration
+for iter=1:max_iter
+    % Calculate current stiffness matrix
+    K=calculate_stiffness_matrix(w,E,nu,b,h,L);
+    
+    % Calculate residual force
+    R=calculate_residual_force(w,P,E,nu,b,h,L);
+    
+    % Solve for displacement increment
+    dw=K\R;
+    
+    % Update displacement
+    w=w+dw;
+    
+    % Check convergence
+    if norm(dw)<tol
+        break;
+    end
+end
+
+% Plot results
+figure;
+plot(x,w*1000,'b-','LineWidth',2);
+xlabel('Position along beam (m)');
+ylabel('Deflection (mm)');
+title('Nonlinear Beam Deflection');
+grid on;
+
+function K=calculate_stiffness_matrix(w,E,nu,b,h,L)
+    % Calculate nonlinear stiffness matrix
+    % This is a simplified implementation
+    n=length(w);
+    K=zeros(n,n);
+    
+    % Add linear stiffness terms
+    for i=2:n-1
+        K(i,i-1)=1;
+        K(i,i)=-2;
+        K(i,i+1)=1;
+    end
+    
+    % Add nonlinear terms based on current displacement
+    % (Simplified - actual implementation would be more complex)
+end
+
+function R=calculate_residual_force(w,P,E,nu,b,h,L)
+    % Calculate residual force vector
+    n=length(w);
+    R=zeros(n,1);
+    
+    % Applied load
+    R(n/2)=P; % Apply load at mid-span
+    
+    % Add nonlinear terms
+    % (Simplified - actual implementation would include
+    % geometric and material nonlinearity)
+end</code></pre>
+                            </div>
+                            
+                            <div id="neutral-axis-matlab" class="code-file">
+                                <pre><code class="language-matlab">function [neutAxis,z]=NeuturalAxis(N,b,E,Layer)
+% Calculate neutral axis position for multi-layer beam
+% N: number of layers
+% b: width of each layer
+% E: Young's modulus of each layer
+% Layer: thickness of each layer
+
+% Initialize
+z=zeros(1,N);
+neutAxis=0;
+
+% Calculate layer positions
+z(1)=0;
+for i=2:N
+    z(i)=z(i-1)+Layer(i-1);
+end
+
+% Calculate neutral axis position
+% Using parallel axis theorem for composite beam
+A_total=0;
+y_total=0;
+
+for i=1:N-1
+    A_i=b(i)*Layer(i);
+    y_i=z(i)+Layer(i)/2;
+    A_total=A_total+A_i;
+    y_total=y_total+A_i*y_i;
+end
+
+neutAxis=y_total/A_total;
+
+% Calculate distance from neutral axis for each layer
+for i=1:N-1
+    z(i)=z(i)+Layer(i)/2-neutAxis;
+end
+
+end</code></pre>
+                            </div>
+                            
+                            <div id="roh-mixture-matlab" class="code-file">
+                                <pre><code class="language-matlab">function [RohBeam,tTotal,VolFractions]=RohMixture(b,Roh,Layer)
+% Calculate effective density of multi-layer beam
+% b: width of each layer
+% Roh: density of each layer
+% Layer: thickness of each layer
+
+N=length(b);
+tTotal=sum(Layer);
+VolFractions=zeros(1,N);
+
+% Calculate volume fractions
+for i=1:N
+    VolFractions(i)=b(i)*Layer(i)/(sum(b.*Layer));
+end
+
+% Calculate effective density using rule of mixtures
+RohBeam=0;
+for i=1:N
+    RohBeam=RohBeam+VolFractions(i)*Roh(i);
+end
+
+end</code></pre>
+                            </div>
+                            
+                            <div id="e-stiffness-matlab" class="code-file">
+                                <pre><code class="language-matlab">function [E_eff]=EStiffness(b,E,Layer)
+% Calculate effective Young's modulus for multi-layer beam
+% b: width of each layer
+% E: Young's modulus of each layer
+% Layer: thickness of each layer
+
+N=length(b);
+A_total=sum(b.*Layer);
+
+% Calculate effective modulus using parallel spring model
+E_eff=0;
+for i=1:N
+    A_i=b(i)*Layer(i);
+    E_eff=E_eff+E(i)*A_i/A_total;
+end
+
+end</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Main Portfolio Section -->
+    <section class="back-to-main">
+        <div class="back-to-main-content">
+            <a href="dataengineer-simple.html" class="back-to-main-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Main Portfolio
+            </a>
+        </div>
+    </section>
+
+    <!-- 3D Design Demo Modal -->
+    <div id="3d-design-demo-modal" class="modal modal-hidden">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('3d-design-demo-modal')">&times;</span>
+            <div class="modal-header">
+                <h3>3D Design Portfolio</h3>
+            </div>
+            <div class="modal-body">
+                <p>This demonstration showcases my 3D modeling work using Lua programming and IceSL, featuring the centrifugal single vane diagonal pump and various gear systems I've designed.</p>
+                <div class="stl-viewer-section">
+                    <div id="modal-stl-viewer-container" style="width: 100%; height: 300px; border: 2px solid #4a4a4a; border-radius: 8px; background: #1a1a1a; position: relative;">
+                        <div id="modal-stl-viewer" style="width: 100%; height: 100%;"></div>
+                        <div id="modal-stl-loading" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #6b9bd2; text-align: center;">
+                            <i class="fas fa-spinner fa-spin"></i> Loading 3D Model...
+                        </div>
+                    </div>
+                </div>
+                <p><em>Note: Interactive 3D models demonstrate the centrifugal pump design created using Lua programming and IceSL.</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Protection Modal -->
+    <div id="password-modal" class="password-modal">
+        <div class="password-modal-content">
+            <h3>Protected Content</h3>
+            <p>This content is password protected. Please enter the password to view the code files.</p>
+            <input type="password" id="password-input" class="password-input" placeholder="Enter password">
+            <div>
+                <button class="password-btn" onclick="checkPassword()">Unlock</button>
+                <button class="password-btn password-cancel" onclick="closePasswordModal()">Cancel</button>
+            </div>
+            <div id="password-error" class="password-error" style="display: none;">
+                <p>Incorrect password. Please check the password from the cover letter or <a href="#contact" class="password-contact-link" onclick="closePasswordModal()">contact me</a> for access.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Code display functionality
+        function toggleCodeView(codeId) {
+            const codeDisplay = document.getElementById(codeId);
+            if (codeDisplay) {
+                if (codeDisplay.style.display === 'none' || codeDisplay.style.display === '') {
+                    codeDisplay.style.display = 'block';
+                    codeDisplay.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                } else {
+                    codeDisplay.style.display = 'none';
+                }
+            }
+        }
+
+        function showCodeFile(fileId) {
+            // Find the parent code display container
+            const selectedFile = document.getElementById(fileId);
+            if (!selectedFile) return;
+            
+            const codeDisplay = selectedFile.closest('.code-display');
+            if (!codeDisplay) return;
+            
+            // Hide all code files in this container
+            const codeFiles = codeDisplay.querySelectorAll('.code-file');
+            codeFiles.forEach(file => {
+                file.classList.remove('active');
+            });
+
+            // Remove active class from all tabs in this container
+            const tabs = codeDisplay.querySelectorAll('.code-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected file
+            selectedFile.classList.add('active');
+
+            // Activate corresponding tab
+            const activeTab = codeDisplay.querySelector(`[onclick="showCodeFile('${fileId}')"]`);
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+        }
+
+        // Modal functionality
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                
+                // Initialize modal 3D viewer if it's the 3D design demo modal
+                if (modalId === '3d-design-demo-modal') {
+                    setTimeout(() => {
+                        initModalSTLViewer();
+                    }, 100);
+                }
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll-based hide/show functionality for header and footer
+        let lastScrollTop = 0;
+        let isScrolling = false;
+        let scrollTimeout;
+
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            const footer = document.querySelector('.back-to-main');
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Clear existing timeout
+            clearTimeout(scrollTimeout);
+            isScrolling = true;
+
+            // Determine scroll direction
+            if (currentScroll > lastScrollTop && currentScroll > 100) {
+                // Scrolling down - hide header, show footer
+                navbar.style.transform = 'translateY(-100%)';
+                navbar.style.transition = 'transform 0.3s ease-in-out';
+                footer.style.transform = 'translateY(0)';
+                footer.style.transition = 'transform 0.3s ease-in-out';
+            } else if (currentScroll < lastScrollTop) {
+                // Scrolling up - show header, hide footer
+                navbar.style.transform = 'translateY(0)';
+                navbar.style.transition = 'transform 0.3s ease-in-out';
+                footer.style.transform = 'translateY(100%)';
+                footer.style.transition = 'transform 0.3s ease-in-out';
+            }
+
+            // Update navbar background
+            if (currentScroll > 100) {
+                navbar.style.background = 'rgba(197, 189, 189, 0.24)';
+            } else {
+                navbar.style.background = 'rgba(197, 189, 189, 0.24)';
+            }
+
+            lastScrollTop = currentScroll;
+
+            // Set timeout to detect when scrolling stops
+            scrollTimeout = setTimeout(function() {
+                isScrolling = false;
+            }, 150);
+        });
+
+        // STL Viewer Variables
+        let scene, camera, renderer, controls;
+        let currentModel = null;
+        let isViewerInitialized = false;
+
+        // Initialize STL Viewer
+        function initSTLViewer() {
+            if (isViewerInitialized) return;
+            
+            const container = document.getElementById('stl-viewer');
+            if (!container) return;
+
+            // Create scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xf8f8f8);
+
+            // Create camera
+            camera = new THREE.PerspectiveCamera(75, container.offsetWidth / container.offsetHeight, 0.1, 1000);
+            camera.position.set(0, 0, 5);
+
+            // Create renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.offsetWidth, container.offsetHeight);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            container.appendChild(renderer.domElement);
+
+            // Add lighting
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+            scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(10, 10, 5);
+            directionalLight.castShadow = true;
+            scene.add(directionalLight);
+
+            // Add orbit controls (simplified version)
+            addOrbitControls();
+
+            // Hide loading indicator
+            const loading = document.getElementById('stl-loading');
+            if (loading) loading.style.display = 'none';
+
+            isViewerInitialized = true;
+            animate();
+        }
+
+        // Simple orbit controls implementation
+        function addOrbitControls() {
+            let isMouseDown = false;
+            let mouseX = 0, mouseY = 0;
+            let targetRotationX = 0, targetRotationY = 0;
+            let rotationX = 0, rotationY = 0;
+
+            const container = document.getElementById('stl-viewer');
+            
+            container.addEventListener('mousedown', (event) => {
+                isMouseDown = true;
+                mouseX = event.clientX;
+                mouseY = event.clientY;
+            });
+
+            container.addEventListener('mousemove', (event) => {
+                if (!isMouseDown) return;
+                
+                const deltaX = event.clientX - mouseX;
+                const deltaY = event.clientY - mouseY;
+                
+                targetRotationY += deltaX * 0.01;
+                targetRotationX += deltaY * 0.01;
+                
+                mouseX = event.clientX;
+                mouseY = event.clientY;
+            });
+
+            container.addEventListener('mouseup', () => {
+                isMouseDown = false;
+            });
+
+            container.addEventListener('wheel', (event) => {
+                event.preventDefault(); // Prevent page scrolling
+                camera.position.z += event.deltaY * 0.01;
+                camera.position.z = Math.max(1, Math.min(20, camera.position.z));
+            });
+
+            // Update rotation in animation loop
+            function updateRotation() {
+                rotationX += (targetRotationX - rotationX) * 0.1;
+                rotationY += (targetRotationY - rotationY) * 0.1;
+                
+                if (currentModel) {
+                    currentModel.rotation.x = rotationX;
+                    currentModel.rotation.y = rotationY;
+                }
+            }
+            
+            // Store update function for animation loop
+            window.updateRotation = updateRotation;
+        }
+
+        // Load STL model
+        function loadSTLModel(filePath) {
+            if (!isViewerInitialized) {
+                initSTLViewer();
+                setTimeout(() => loadSTLModel(filePath), 100);
+                return;
+            }
+
+            const loading = document.getElementById('stl-loading');
+            const error = document.getElementById('stl-error');
+            
+            if (loading) loading.style.display = 'block';
+            if (error) error.style.display = 'none';
+
+            // Remove current model
+            if (currentModel) {
+                scene.remove(currentModel);
+            }
+
+            // Load actual STL file
+            const loader = new THREE.STLLoader();
+            loader.load(
+                filePath,
+                function (geometry) {
+                    // Create material
+                    const material = new THREE.MeshLambertMaterial({ 
+                        color: 0x708090,
+                        transparent: true,
+                        opacity: 0.9
+                    });
+                    
+                    // Create mesh
+                    currentModel = new THREE.Mesh(geometry, material);
+                    currentModel.castShadow = true;
+                    currentModel.receiveShadow = true;
+                    
+                    // Center and scale the model
+                    const box = new THREE.Box3().setFromObject(currentModel);
+                    const center = box.getCenter(new THREE.Vector3());
+                    const size = box.getSize(new THREE.Vector3());
+                    const maxDim = Math.max(size.x, size.y, size.z);
+                    const scale = 3 / maxDim; // Scale to fit in viewer
+                    
+                    currentModel.scale.setScalar(scale);
+                    currentModel.position.sub(center.multiplyScalar(scale));
+                    
+                    scene.add(currentModel);
+                    
+                    // Update button states
+                    document.querySelectorAll('.viewer-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    event.target.classList.add('active');
+                    
+                    if (loading) loading.style.display = 'none';
+                },
+                function (progress) {
+                    // Progress callback
+                    console.log('Loading progress:', (progress.loaded / progress.total * 100) + '%');
+                },
+                function (error) {
+                    // Error callback
+                    console.error('Error loading STL file:', error);
+                    if (loading) loading.style.display = 'none';
+                    if (error) error.style.display = 'block';
+                }
+            );
+        }
+
+        // Reset view
+        function resetView() {
+            if (camera) {
+                camera.position.set(0, 0, 5);
+            }
+            if (currentModel) {
+                currentModel.rotation.set(0, 0, 0);
+            }
+            targetRotationX = 0;
+            targetRotationY = 0;
+        }
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            if (window.updateRotation) {
+                window.updateRotation();
+            }
+            
+            if (renderer && scene && camera) {
+                renderer.render(scene, camera);
+            }
+        }
+
+        // Password Protection
+        let passwordAttempts = 0;
+        const maxAttempts = 3;
+        const correctPassword = "Oranges"; // Password for accessing protected content
+
+        function showPasswordModal() {
+            const modal = document.getElementById('password-modal');
+            if (modal) {
+                modal.style.display = 'block';
+                document.getElementById('password-input').focus();
+            }
+        }
+
+        function closePasswordModal() {
+            const modal = document.getElementById('password-modal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.getElementById('password-input').value = '';
+                document.getElementById('password-error').style.display = 'none';
+                passwordAttempts = 0;
+            }
+        }
+
+        function checkPassword() {
+            const input = document.getElementById('password-input');
+            const errorDiv = document.getElementById('password-error');
+            
+            if (input.value === correctPassword) {
+                // Password is correct, unlock all code sections and downloads
+                document.getElementById('3d-design-code').style.display = 'block';
+                document.getElementById('file-downloads-content').style.display = 'grid';
+                document.getElementById('optical-encoders-code').style.display = 'block';
+                document.getElementById('optical-encoders-downloads').style.display = 'grid';
+                document.querySelectorAll('.locked-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                closePasswordModal();
+            } else {
+                passwordAttempts++;
+                const remainingAttempts = maxAttempts - passwordAttempts;
+                
+                if (passwordAttempts >= maxAttempts) {
+                    errorDiv.innerHTML = '<p>Too many incorrect attempts. Please <a href="#contact" class="password-contact-link" onclick="closePasswordModal()">contact me</a> for access.</p>';
+                    errorDiv.style.display = 'block';
+                    setTimeout(() => {
+                        closePasswordModal();
+                    }, 3000);
+                } else {
+                    errorDiv.innerHTML = `<p>Incorrect password. ${remainingAttempts} attempt${remainingAttempts > 1 ? 's' : ''} remaining. Please check the password from the cover letter or <a href="#contact" class="password-contact-link" onclick="closePasswordModal()">contact me</a> for access.</p>`;
+                    errorDiv.style.display = 'block';
+                }
+            }
+        }
+
+        // Allow Enter key to submit password
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('password-input');
+            if (passwordInput) {
+                passwordInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        checkPassword();
+                    }
+                });
+            }
+        });
+
+        // Initialize modal STL viewer
+        function initModalSTLViewer() {
+            const container = document.getElementById('modal-stl-viewer');
+            if (!container) return;
+
+            // Create scene for modal
+            const modalScene = new THREE.Scene();
+            modalScene.background = new THREE.Color(0xf8f8f8);
+
+            // Create camera for modal
+            const modalCamera = new THREE.PerspectiveCamera(75, container.offsetWidth / container.offsetHeight, 0.1, 1000);
+            modalCamera.position.set(0, 0, 5);
+
+            // Create renderer for modal
+            const modalRenderer = new THREE.WebGLRenderer({ antialias: true });
+            modalRenderer.setSize(container.offsetWidth, container.offsetHeight);
+            modalRenderer.shadowMap.enabled = true;
+            modalRenderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            container.appendChild(modalRenderer.domElement);
+
+            // Add wheel event handling for modal
+            container.addEventListener('wheel', (event) => {
+                event.preventDefault(); // Prevent page scrolling
+                modalCamera.position.z += event.deltaY * 0.01;
+                modalCamera.position.z = Math.max(1, Math.min(20, modalCamera.position.z));
+            });
+
+            // Add mouse controls for modal
+            let isModalMouseDown = false;
+            let modalMouseX = 0, modalMouseY = 0;
+            let modalTargetRotationX = 0, modalTargetRotationY = 0;
+            let modalRotationX = 0, modalRotationY = 0;
+
+            container.addEventListener('mousedown', (event) => {
+                isModalMouseDown = true;
+                modalMouseX = event.clientX;
+                modalMouseY = event.clientY;
+            });
+
+            container.addEventListener('mousemove', (event) => {
+                if (!isModalMouseDown) return;
+                
+                const deltaX = event.clientX - modalMouseX;
+                const deltaY = event.clientY - modalMouseY;
+                
+                modalTargetRotationY += deltaX * 0.01;
+                modalTargetRotationX += deltaY * 0.01;
+                
+                modalMouseX = event.clientX;
+                modalMouseY = event.clientY;
+            });
+
+            container.addEventListener('mouseup', () => {
+                isModalMouseDown = false;
+            });
+
+            // Add lighting
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+            modalScene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(10, 10, 5);
+            directionalLight.castShadow = true;
+            modalScene.add(directionalLight);
+
+            // Load a model for the modal
+            const loader = new THREE.STLLoader();
+            loader.load(
+                'Centrifugal pump design/full design.stl',
+                function (geometry) {
+                    const material = new THREE.MeshLambertMaterial({ 
+                        color: 0x708090,
+                        transparent: true,
+                        opacity: 0.9
+                    });
+                    
+                    const modalModel = new THREE.Mesh(geometry, material);
+                    modalModel.castShadow = true;
+                    modalModel.receiveShadow = true;
+                    
+                    // Center and scale the model
+                    const box = new THREE.Box3().setFromObject(modalModel);
+                    const center = box.getCenter(new THREE.Vector3());
+                    const size = box.getSize(new THREE.Vector3());
+                    const maxDim = Math.max(size.x, size.y, size.z);
+                    const scale = 2.5 / maxDim;
+                    
+                    modalModel.scale.setScalar(scale);
+                    modalModel.position.sub(center.multiplyScalar(scale));
+                    
+                    modalScene.add(modalModel);
+                    
+                    // Hide loading indicator
+                    const modalLoading = document.getElementById('modal-stl-loading');
+                    if (modalLoading) modalLoading.style.display = 'none';
+                    
+                    // Animation with mouse controls
+                    function animateModal() {
+                        requestAnimationFrame(animateModal);
+                        
+                        // Update rotation based on mouse input
+                        modalRotationX += (modalTargetRotationX - modalRotationX) * 0.1;
+                        modalRotationY += (modalTargetRotationY - modalRotationY) * 0.1;
+                        
+                        if (modalModel) {
+                            modalModel.rotation.x = modalRotationX;
+                            modalModel.rotation.y = modalRotationY;
+                        }
+                        
+                        modalRenderer.render(modalScene, modalCamera);
+                    }
+                    animateModal();
+                },
+                function (progress) {
+                    console.log('Modal loading progress:', (progress.loaded / progress.total * 100) + '%');
+                },
+                function (error) {
+                    console.error('Error loading modal STL file:', error);
+                    const modalLoading = document.getElementById('modal-stl-loading');
+                    if (modalLoading) modalLoading.style.display = 'none';
+                }
+            );
+        }
+
+        // Initialize STL viewer when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                initSTLViewer();
+                // Load the first model by default
+                setTimeout(() => {
+                    loadSTLModel('Centrifugal pump design/casing.stl');
+                }, 1000);
+            }, 500);
+            
+            // Ensure downloads and code sections are locked by default
+            const fileDownloadsContent = document.getElementById('file-downloads-content');
+            const opticalEncodersCode = document.getElementById('optical-encoders-code');
+            const opticalEncodersDownloads = document.getElementById('optical-encoders-downloads');
+            const lockedContents = document.querySelectorAll('.locked-content');
+            
+            if (fileDownloadsContent) fileDownloadsContent.style.display = 'none';
+            if (opticalEncodersCode) opticalEncodersCode.style.display = 'none';
+            if (opticalEncodersDownloads) opticalEncodersDownloads.style.display = 'none';
+            lockedContents.forEach(content => {
+                content.style.display = 'block';
+            });
+        });
+    </script>
+
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: #ffffff;
+            margin: 5% auto;
+            padding: 2rem;
+            border: 2px solid #034b1bd5;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #666666;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #2c2c2c;
+        }
+
+        .modal-header h3 {
+            color: #034b1bd5;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .modal-body p {
+            color: #666666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .modal-body em {
+            color: #666666;
+            font-size: 0.9rem;
+        }
+
+        /* Additional utility classes */
+        .code-hidden {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .code-title {
+            color: #2c2c2c;
+            margin-bottom: 1rem;
+        }
+
+        .modal-video {
+            width: 100%;
+            height: 300px;
+        }
+
+        .video-note {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .modal-hidden {
+            display: none;
+        }
+
+        /* Password Protection Modal */
+        .password-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+        }
+
+        .password-modal-content {
+            background: #ffffff;
+            margin: 15% auto;
+            padding: 2rem;
+            border: 1px solid #d0d0d0;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .password-modal h3 {
+            color: #2c2c2c;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .password-modal p {
+            color: #666666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #d0d0d0;
+            border-radius: 6px;
+            background: #f8f8f8;
+            color: #2c2c2c;
+            font-size: 1rem;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: #034b1bd5;
+            box-shadow: 0 0 0 2px rgba(3, 75, 27, 0.2);
+        }
+
+        .password-btn {
+            background: #034b1bd5;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 0.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .password-btn:hover {
+            background: #046b2a;
+        }
+
+        .password-cancel {
+            background: #666;
+        }
+
+        .password-cancel:hover {
+            background: #777;
+        }
+
+        .password-error {
+            color: #ff6b6b;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .password-contact-link {
+            color: #034b1bd5;
+            text-decoration: none;
+        }
+
+        .password-contact-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Back to Main Portfolio Section */
+        .back-to-main {
+            background: rgba(68, 124, 86, 0.055);
+            padding: 0;
+            margin: 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            z-index: 1000;
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .back-to-main-content {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .back-to-main-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            background: rgba(10, 80, 37, 0.178);
+            border: none;
+            color: #024212e7;
+            padding: 2rem 0;
+            border-radius: 0;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            width: 100vw;
+            height: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .back-to-main-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .back-to-main-btn:hover::before {
+            left: 100%;
+        }
+
+        .back-to-main-btn:hover {
+            background: rgba(16, 99, 57, 0.35);
+            color: #ffffff;
+            transform: scale(1.02);
+            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.2);
+            -webkit-backdrop-filter: blur(25px);
+            backdrop-filter: blur(25px);
+        }
+
+        .back-to-main-btn:active {
+            transform: scale(0.98);
+            transition: all 0.1s ease;
+        }
+
+        .back-to-main-btn i {
+            font-size: 1.4rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: pulse 2s infinite;
+        }
+
+        .back-to-main-btn:hover i {
+            transform: translateX(-5px) scale(1.1);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+    </style>
+</body>
+</html>

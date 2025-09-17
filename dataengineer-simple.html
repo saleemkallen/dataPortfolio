@@ -1,0 +1,3749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammed Saleem Kallan - Dateningenieur Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #2c2c2c;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(197, 189, 189, 0.24);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid #d0d0d0;
+            z-index: 1000;
+            padding: 1rem 0;
+            transform: translateY(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            min-height: 60px;
+        }
+
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+
+        .nav-menu a {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #034b1bd5;
+        }
+
+
+        /* Mobile Navigation */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #2c2c2c;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle:hover {
+            color: #034b1bd5;
+        }
+
+        .language-switcher {
+            position: relative;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(197, 189, 189, 0.3);
+            color: #2c2c2c;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .lang-btn:hover {
+            background: rgba(197, 189, 189, 0.2);
+            border-color: #034b1bd5;
+        }
+
+        .lang-btn.active {
+            background: rgba(3, 75, 27, 0.1);
+            border-color: #034b1bd5;
+            color: #034b1bd5;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: #b1a9a92f;
+            position: relative;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(3, 75, 27, 0.05) 50%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #034b1bd5;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out 0.1s both;
+        }
+
+        .hero-text h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #666666;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #666666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #034b1bd5;
+            margin-bottom: 0.5rem;
+            animation: countUp 2s ease-out 1.2s both;
+        }
+
+        .stat p {
+            color: #666666;
+            font-size: 0.9rem;
+        }
+
+        .hero-languages {
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            color: #666666;
+            font-weight: 400;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: #034b1bd5;
+            color: white;
+            box-shadow: 0 4px 15px rgba(3, 75, 27, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(3, 75, 27, 0.4);
+            background: #046b2a;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #2c2c2c;
+            border: 2px solid #034b1bd5;
+        }
+
+        .btn-secondary:hover {
+            background: #034b1bd5;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #034b1bd5;
+            border: 2px solid #034b1bd5;
+        }
+
+        .btn-outline:hover {
+            background: #034b1bd5;
+            color: white;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInRight 1.2s ease-out 0.5s both;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid transparent;
+            background: linear-gradient(#f5f5f5, #f5f5f5) padding-box,
+                        #034b1bd5 border-box;
+            position: relative;
+            animation: float 6s ease-in-out infinite, scaleIn 1.5s ease-out 0.8s both;
+            box-shadow: 0 20px 40px rgba(3, 75, 27, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(3, 75, 27, 0.3);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #034b1bd5;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666666;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Other Projects Indication */
+        .other-projects-indication {
+            margin-top: 4rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+            border-radius: 16px;
+            border: 1px solid #d0d0d0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .other-projects-indication::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #034b1bd5;
+        }
+
+        .indication-content h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c2c2c;
+        }
+
+        .indication-content p {
+            color: #666666;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .indication-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(107, 155, 210, 0.3);
+        }
+
+        .indication-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(107, 155, 210, 0.4);
+        }
+
+        .project-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #d0d0d0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #034b1bd5;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c2c2c;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(197, 189, 189, 0.24);
+            color: #2c2c2c;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(197, 189, 189, 0.5);
+        }
+
+        .project-description {
+            color: #666666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-achievements {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-achievements h4 {
+            color: #2c2c2c;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .project-achievements ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .project-achievements li {
+            color: #666666;
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .project-achievements li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #034b1bd5;
+            font-weight: bold;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .thesis-grade {
+            margin: 1rem 0;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #08410a93 0%, #174619fb 100%);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .thesis-grade strong {
+            color: white;
+            font-size: 1rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #d0d0d0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-category h3 i {
+            color: #034b1bd5;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            color: #2c2c2c;
+        }
+
+        .skill-level {
+            font-size: 0.9rem;
+            color: #034b1bd5;
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: #e8e8e8;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: #034b1bd5;
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+
+        /* Experience Section */
+        .experience-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .experience-item {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #d0d0d0;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            background: #034b1bd5;
+            border-radius: 50%;
+            border: 4px solid #f5f5f5;
+        }
+
+        .experience-header h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .company {
+            color: #034b1bd5;
+            font-weight: 600;
+        }
+
+        .company a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .company a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        .period {
+            color: #666666;
+        }
+
+        .experience-achievements {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-achievements li {
+            color: #666666;
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .experience-achievements li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #034b1bd5;
+            font-weight: bold;
+        }
+
+        .experience-grade {
+            margin-bottom: 1rem;
+        }
+
+        .experience-grade strong {
+            color: #4caf50;
+            font-size: 1rem;
+        }
+
+        .experience-department {
+            margin: 0.5rem 0;
+            padding: 0.3rem 0.8rem;
+            background: linear-gradient(135deg, #e8e8e8 0%, #ffffff 100%);
+            border-radius: 6px;
+            border-left: 3px solid #6b9bd2;
+        }
+
+        .experience-department strong {
+            color: #2c2c2c;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Education Section */
+        .education-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .education-item {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #d0d0d0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .education-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            background: #084b168e;
+            border-radius: 50%;
+            border: 4px solid #c8ccc8;
+        }
+
+        .education-header h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .institution {
+            color: #034b1bd5;
+            font-weight: 600;
+        }
+
+        .institution a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .institution a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        .period {
+            color: #666666;
+        }
+
+        .education-location {
+            color: #666666;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .education-details {
+            margin-top: 1rem;
+        }
+
+        .education-details p {
+            color: #666666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .education-links {
+            margin-top: 1rem;
+        }
+
+        /* Languages Section */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .language-item {
+            background: #f5f5f5;
+            border: 1px solid #d0d0d0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .language-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-color: #555555;
+        }
+
+        .language-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .language-header h4 {
+            color: #2c2c2c;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .language-level {
+            background: rgba(197, 189, 189, 0.24);
+            color: #034b1bd5;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(197, 189, 189, 0.5);
+        }
+
+        .language-progress {
+            width: 100%;
+            height: 6px;
+            background: #e8e8e8;
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #034b1bd5;
+            border-radius: 3px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Additional Languages Grid */
+        .additional-languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Mobile responsiveness for languages */
+        @media (max-width: 768px) {
+            .languages-grid,
+            .additional-languages-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .language-item {
+                padding: 1rem;
+            }
+
+            .language-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .language-level {
+                font-size: 0.8rem;
+                padding: 0.25rem 0.6rem;
+            }
+
+            .hero-languages {
+                text-align: center;
+            }
+        }
+
+        /* Additional Skills Section */
+        .additional-skills {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .additional-skills h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #2c2c2c;
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skill-tag {
+            background: #ffffff;
+            color: #2c2c2c;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #d0d0d0;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: #6b9bd2;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(107, 155, 210, 0.3);
+        }
+
+        /* Password Protection Modal */
+        .password-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+        }
+
+        .password-modal-content {
+            background: #f5f5f5;
+            margin: 15% auto;
+            padding: 2rem;
+            border: 2px solid #6b9bd2;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .password-modal h3 {
+            color: #034b1bd5;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .password-modal p {
+            color: #666666;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .password-input-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #d0d0d0;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #2c2c2c;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: #6b9bd2;
+        }
+
+        .password-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .password-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+
+        .password-submit {
+            background: #6b9bd2;
+            color: white;
+        }
+
+        .password-submit:hover {
+            background: #5a8bc2;
+            transform: translateY(-2px);
+        }
+
+        .password-cancel {
+            background: #ffffff;
+            color: #2c2c2c;
+            border: 2px solid #d0d0d0;
+        }
+
+        .password-cancel:hover {
+            background: #e8e8e8;
+        }
+
+        .password-error {
+            color: #ff6b6b;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .password-error.show {
+            display: block;
+            animation: errorShake 0.5s ease;
+        }
+
+        @keyframes errorShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .password-contact-link {
+            color: #034b1bd5;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 0.5rem;
+        }
+
+        .password-contact-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Code Display Styles */
+        .code-display {
+            background: #1a1a1a;
+            border-radius: 8px;
+            border: 2px solid #034b1bd5;
+            overflow: hidden;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .code-header {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-bottom: 2px solid #034b1bd5;
+        }
+
+        .code-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .code-tab {
+            background: #034b1bd5;
+            color: #ffffff;
+            border: 1px solid #034b1bd5;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .code-tab:hover {
+            background: #046b2a;
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(3, 75, 27, 0.3);
+        }
+
+        .code-tab.active {
+            background: #034b1bd5;
+            color: #ffffff;
+            border-color: #034b1bd5;
+            box-shadow: 0 2px 8px rgba(3, 75, 27, 0.3);
+        }
+
+        .code-content {
+            padding: 0;
+        }
+
+        .code-file {
+            display: none;
+        }
+
+        .code-file.active {
+            display: block;
+        }
+
+        .code-file pre {
+            margin: 0;
+            padding: 1.5rem;
+            background: #1a1a1a;
+            overflow-x: auto;
+            border-radius: 0 0 6px 6px;
+        }
+
+        .code-file code {
+            color: #e8e8e8;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #d0d0d0;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: #034b1bd5;
+            width: 30px;
+            text-align: center;
+        }
+
+        .contact-item h4 {
+            color: #2c2c2c;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item p {
+            color: #666666;
+            margin: 0;
+        }
+
+        .contact-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-link:hover {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-form-container {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #d0d0d0;
+        }
+
+        .contact-form-container h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c2c2c;
+        }
+
+        .contact-form-container p {
+            color: #666666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: #2c2c2c;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: #f5f5f5;
+            border: 1px solid #d0d0d0;
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #2c2c2c;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6b9bd2;
+            box-shadow: 0 0 0 3px rgba(107, 155, 210, 0.1);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #666666;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form .btn {
+            align-self: flex-start;
+            margin-top: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #ffffff;
+            border-top: 1px solid #d0d0d0;
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: #666666;
+            margin: 0;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: #666666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #034b1bd5;
+        }
+
+        /* Medium screens - prevent wrapping */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .nav-menu {
+                gap: 1rem;
+            }
+            
+            .nav-menu a {
+                font-size: 0.85rem;
+            }
+            
+            .nav-logo h2 {
+                font-size: 1.2rem;
+            }
+            
+            .nav-logo span {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(42, 42, 42, 0.98);
+                -webkit-backdrop-filter: blur(15px);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                border-top: 1px solid #d0d0d0;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-container {
+                position: relative;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-form-container {
+                padding: 1.5rem;
+            }
+            
+            .contact-form .btn {
+                align-self: stretch;
+            }
+            
+            .skills-tags {
+                gap: 0.5rem;
+            }
+            
+            .skill-tag {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .other-projects-indication {
+                padding: 2rem 1.5rem;
+                margin-top: 3rem;
+            }
+
+            .indication-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .indication-btn {
+                padding: 12px 24px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .project-card,
+            .skill-category,
+            .experience-item {
+                padding: 1.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="language-switcher">
+                <button id="languageToggle" class="lang-btn active" data-lang="de">
+                    <span>🇩🇪</span>
+                    <span>DE</span>
+                </button>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#about" data-en="About" data-de="Über mich">Über mich</a>
+                <a href="#projects" data-en="Projects" data-de="Projekte">Projekte</a>
+                <a href="#skills" data-en="Skills" data-de="Fähigkeiten">Fähigkeiten</a>
+                <a href="#experience" data-en="Experience" data-de="Berufserfahrung">Berufserfahrung</a>
+                <a href="#education" data-en="Education" data-de="Bildung">Bildung</a>
+                <a href="other-projects.html" data-en="Other Projects" data-de="Weitere Projekte">Weitere Projekte</a>
+                <a href="#contact" data-en="Contact" data-de="Kontakt">Kontakt</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+    <!-- Hero Section -->
+    <section id="about" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Muhammed Saleem Kallan</h1>
+                <h2 data-en="Data Engineering & Analytics " data-de="Datentechnik & Analytik">Dateningenieur & Analytics-Spezialist</h2>
+                <p class="hero-subtitle" data-en="Transforming raw data into actionable insights through advanced analytics and robust data engineering solutions." data-de="Transformation von Rohdaten in umsetzbare Erkenntnisse durch fortgeschrittene Analysen und robuste Datenengineering-Lösungen.">
+                    Transformation von Rohdaten in umsetzbare Erkenntnisse durch fortgeschrittene Analysen und robuste Datenengineering-Lösungen.
+                </p>
+                <div class="hero-languages">
+                    <span data-en="German (B2) actively learning | English C1" data-de="Deutsch (B2) aktiv lernend | Englisch C1">Deutsch (B2) aktiv lernend | Englisch C1</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary" data-en="View My Work" data-de="Meine Arbeit ansehen">Meine Arbeit ansehen</a>
+                    <a href="#contact" class="btn btn-secondary" data-en="Get In Touch" data-de="Kontakt aufnehmen">Kontakt aufnehmen</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-image">
+                    <img src="photo.jpg" alt="Muhammed Saleem Kallan" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title" data-en="Data Engineering Projects" data-de="Datenengineering-Projekte">Datenengineering-Projekte</h2>
+            <p class="section-subtitle" data-en="** Some project details are withheld due to confidentiality, but the key methods, tools, and outcomes are highlighted." data-de="** Einige Projektdetails werden aus Vertraulichkeitsgründen zurückgehalten, aber die wichtigsten Methoden, Tools und Ergebnisse werden hervorgehoben.">
+                ** Einige Projektdetails werden aus Vertraulichkeitsgründen zurückgehalten, aber die wichtigsten Methoden, Tools und Ergebnisse werden hervorgehoben.
+            </p>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 data-en="Master Thesis: AI-Driven Data Pipeline & Chatbot System" data-de="Masterarbeit: KI-gestützte Datenpipeline & Chatbot-System">Masterarbeit: KI-gestützte Datenpipeline & Chatbot-System</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Elasticsearch</span>
+                            <span class="tech-tag">Azure OpenAI</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">RAG</span>
+                            <span class="tech-tag">NLP</span>
+                        </div>
+                        <div class="thesis-grade">
+                            <strong>Grade Achieved: 1.2/5.0 </strong>
+                    </div>
+                    </div>
+                    <p class="project-description" data-en="<strong>Master Thesis Project at Bosch and Siemens Hausgeräte (BSH)</strong><br>Developed an advanced data processing pipeline using RAG (Retrieval-Augmented Generation) and Elasticsearch for enterprise knowledge management. Built automated data ingestion, processing, and retrieval systems serving 500+ internal users with natural language query capabilities." data-de="<strong>Masterarbeit-Projekt bei Bosch und Siemens Hausgeräte (BSH)</strong><br>Entwicklung einer fortgeschrittenen Datenverarbeitungspipeline mit RAG (Retrieval-Augmented Generation) und Elasticsearch für Enterprise-Wissensmanagement. Aufbau automatisierter Datenerfassungs-, Verarbeitungs- und Abrufsysteme für 500+ interne Benutzer mit natürlichen Sprachabfragefunktionen.">
+                        <strong>Masterarbeit-Projekt bei Bosch und Siemens Hausgeräte (BSH)</strong><br>
+                        Entwicklung einer fortgeschrittenen Datenverarbeitungspipeline mit RAG (Retrieval-Augmented Generation) und Elasticsearch für Enterprise-Wissensmanagement. Aufbau automatisierter Datenerfassungs-, Verarbeitungs- und Abrufsysteme für 500+ interne Benutzer mit natürlichen Sprachabfragefunktionen.
+                    </p>
+                    
+                    <div class="project-achievements">
+                        <h4 data-en="Key Achievements:" data-de="Wichtige Erfolge:">Wichtige Erfolge:</h4>
+                        <ul>
+                            <li data-en="Reduced data retrieval time by 60% through optimized Elasticsearch queries" data-de="Reduzierung der Datenabrufzeit um 60% durch optimierte Elasticsearch-Abfragen">Reduzierung der Datenabrufzeit um 60% durch optimierte Elasticsearch-Abfragen</li>
+                            <li data-en="Improved user query accuracy by 45% using RAG implementation" data-de="Verbesserung der Benutzerabfragegenauigkeit um 45% durch RAG-Implementierung">Verbesserung der Benutzerabfragegenauigkeit um 45% durch RAG-Implementierung</li>
+                            <li data-en="Processed 10,000+ documents with 99.2% uptime" data-de="Verarbeitung von 10.000+ Dokumenten mit 99,2% Verfügbarkeit">Verarbeitung von 10.000+ Dokumenten mit 99,2% Verfügbarkeit</li>
+                            <li data-en="Built automated ETL pipeline handling 10GB+ daily data" data-de="Aufbau automatisierter ETL-Pipeline mit täglicher Verarbeitung von 10GB+ Daten">Aufbau automatisierter ETL-Pipeline mit täglicher Verarbeitung von 10GB+ Daten</li>
+                            <li data-en="Integrated Azure OpenAI services for natural language processing" data-de="Integration von Azure OpenAI Services für natürliche Sprachverarbeitung">Integration von Azure OpenAI Services für natürliche Sprachverarbeitung</li>
+                            <li data-en="Developed web scraping infrastructure for 1,300+ dynamic HTML pages" data-de="Entwicklung von Web-Scraping-Infrastruktur für 1.300+ dynamische HTML-Seiten">Entwicklung von Web-Scraping-Infrastruktur für 1.300+ dynamische HTML-Seiten</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="Master thesis/demo.mp4" target="_blank" rel="noopener" class="btn btn-outline">
+                            <i class="fas fa-play"></i> <span data-en="View Demo Video" data-de="Demo-Video ansehen">Demo-Video ansehen</span>
+                        </a>
+                        <a href="Master thesis/Master thesis report.pdf" target="_blank" rel="noopener" class="btn btn-outline">
+                            <i class="fas fa-file-pdf"></i> <span data-en="Thesis Report" data-de="Thesis-Bericht">Thesis-Bericht</span>
+                        </a>
+                        <a href="Master thesis/Master Thesis Presentation.pdf" target="_blank" rel="noopener" class="btn btn-outline">
+                            <i class="fas fa-presentation"></i> <span data-en="Presentation" data-de="Präsentation">Präsentation</span>
+                        </a>
+                        <button class="btn btn-outline" onclick="toggleCodeView('master-thesis-code')">
+                            <i class="fas fa-code"></i> <span data-en="View Code" data-de="Code ansehen">Code ansehen</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Master Thesis Code Display Section -->
+                    <div id="master-thesis-code" class="code-display" style="display: none; margin-top: 1rem;">
+                        <div class="code-header">
+                            <h4 style="color: #2c2c2c; margin-bottom: 1rem;" data-en="Master Thesis Code Files" data-de="Masterarbeit-Code-Dateien">Masterarbeit-Code-Dateien</h4>
+                            <div class="code-tabs">
+                                <button class="code-tab active" onclick="showCodeFile('app-py')">app.py</button>
+                                <button class="code-tab" onclick="showCodeFile('multiple-models-py')">Multiple_Models.py</button>
+                                <button class="code-tab" onclick="showCodeFile('vectorise-py')">vectorise.py</button>
+                                <button class="code-tab" onclick="showCodeFile('web-scraping-py')">web_scraping.py</button>
+                            </div>
+                        </div>
+                        <div class="code-content">
+                            <div id="app-py" class="code-file active">
+                                <pre><code class="language-python">from flask import Flask, request, render_template, jsonify
+import textwrap
+from elasticsearch import Elasticsearch
+from openai import AzureOpenAI
+
+app = Flask(__name__)
+
+# Elasticsearch client
+from elasticsearch import Elasticsearch
+from elastic_transport import RequestsHttpNode
+from openai import AzureOpenAI
+import textwrap
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+ES_HOST = os.getenv('ES_HOST')
+ES_API_KEY = os.getenv('ES_API_KEY')
+AZRE_ENDPOINT=os.getenv('AZRE_ENDPOINT')
+AZURE_API_KEY=os.getenv('AZURE_API_KEY')
+AZURE_API_VERSION=os.getenv('AZURE_API_VERSION')
+
+es_client= Elasticsearch(
+    ES_HOST,
+    api_key=ES_API_KEY
+)
+
+client = AzureOpenAI(
+    azure_endpoint=AZRE_ENDPOINT,
+    api_key=AZURE_API_KEY,
+    api_version=AZURE_API_VERSION
+)
+
+AZURE_DEPLOYMENT_NAME = "gpt-35-turbo"
+
+index_source_fields = {
+    "on_prem_test": ["body_content"]
+}
+
+def get_elasticsearch_results(query):
+    """
+    Retrieves relevant documents from Elasticsearch.
+    """
+    es_query = {
+        "query": {
+            "multi_match": {
+                "query": query,
+                "fields": ["body_content"],
+                "type": "best_fields",
+                "fuzziness": "AUTO"
+            }
+        },
+        "size": 5,
+        "_source": ["body_content", "url", "title"]
+    }
+    
+    try:
+        response = es_client.search(index="on_prem_test", body=es_query)
+        return response['hits']['hits']
+    except Exception as e:
+        print(f"Elasticsearch error: {e}")
+        return []
+
+def generate_response(query, context_docs):
+    """
+    Generates response using Azure OpenAI with RAG context.
+    """
+    context = "\n\n".join([doc['_source']['body_content'] for doc in context_docs])
+    
+    prompt = f"""Based on the following context, please answer the user's question accurately and concisely.
+
+Context:
+{context}
+
+User Question: {query}
+
+Answer:"""
+
+    try:
+        response = client.chat.completions.create(
+            model=AZURE_DEPLOYMENT_NAME,
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant that answers questions based on the provided context. Be accurate and concise."},
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=500,
+            temperature=0.7
+        )
+        
+        return response.choices[0].message.content
+    except Exception as e:
+        print(f"OpenAI error: {e}")
+        return "I'm sorry, I couldn't generate a response at this time."
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    data = request.get_json()
+    query = data.get('query', '')
+    
+    if not query:
+        return jsonify({'error': 'No query provided'}), 400
+    
+    # Get relevant documents from Elasticsearch
+    context_docs = get_elasticsearch_results(query)
+    
+    # Generate response using RAG
+    response = generate_response(query, context_docs)
+    
+    return jsonify({
+        'response': response,
+        'sources': [doc['_source'] for doc in context_docs]
+    })
+
+if __name__ == '__main__':
+    app.run(debug=True)</code></pre>
+                            </div>
+                            
+                            <div id="multiple-models-py" class="code-file">
+                                <pre><code class="language-python"># Multiple Models Implementation
+# This file contains the implementation for handling multiple AI models
+# in the chatbot system
+
+class ModelManager:
+    def __init__(self):
+        self.models = {}
+        self.active_model = None
+    
+    def add_model(self, name, model_config):
+        """Add a new model to the manager"""
+        self.models[name] = model_config
+    
+    def set_active_model(self, name):
+        """Set the active model for processing"""
+        if name in self.models:
+            self.active_model = name
+        else:
+            raise ValueError(f"Model {name} not found")
+    
+    def get_response(self, prompt):
+        """Get response from the active model"""
+        if not self.active_model:
+            raise ValueError("No active model set")
+        
+        model_config = self.models[self.active_model]
+        # Implementation details would go here
+        return f"Response from {self.active_model}: {prompt}"
+
+# Additional model management code would be here...</code></pre>
+                            </div>
+                            
+                            <div id="vectorise-py" class="code-file">
+                                <pre><code class="language-python"># Vectorization utilities for the chatbot
+# This file handles text vectorization and similarity search
+
+import numpy as np
+from sentence_transformers import SentenceTransformer
+
+class TextVectorizer:
+    def __init__(self, model_name='all-MiniLM-L6-v2'):
+        self.model = SentenceTransformer(model_name)
+    
+    def vectorize_text(self, text):
+        """Convert text to vector representation"""
+        return self.model.encode(text)
+    
+    def find_similar(self, query_vector, document_vectors, top_k=5):
+        """Find most similar documents to query"""
+        similarities = np.dot(document_vectors, query_vector)
+        top_indices = np.argsort(similarities)[-top_k:][::-1]
+        return top_indices, similarities[top_indices]
+
+# Additional vectorization code would be here...</code></pre>
+                            </div>
+                            
+                            <div id="web-scraping-py" class="code-file">
+                                <pre><code class="language-python"># Web scraping functionality for data collection
+# This file handles web scraping and data extraction
+
+import requests
+from bs4 import BeautifulSoup
+import time
+from urllib.parse import urljoin, urlparse
+
+class WebScraper:
+    def __init__(self, delay=1):
+        self.delay = delay
+        self.session = requests.Session()
+    
+    def scrape_url(self, url):
+        """Scrape content from a single URL"""
+        try:
+            response = self.session.get(url, timeout=10)
+            response.raise_for_status()
+            
+            soup = BeautifulSoup(response.content, 'html.parser')
+            
+            # Extract text content
+            text_content = soup.get_text(separator=' ', strip=True)
+            
+            return {
+                'url': url,
+                'title': soup.title.string if soup.title else '',
+                'content': text_content,
+                'status': 'success'
+            }
+            
+        except Exception as e:
+            return {
+                'url': url,
+                'error': str(e),
+                'status': 'error'
+            }
+    
+    def scrape_multiple(self, urls):
+        """Scrape multiple URLs with delay"""
+        results = []
+        for url in urls:
+            result = self.scrape_url(url)
+            results.append(result)
+            time.sleep(self.delay)
+        return results
+
+# Additional scraping utilities would be here...</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 data-en="Business Intelligence & Data Visualization" data-de="Business Intelligence & Datenvisualisierung">Business Intelligence & Datenvisualisierung</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">DAX</span>
+                            <span class="tech-tag">Power Query</span>
+                            <span class="tech-tag">SQL Server</span>
+                            <span class="tech-tag">Data Modeling</span>
+                        </div>
+                    </div>
+                    <p class="project-description" data-en="<strong>Working Student - Business Intelligence & Data Analytics Engineer</strong><br>Global Development Engineering Department, BSH Hausgeräte<br><br>Designed and implemented comprehensive Power BI dashboards for business intelligence reporting. Created automated data refresh pipelines and interactive visualizations for executive decision-making across global development engineering teams." data-de="<strong>Werkstudent - Business Intelligence & Data Analytics Engineer</strong><br>Global Development Engineering Department, BSH Hausgeräte<br><br>Entwurf und Implementierung umfassender Power BI-Dashboards für Business Intelligence-Berichterstattung. Erstellung automatisierter Datenaktualisierungspipelines und interaktiver Visualisierungen für Führungsentscheidungen in globalen Entwicklungsteams.">
+                        <strong>Werkstudent - Business Intelligence & Data Analytics Engineer</strong><br>
+                        Global Development Engineering Department, BSH Hausgeräte<br><br>
+                        Entwurf und Implementierung umfassender Power BI-Dashboards für Business Intelligence-Berichterstattung. Erstellung automatisierter Datenaktualisierungspipelines und interaktiver Visualisierungen für Führungsentscheidungen in globalen Entwicklungsteams.
+                    </p>
+                    
+                    <div class="project-achievements">
+                        <h4 data-en="Experience Highlights:" data-de="Erfahrungshöhepunkte:">Erfahrungshöhepunkte:</h4>
+                        <ul>
+                            <li data-en="Designed and implemented comprehensive Power BI dashboards for business intelligence reporting" data-de="Entwurf und Implementierung umfassender Power BI-Dashboards für Business Intelligence-Berichterstattung">Entwurf und Implementierung umfassender Power BI-Dashboards für Business Intelligence-Berichterstattung</li>
+                            <li data-en="Created automated data refresh pipelines and interactive visualizations for executive decision-making" data-de="Erstellung automatisierter Datenaktualisierungspipelines und interaktiver Visualisierungen für Führungsentscheidungen">Erstellung automatisierter Datenaktualisierungspipelines und interaktiver Visualisierungen für Führungsentscheidungen</li>
+                            <li data-en="Performed advanced data cleaning and transformation using Power Query and SQL, standardizing inconsistent source data and ensuring accuracy across reports" data-de="Durchführung erweiterter Datenbereinigung und -transformation mit Power Query und SQL, Standardisierung inkonsistenter Quelldaten und Gewährleistung der Genauigkeit in Berichten">Durchführung erweiterter Datenbereinigung und -transformation mit Power Query und SQL, Standardisierung inkonsistenter Quelldaten und Gewährleistung der Genauigkeit in Berichten</li>
+                            <li data-en="Built robust data models with star/snowflake schemas enabling optimized performance and self-service analytics" data-de="Aufbau robuster Datenmodelle mit Stern-/Schneeflocken-Schemas für optimierte Leistung und Self-Service-Analytics">Aufbau robuster Datenmodelle mit Stern-/Schneeflocken-Schemas für optimierte Leistung und Self-Service-Analytics</li>
+                            <li data-en="Implemented row-level security (RLS) to ensure role-based access to sensitive business data" data-de="Implementierung von Zeilenebenen-Sicherheit (RLS) zur Gewährleistung rollenbasierter Zugriffe auf sensible Geschäftsdaten">Implementierung von Zeilenebenen-Sicherheit (RLS) zur Gewährleistung rollenbasierter Zugriffe auf sensible Geschäftsdaten</li>
+                            <li data-en="Developed drill-through and drill-down reports, KPI scorecards, and forecasting dashboards leveraging advanced DAX" data-de="Entwicklung von Drill-Through- und Drill-Down-Berichten, KPI-Scorecards und Prognose-Dashboards mit erweitertem DAX">Entwicklung von Drill-Through- und Drill-Down-Berichten, KPI-Scorecards und Prognose-Dashboards mit erweitertem DAX</li>
+                            <li data-en="Integrated Power BI solutions with Microsoft Teams and SharePoint for seamless collaboration" data-de="Integration von Power BI-Lösungen mit Microsoft Teams und SharePoint für nahtlose Zusammenarbeit">Integration von Power BI-Lösungen mit Microsoft Teams und SharePoint für nahtlose Zusammenarbeit</li>
+                            <li data-en="Conducted stakeholder workshops and training sessions for global engineering teams to drive adoption of data-driven decision-making" data-de="Durchführung von Stakeholder-Workshops und Schulungen für globale Entwicklungsteams zur Förderung datengetriebener Entscheidungsfindung">Durchführung von Stakeholder-Workshops und Schulungen für globale Entwicklungsteams zur Förderung datengetriebener Entscheidungsfindung</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-achievements">
+                        <h4 data-en="Key Achievements:" data-de="Wichtige Erfolge:">Wichtige Erfolge:</h4>
+                        <ul>
+                            <li data-en="Created 25+ interactive dashboards serving 30+ users within BSH Global Development Engineering" data-de="Erstellung von 25+ interaktiven Dashboards für 30+ Benutzer in der BSH Global Development Engineering">Erstellung von 25+ interaktiven Dashboards für 30+ Benutzer in der BSH Global Development Engineering</li>
+                            <li data-en="Implemented automated data refresh, reducing manual errors by 95%" data-de="Implementierung automatisierter Datenaktualisierung, Reduzierung manueller Fehler um 95%">Implementierung automatisierter Datenaktualisierung, Reduzierung manueller Fehler um 95%</li>
+                            <li data-en="Improved data accuracy and consistency through advanced validation and transformation rules" data-de="Verbesserung der Datenqualität und -konsistenz durch erweiterte Validierungs- und Transformationsregeln">Verbesserung der Datenqualität und -konsistenz durch erweiterte Validierungs- und Transformationsregeln</li>
+                            <li data-en="Reduced reporting effort by 70% through migration of legacy Excel-based reports to automated Power BI solutions" data-de="Reduzierung des Berichtsaufwands um 70% durch Migration von Legacy Excel-Berichten zu automatisierten Power BI-Lösungen">Reduzierung des Berichtsaufwands um 70% durch Migration von Legacy Excel-Berichten zu automatisierten Power BI-Lösungen</li>
+                            <li data-en="Supported global engineering teams with data-driven insights for product development decisions" data-de="Unterstützung globaler Entwicklungsteams mit datengetriebenen Erkenntnissen für Produktentwicklungsentscheidungen">Unterstützung globaler Entwicklungsteams mit datengetriebenen Erkenntnissen für Produktentwicklungsentscheidungen</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 data-en="Geospatial Data Analysis & Remote Sensing" data-de="Geodatenanalyse & Fernerkundung">Geodatenanalyse & Fernerkundung</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">R</span>
+                            <span class="tech-tag">Quantum GIS</span>
+                            <span class="tech-tag">Remote Sensing</span>
+                            <span class="tech-tag">NDVI Analysis</span>
+                            <span class="tech-tag">Spatial Statistics</span>
+                        </div>
+                    </div>
+                    <p class="project-description" data-en="Conducted comprehensive land use and land cover classification analysis using Quantum GIS and R programming. Implemented NDVI analysis for forest health assessment and erosion-prone zone identification across 4-year dataset (2019-2022)." data-de="Durchführung umfassender Landnutzungs- und Landbedeckungsklassifikationsanalysen mit Quantum GIS und R-Programmierung. Implementierung von NDVI-Analysen zur Bewertung der Waldgesundheit und Identifizierung erosionsgefährdeter Zonen über einen 4-Jahres-Datensatz (2019-2022).">
+                        Durchführung umfassender Landnutzungs- und Landbedeckungsklassifikationsanalysen mit Quantum GIS und R-Programmierung. Implementierung von NDVI-Analysen zur Bewertung der Waldgesundheit und Identifizierung erosionsgefährdeter Zonen über einen 4-Jahres-Datensatz (2019-2022).
+                    </p>
+                    
+                    <div class="project-achievements">
+                        <h4 data-en="Key Achievements:" data-de="Wichtige Erfolge:">Wichtige Erfolge:</h4>
+                        <ul>
+                            <li data-en="Analyzed 15,000+ hectares of land use data" data-de="Analyse von 15.000+ Hektar Landnutzungsdaten">Analyse von 15.000+ Hektar Landnutzungsdaten</li>
+                            <li data-en="Identified 12 erosion-prone zones with 94% accuracy" data-de="Identifizierung von 12 erosionsgefährdeten Zonen mit 94% Genauigkeit">Identifizierung von 12 erosionsgefährdeten Zonen mit 94% Genauigkeit</li>
+                            <li data-en="Generated automated reports for environmental monitoring" data-de="Generierung automatisierter Berichte für Umweltmonitoring">Generierung automatisierter Berichte für Umweltmonitoring</li>
+                            <li data-en="Reduced manual analysis time by 70% through R automation" data-de="Reduzierung der manuellen Analysezeit um 70% durch R-Automatisierung">Reduzierung der manuellen Analysezeit um 70% durch R-Automatisierung</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-links">
+                        <button class="btn btn-outline" onclick="toggleCodeView('gis-code')">
+                            <i class="fas fa-code"></i> View R Code
+                        </button>
+                        <a href="GIS and R/GIS_Land_use_Land_Cover.pdf" target="_blank" rel="noopener" class="btn btn-outline">
+                            <i class="fas fa-external-link-alt"></i> View Report
+                        </a>
+                    </div>
+                    
+                    <!-- GIS R Code Display Section -->
+                    <div id="gis-code" class="code-display" style="display: none; margin-top: 1rem;">
+                        <div class="code-header">
+                            <h4 style="color: #2c2c2c; margin-bottom: 1rem;">GIS Land Use Analysis R Code</h4>
+                            <div class="code-tabs">
+                                <button class="code-tab active" onclick="showCodeFile('gis-main-r')">Main.R</button>
+                                <button class="code-tab" onclick="showCodeFile('gis-ndvi-analysis')">NDVI Analysis</button>
+                                <button class="code-tab" onclick="showCodeFile('gis-land-classification')">Land Classification</button>
+                            </div>
+                        </div>
+                        <div class="code-content">
+                            <div id="gis-main-r" class="code-file active">
+                                <pre><code class="language-r"># GIS Land Use and Land Cover Analysis for Freising, Bavaria
+# Author: Muhammed Saleem Kallan
+# Date: 2023
+
+# Load required libraries
+library(raster)
+library(rgdal)
+library(sp)
+library(sf)
+library(ggplot2)
+library(dplyr)
+library(RStoolbox)
+library(caret)
+library(randomForest)
+
+# Set working directory
+setwd("C:/GIS_Projects/Freising_Analysis")
+
+# Load satellite imagery
+# Landsat 8 imagery for 2019-2022
+landsat_2019 <- stack("Landsat8_2019.tif")
+landsat_2020 <- stack("Landsat8_2020.tif")
+landsat_2021 <- stack("Landsat8_2021.tif")
+landsat_2022 <- stack("Landsat8_2022.tif")
+
+# Define study area (Freising, Bavaria)
+study_area <- readOGR("freising_boundary.shp")
+
+# Function to calculate NDVI
+calculate_ndvi <- function(raster_stack) {
+    # NDVI = (NIR - Red) / (NIR + Red)
+    # For Landsat 8: NIR = Band 5, Red = Band 4
+    ndvi <- (raster_stack[[5]] - raster_stack[[4]]) / (raster_stack[[5]] + raster_stack[[4]])
+    return(ndvi)
+}
+
+# Calculate NDVI for each year
+ndvi_2019 <- calculate_ndvi(landsat_2019)
+ndvi_2020 <- calculate_ndvi(landsat_2020)
+ndvi_2021 <- calculate_ndvi(landsat_2021)
+ndvi_2022 <- calculate_ndvi(landsat_2022)
+
+# Create NDVI time series
+ndvi_stack <- stack(ndvi_2019, ndvi_2020, ndvi_2021, ndvi_2022)
+names(ndvi_stack) <- c("NDVI_2019", "NDVI_2020", "NDVI_2021", "NDVI_2022")
+
+# Calculate NDVI statistics
+ndvi_stats <- data.frame(
+    Year = c(2019, 2020, 2021, 2022),
+    Mean_NDVI = c(cellStats(ndvi_2019, mean), 
+                  cellStats(ndvi_2020, mean),
+                  cellStats(ndvi_2021, mean),
+                  cellStats(ndvi_2022, mean)),
+    Std_NDVI = c(cellStats(ndvi_2019, sd),
+                 cellStats(ndvi_2020, sd),
+                 cellStats(ndvi_2021, sd),
+                 cellStats(ndvi_2022, sd))
+)
+
+# Print NDVI statistics
+print(ndvi_stats)
+
+# Create NDVI trend plot
+ggplot(ndvi_stats, aes(x = Year, y = Mean_NDVI)) +
+    geom_line(color = "darkgreen", size = 1.2) +
+    geom_point(color = "darkgreen", size = 3) +
+    geom_errorbar(aes(ymin = Mean_NDVI - Std_NDVI, 
+                      ymax = Mean_NDVI + Std_NDVI), 
+                  width = 0.1) +
+    labs(title = "NDVI Trend Analysis - Freising, Bavaria (2019-2022)",
+         x = "Year",
+         y = "Mean NDVI",
+         subtitle = "Higher NDVI values indicate healthier vegetation") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+          plot.subtitle = element_text(hjust = 0.5, size = 12))
+
+# Save NDVI plots
+ggsave("ndvi_trend_analysis.png", width = 10, height = 6, dpi = 300)
+
+# Land use classification using Random Forest
+# Prepare training data
+training_data <- readOGR("training_points.shp")
+training_data$class_id <- as.factor(training_data$class_id)
+
+# Extract spectral values for training points
+train_values <- extract(landsat_2022, training_data)
+train_df <- data.frame(class = training_data$class_id, train_values)
+
+# Remove NA values
+train_df <- na.omit(train_df)
+
+# Train Random Forest model
+rf_model <- randomForest(class ~ ., data = train_df, ntree = 500, importance = TRUE)
+
+# Print model accuracy
+print(paste("Model Accuracy:", round(mean(rf_model$confusion[, "class.error"]), 3)))
+
+# Apply classification to entire study area
+land_use_classification <- predict(landsat_2022, rf_model, type = "response")
+
+# Create land use legend
+land_use_legend <- data.frame(
+    ID = c(1, 2, 3, 4, 5, 6),
+    Class = c("Urban", "Forest", "Agriculture", "Water", "Grassland", "Bare Soil"),
+    Color = c("#FF0000", "#00FF00", "#FFFF00", "#0000FF", "#00FFFF", "#8B4513")
+)
+
+# Calculate area statistics
+land_use_stats <- freq(land_use_classification)
+land_use_stats <- data.frame(land_use_stats)
+land_use_stats$Class <- land_use_legend$Class[match(land_use_stats$value, land_use_legend$ID)]
+land_use_stats$Area_km2 <- land_use_stats$count * (30 * 30) / 1000000  # Convert to km²
+
+print("Land Use Classification Results:")
+print(land_use_stats)
+
+# Create land use map
+plot(land_use_classification, 
+     col = land_use_legend$Color,
+     main = "Land Use Classification - Freising, Bavaria (2022)",
+     legend = FALSE)
+
+# Add legend
+legend("topright", 
+       legend = land_use_legend$Class,
+       fill = land_use_legend$Color,
+       cex = 0.8)
+
+# Save results
+writeRaster(land_use_classification, "land_use_classification_2022.tif", 
+            format = "GTiff", overwrite = TRUE)
+write.csv(land_use_stats, "land_use_statistics.csv", row.names = FALSE)
+
+print("Analysis completed successfully!")</code></pre>
+                            </div>
+                            
+                            <div id="gis-ndvi-analysis" class="code-file">
+                                <pre><code class="language-r"># NDVI Analysis and Vegetation Health Assessment
+# Advanced NDVI processing for forest health monitoring
+
+# Load required libraries
+library(raster)
+library(ggplot2)
+library(dplyr)
+library(RStoolbox)
+
+# Function for advanced NDVI analysis
+analyze_vegetation_health <- function(ndvi_raster, year) {
+    # Calculate vegetation health metrics
+    mean_ndvi <- cellStats(ndvi_raster, mean, na.rm = TRUE)
+    sd_ndvi <- cellStats(ndvi_raster, sd, na.rm = TRUE)
+    
+    # Classify vegetation health
+    # NDVI > 0.6: Healthy vegetation
+    # NDVI 0.3-0.6: Moderate vegetation
+    # NDVI < 0.3: Poor vegetation
+    healthy_veg <- ndvi_raster > 0.6
+    moderate_veg <- ndvi_raster >= 0.3 & ndvi_raster <= 0.6
+    poor_veg <- ndvi_raster < 0.3
+    
+    # Calculate percentages
+    total_pixels <- ncell(ndvi_raster[!is.na(ndvi_raster)])
+    healthy_pct <- (cellStats(healthy_veg, sum, na.rm = TRUE) / total_pixels) * 100
+    moderate_pct <- (cellStats(moderate_veg, sum, na.rm = TRUE) / total_pixels) * 100
+    poor_pct <- (cellStats(poor_veg, sum, na.rm = TRUE) / total_pixels) * 100
+    
+    return(data.frame(
+        Year = year,
+        Mean_NDVI = mean_ndvi,
+        SD_NDVI = sd_ndvi,
+        Healthy_Vegetation_Pct = healthy_pct,
+        Moderate_Vegetation_Pct = moderate_pct,
+        Poor_Vegetation_Pct = poor_pct
+    ))
+}
+
+# Analyze vegetation health for each year
+veg_health_2019 <- analyze_vegetation_health(ndvi_2019, 2019)
+veg_health_2020 <- analyze_vegetation_health(ndvi_2020, 2020)
+veg_health_2021 <- analyze_vegetation_health(ndvi_2021, 2021)
+veg_health_2022 <- analyze_vegetation_health(ndvi_2022, 2022)
+
+# Combine results
+veg_health_summary <- rbind(veg_health_2019, veg_health_2020, 
+                           veg_health_2021, veg_health_2022)
+
+print("Vegetation Health Summary:")
+print(veg_health_summary)
+
+# Create vegetation health visualization
+veg_health_long <- veg_health_summary %>%
+    select(Year, Healthy_Vegetation_Pct, Moderate_Vegetation_Pct, Poor_Vegetation_Pct) %>%
+    tidyr::pivot_longer(cols = -Year, names_to = "Vegetation_Type", values_to = "Percentage")
+
+ggplot(veg_health_long, aes(x = Year, y = Percentage, fill = Vegetation_Type)) +
+    geom_bar(stat = "identity", position = "stack") +
+    scale_fill_manual(values = c("darkgreen", "orange", "red"),
+                      labels = c("Healthy", "Moderate", "Poor")) +
+    labs(title = "Vegetation Health Distribution - Freising, Bavaria",
+         x = "Year",
+         y = "Percentage of Study Area",
+         fill = "Vegetation Health") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5, size = 14, face = "bold"))
+
+# Calculate NDVI change detection
+ndvi_change_2019_2022 <- ndvi_2022 - ndvi_2019
+
+# Classify change areas
+# Positive change: Vegetation improvement
+# Negative change: Vegetation degradation
+improvement <- ndvi_change_2019_2022 > 0.1
+degradation <- ndvi_change_2019_2022 < -0.1
+no_change <- abs(ndvi_change_2019_2022) <= 0.1
+
+# Calculate change statistics
+total_pixels <- ncell(ndvi_change_2019_2022[!is.na(ndvi_change_2019_2022)])
+improvement_pct <- (cellStats(improvement, sum, na.rm = TRUE) / total_pixels) * 100
+degradation_pct <- (cellStats(degradation, sum, na.rm = TRUE) / total_pixels) * 100
+no_change_pct <- (cellStats(no_change, sum, na.rm = TRUE) / total_pixels) * 100
+
+change_summary <- data.frame(
+    Change_Type = c("Improvement", "Degradation", "No Change"),
+    Percentage = c(improvement_pct, degradation_pct, no_change_pct)
+)
+
+print("NDVI Change Detection (2019-2022):")
+print(change_summary)
+
+# Create change detection map
+change_map <- ndvi_change_2019_2022
+change_map[improvement] <- 1
+change_map[degradation] <- -1
+change_map[no_change] <- 0
+
+plot(change_map, 
+     col = c("red", "gray", "green"),
+     main = "Vegetation Change Detection (2019-2022)",
+     legend = FALSE)
+
+legend("topright", 
+       legend = c("Degradation", "No Change", "Improvement"),
+       fill = c("red", "gray", "green"),
+       cex = 0.8)
+
+# Save results
+writeRaster(ndvi_change_2019_2022, "ndvi_change_2019_2022.tif", 
+            format = "GTiff", overwrite = TRUE)
+write.csv(veg_health_summary, "vegetation_health_summary.csv", row.names = FALSE)
+write.csv(change_summary, "change_detection_summary.csv", row.names = FALSE)</code></pre>
+                            </div>
+                            
+                            <div id="gis-land-classification" class="code-file">
+                                <pre><code class="language-r"># Land Use and Land Cover Classification
+# Supervised classification using Random Forest
+
+# Load required libraries
+library(raster)
+library(randomForest)
+library(caret)
+library(RStoolbox)
+library(ggplot2)
+
+# Function for land use classification
+perform_land_classification <- function(raster_stack, training_data, year) {
+    # Prepare training data
+    training_data$class_id <- as.factor(training_data$class_id)
+    
+    # Extract spectral values for training points
+    train_values <- extract(raster_stack, training_data)
+    train_df <- data.frame(class = training_data$class_id, train_values)
+    
+    # Remove NA values
+    train_df <- na.omit(train_df)
+    
+    # Split data for validation
+    set.seed(123)
+    train_index <- createDataPartition(train_df$class, p = 0.7, list = FALSE)
+    train_data <- train_df[train_index, ]
+    test_data <- train_df[-train_index, ]
+    
+    # Train Random Forest model
+    rf_model <- randomForest(class ~ ., data = train_data, 
+                           ntree = 500, importance = TRUE)
+    
+    # Validate model
+    predictions <- predict(rf_model, test_data)
+    confusion_matrix <- confusionMatrix(predictions, test_data$class)
+    
+    # Print model performance
+    print(paste("Year:", year))
+    print(paste("Overall Accuracy:", round(confusion_matrix$overall[1], 3)))
+    print(paste("Kappa:", round(confusion_matrix$overall[2], 3)))
+    
+    # Apply classification to entire study area
+    land_classification <- predict(raster_stack, rf_model, type = "response")
+    
+    return(list(
+        model = rf_model,
+        classification = land_classification,
+        accuracy = confusion_matrix$overall[1],
+        kappa = confusion_matrix$overall[2]
+    ))
+}
+
+# Perform classification for each year
+class_2019 <- perform_land_classification(landsat_2019, training_data, 2019)
+class_2020 <- perform_land_classification(landsat_2020, training_data, 2020)
+class_2021 <- perform_land_classification(landsat_2021, training_data, 2021)
+class_2022 <- perform_land_classification(landsat_2022, training_data, 2022)
+
+# Create accuracy comparison
+accuracy_comparison <- data.frame(
+    Year = c(2019, 2020, 2021, 2022),
+    Accuracy = c(class_2019$accuracy, class_2020$accuracy, 
+                 class_2021$accuracy, class_2022$accuracy),
+    Kappa = c(class_2019$kappa, class_2020$kappa, 
+              class_2021$kappa, class_2022$kappa)
+)
+
+print("Classification Accuracy Comparison:")
+print(accuracy_comparison)
+
+# Calculate land use change
+calculate_land_use_change <- function(class_1, class_2, year1, year2) {
+    # Create change matrix
+    change_matrix <- table(values(class_1), values(class_2))
+    
+    # Calculate transition probabilities
+    transition_probs <- prop.table(change_matrix, 1)
+    
+    # Calculate net change for each class
+    class_1_freq <- freq(class_1)
+    class_2_freq <- freq(class_2)
+    
+    net_change <- data.frame(
+        Class = c("Urban", "Forest", "Agriculture", "Water", "Grassland", "Bare Soil"),
+        Year1_Area = class_1_freq$count,
+        Year2_Area = class_2_freq$count,
+        Net_Change = class_2_freq$count - class_1_freq$count,
+        Percent_Change = ((class_2_freq$count - class_1_freq$count) / class_1_freq$count) * 100
+    )
+    
+    return(list(
+        change_matrix = change_matrix,
+        transition_probs = transition_probs,
+        net_change = net_change
+    ))
+}
+
+# Calculate land use change between 2019 and 2022
+land_use_change <- calculate_land_use_change(class_2019$classification, 
+                                           class_2022$classification, 2019, 2022)
+
+print("Land Use Change Analysis (2019-2022):")
+print(land_use_change$net_change)
+
+# Create land use change visualization
+ggplot(land_use_change$net_change, aes(x = Class, y = Percent_Change)) +
+    geom_bar(stat = "identity", fill = "steelblue") +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+    labs(title = "Land Use Change (2019-2022)",
+         x = "Land Use Class",
+         y = "Percent Change",
+         subtitle = "Positive values indicate increase, negative values indicate decrease") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1),
+          plot.title = element_text(hjust = 0.5, size = 14, face = "bold"))
+
+# Save classification results
+writeRaster(class_2019$classification, "land_use_2019.tif", 
+            format = "GTiff", overwrite = TRUE)
+writeRaster(class_2020$classification, "land_use_2020.tif", 
+            format = "GTiff", overwrite = TRUE)
+writeRaster(class_2021$classification, "land_use_2021.tif", 
+            format = "GTiff", overwrite = TRUE)
+writeRaster(class_2022$classification, "land_use_2022.tif", 
+            format = "GTiff", overwrite = TRUE)
+
+# Save change analysis
+write.csv(land_use_change$net_change, "land_use_change_analysis.csv", row.names = FALSE)
+write.csv(accuracy_comparison, "classification_accuracy.csv", row.names = FALSE)
+
+print("Land use classification and change analysis completed!")</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 data-en="Time Series Analysis & Predictive Modeling" data-de="Zeitreihenanalyse & Vorhersagemodellierung">Zeitreihenanalyse & Vorhersagemodellierung</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">R</span>
+                            <span class="tech-tag">Time Series Analysis</span>
+                            <span class="tech-tag">Statistical Modeling</span>
+                            <span class="tech-tag">Dendrochronology</span>
+                            <span class="tech-tag">Climate Data</span>
+                        </div>
+                    </div>
+                    <p class="project-description" data-en="Performed advanced dendroecological analysis using R to assess drought resilience in tree species. Developed predictive models comparing growth patterns of Douglas Fir, Norway Spruce, and Pedunculate Oak during significant drought events." data-de="Durchführung erweiterter dendroökologischer Analysen mit R zur Bewertung der Dürreresistenz von Baumarten. Entwicklung von Vorhersagemodellen zum Vergleich der Wachstumsmuster von Douglasie, Fichte und Stieleiche während signifikanter Dürreereignisse.">
+                        Durchführung erweiterter dendroökologischer Analysen mit R zur Bewertung der Dürreresistenz von Baumarten. Entwicklung von Vorhersagemodellen zum Vergleich der Wachstumsmuster von Douglasie, Fichte und Stieleiche während signifikanter Dürreereignisse.
+                    </p>
+                    
+                    <div class="project-achievements">
+                        <h4 data-en="Key Achievements:" data-de="Wichtige Erfolge:">Wichtige Erfolge:</h4>
+                        <ul>
+                            <li data-en="Analyzed 30+ years of tree ring data" data-de="Analyse von 30+ Jahren Baumringdaten">Analyse von 30+ Jahren Baumringdaten</li>
+                            <li data-en="Developed drought resilience scoring system" data-de="Entwicklung eines Dürreresistenz-Bewertungssystems">Entwicklung eines Dürreresistenz-Bewertungssystems</li>
+                            <li data-en="Created automated visualization dashboards" data-de="Erstellung automatisierter Visualisierungs-Dashboards">Erstellung automatisierter Visualisierungs-Dashboards</li>
+                            <li data-en="Achieved 89% accuracy in drought impact prediction" data-de="Erreichung von 89% Genauigkeit bei der Dürreauswirkungsvorhersage">Erreichung von 89% Genauigkeit bei der Dürreauswirkungsvorhersage</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-links">
+                        <button class="btn btn-outline" onclick="toggleCodeView('timeseries-code')">
+                            <i class="fas fa-code"></i> View R Code
+                        </button>
+                        <a href="Time series/Time series analysis.pdf" target="_blank" rel="noopener" class="btn btn-outline">
+                            <i class="fas fa-external-link-alt"></i> View Report
+                        </a>
+                </div>
+
+                    <!-- Time Series R Code Display Section -->
+                    <div id="timeseries-code" class="code-display" style="display: none; margin-top: 1rem;">
+                        <div class="code-header">
+                            <h4 style="color: #2c2c2c; margin-bottom: 1rem;">Time Series Analysis R Code</h4>
+                            <div class="code-tabs">
+                                <button class="code-tab active" onclick="showCodeFile('timeseries-main-r')">Main.R</button>
+                                <button class="code-tab" onclick="showCodeFile('timeseries-drought-analysis')">Drought Analysis</button>
+                                <button class="code-tab" onclick="showCodeFile('timeseries-predictive-modeling')">Predictive Modeling</button>
+                        </div>
+                    </div>
+                        <div class="code-content">
+                            <div id="timeseries-main-r" class="code-file active">
+                                <pre><code class="language-r"># Time Series Analysis of Tree Species Drought Resilience
+# Author: Muhammed Saleem Kallan
+# Date: 2023
+
+# Load required libraries
+library(forecast)
+library(tseries)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(lubridate)
+library(strucchange)
+library(changepoint)
+library(segmented)
+
+# Set working directory
+setwd("C:/TimeSeries_Analysis/Drought_Resilience")
+
+# Load tree ring data
+# Douglas Fir, Norway Spruce, and Pedunculate Oak data
+douglas_fir <- read.csv("douglas_fir_ring_width.csv")
+norway_spruce <- read.csv("norway_spruce_ring_width.csv")
+pedunculate_oak <- read.csv("pedunculate_oak_ring_width.csv")
+
+# Function to prepare time series data
+prepare_ts_data <- function(data, species_name) {
+    # Convert to time series object
+    ts_data <- ts(data$ring_width, 
+                  start = c(data$year[1]), 
+                  frequency = 1)
+    
+    # Create data frame with additional information
+    ts_df <- data.frame(
+        year = data$year,
+        ring_width = data$ring_width,
+        species = species_name,
+        drought_1976 = ifelse(data$year == 1976, 1, 0),
+        drought_2003 = ifelse(data$year == 2003, 1, 0)
+    )
+    
+    return(list(ts = ts_data, df = ts_df))
+}
+
+# Prepare time series for each species
+df_ts <- prepare_ts_data(douglas_fir, "Douglas Fir")
+ns_ts <- prepare_ts_data(norway_spruce, "Norway Spruce")
+po_ts <- prepare_ts_data(pedunculate_oak, "Pedunculate Oak")
+
+# Combine all data
+all_species <- rbind(df_ts$df, ns_ts$df, po_ts$df)
+
+# Function to analyze drought impact
+analyze_drought_impact <- function(ts_data, species_name) {
+    # Calculate growth rates
+    ts_data$growth_rate <- c(NA, diff(ts_data$ring_width))
+    
+    # Analyze 1976 drought impact
+    drought_1976_data <- ts_data[ts_data$year %in% 1974:1978, ]
+    pre_drought_1976 <- mean(drought_1976_data$growth_rate[1:2], na.rm = TRUE)
+    post_drought_1976 <- mean(drought_1976_data$growth_rate[4:5], na.rm = TRUE)
+    recovery_1976 <- (post_drought_1976 - pre_drought_1976) / pre_drought_1976 * 100
+    
+    # Analyze 2003 drought impact
+    drought_2003_data <- ts_data[ts_data$year %in% 2001:2005, ]
+    pre_drought_2003 <- mean(drought_2003_data$growth_rate[1:2], na.rm = TRUE)
+    post_drought_2003 <- mean(drought_2003_data$growth_rate[4:5], na.rm = TRUE)
+    recovery_2003 <- (post_drought_2003 - pre_drought_2003) / pre_drought_2003 * 100
+    
+    # Calculate overall resilience metrics
+    mean_growth <- mean(ts_data$growth_rate, na.rm = TRUE)
+    growth_variability <- sd(ts_data$growth_rate, na.rm = TRUE)
+    cv <- growth_variability / mean_growth * 100
+    
+    return(data.frame(
+        Species = species_name,
+        Recovery_1976 = recovery_1976,
+        Recovery_2003 = recovery_2003,
+        Mean_Growth = mean_growth,
+        Growth_Variability = growth_variability,
+        Coefficient_Variation = cv
+    ))
+}
+
+# Analyze drought impact for each species
+df_analysis <- analyze_drought_impact(df_ts$df, "Douglas Fir")
+ns_analysis <- analyze_drought_impact(ns_ts$df, "Norway Spruce")
+po_analysis <- analyze_drought_impact(po_ts$df, "Pedunculate Oak")
+
+# Combine analysis results
+drought_analysis <- rbind(df_analysis, ns_analysis, po_analysis)
+
+print("Drought Resilience Analysis:")
+print(drought_analysis)
+
+# Create visualization
+ggplot(all_species, aes(x = year, y = ring_width, color = species)) +
+    geom_line(size = 1) +
+    geom_vline(xintercept = 1976, linetype = "dashed", color = "red", alpha = 0.7) +
+    geom_vline(xintercept = 2003, linetype = "dashed", color = "red", alpha = 0.7) +
+    annotate("text", x = 1976, y = max(all_species$ring_width) * 0.9, 
+             label = "1976 Drought", angle = 90, hjust = 1) +
+    annotate("text", x = 2003, y = max(all_species$ring_width) * 0.9, 
+             label = "2003 Drought", angle = 90, hjust = 1) +
+    labs(title = "Tree Ring Width Time Series Analysis",
+         subtitle = "Douglas Fir, Norway Spruce, and Pedunculate Oak (Southern Germany)",
+         x = "Year",
+         y = "Ring Width (mm)",
+         color = "Species") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+          plot.subtitle = element_text(hjust = 0.5, size = 12))
+
+# Save plot
+ggsave("tree_ring_timeseries.png", width = 12, height = 8, dpi = 300)
+
+# Statistical analysis
+# ANOVA to test differences between species
+anova_result <- aov(ring_width ~ species, data = all_species)
+print("ANOVA Results:")
+print(summary(anova_result))
+
+# Tukey's HSD test for pairwise comparisons
+tukey_result <- TukeyHSD(anova_result)
+print("Tukey HSD Test:")
+print(tukey_result)
+
+# Save results
+write.csv(drought_analysis, "drought_resilience_analysis.csv", row.names = FALSE)
+write.csv(all_species, "tree_ring_data_combined.csv", row.names = FALSE)
+
+print("Time series analysis completed successfully!")</code></pre>
+                    </div>
+                    
+                            <div id="timeseries-drought-analysis" class="code-file">
+                                <pre><code class="language-r"># Advanced Drought Impact Analysis
+# Detailed analysis of drought effects on tree growth
+
+# Load required libraries
+library(forecast)
+library(tseries)
+library(ggplot2)
+library(dplyr)
+library(strucchange)
+library(changepoint)
+
+# Function for detailed drought analysis
+detailed_drought_analysis <- function(ts_data, species_name) {
+    # Calculate growth rates and moving averages
+    ts_data$growth_rate <- c(NA, diff(ts_data$ring_width))
+    ts_data$ma_5 <- forecast::ma(ts_data$ring_width, order = 5)
+    ts_data$ma_10 <- forecast::ma(ts_data$ring_width, order = 10)
+    
+    # Identify drought years and their impact
+    drought_years <- c(1976, 2003)
+    drought_analysis <- data.frame()
+    
+    for (drought_year in drought_years) {
+        # Define analysis window (5 years before and after)
+        window_start <- drought_year - 5
+        window_end <- drought_year + 5
+        window_data <- ts_data[ts_data$year >= window_start & ts_data$year <= window_end, ]
+        
+        # Calculate pre-drought baseline (3 years before)
+        pre_drought <- window_data[window_data$year < drought_year, ]
+        baseline_growth <- mean(pre_drought$ring_width, na.rm = TRUE)
+        baseline_growth_rate <- mean(pre_drought$growth_rate, na.rm = TRUE)
+        
+        # Calculate drought year impact
+        drought_year_data <- window_data[window_data$year == drought_year, ]
+        drought_impact <- (drought_year_data$ring_width - baseline_growth) / baseline_growth * 100
+        
+        # Calculate recovery period (3 years after)
+        post_drought <- window_data[window_data$year > drought_year, ]
+        recovery_growth <- mean(post_drought$ring_width[1:3], na.rm = TRUE)
+        recovery_rate <- (recovery_growth - baseline_growth) / baseline_growth * 100
+        
+        # Calculate time to full recovery
+        full_recovery_threshold <- baseline_growth * 0.95  # 95% of baseline
+        recovery_years <- which(post_drought$ring_width >= full_recovery_threshold)
+        time_to_recovery <- ifelse(length(recovery_years) > 0, recovery_years[1], NA)
+        
+        # Store results
+        drought_result <- data.frame(
+            Species = species_name,
+            Drought_Year = drought_year,
+            Baseline_Growth = baseline_growth,
+            Drought_Impact_Pct = drought_impact,
+            Recovery_Rate_Pct = recovery_rate,
+            Time_to_Recovery_Years = time_to_recovery,
+            Severity_Score = abs(drought_impact) / 100
+        )
+        
+        drought_analysis <- rbind(drought_analysis, drought_result)
+    }
+    
+    return(drought_analysis)
+}
+
+# Perform detailed analysis for each species
+df_drought <- detailed_drought_analysis(df_ts$df, "Douglas Fir")
+ns_drought <- detailed_drought_analysis(ns_ts$df, "Norway Spruce")
+po_drought <- detailed_drought_analysis(po_ts$df, "Pedunculate Oak")
+
+# Combine all drought analysis results
+all_drought_analysis <- rbind(df_drought, ns_drought, po_drought)
+
+print("Detailed Drought Impact Analysis:")
+print(all_drought_analysis)
+
+# Create drought impact visualization
+ggplot(all_drought_analysis, aes(x = Species, y = Drought_Impact_Pct, fill = as.factor(Drought_Year))) +
+    geom_bar(stat = "identity", position = "dodge") +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+    scale_fill_manual(values = c("red", "darkred"), name = "Drought Year") +
+    labs(title = "Drought Impact on Tree Growth by Species",
+         subtitle = "Percentage change in ring width during drought years",
+         x = "Species",
+         y = "Drought Impact (%)",
+         caption = "Negative values indicate growth reduction") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+          axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Recovery analysis
+ggplot(all_drought_analysis, aes(x = Species, y = Recovery_Rate_Pct, fill = as.factor(Drought_Year))) +
+    geom_bar(stat = "identity", position = "dodge") +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+    scale_fill_manual(values = c("green", "darkgreen"), name = "Drought Year") +
+    labs(title = "Post-Drought Recovery by Species",
+         subtitle = "Percentage recovery in ring width after drought",
+         x = "Species",
+         y = "Recovery Rate (%)",
+         caption = "Positive values indicate growth above baseline") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+          axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Resilience ranking
+resilience_ranking <- all_drought_analysis %>%
+    group_by(Species) %>%
+    summarise(
+        Avg_Impact = mean(abs(Drought_Impact_Pct), na.rm = TRUE),
+        Avg_Recovery = mean(Recovery_Rate_Pct, na.rm = TRUE),
+        Avg_Time_to_Recovery = mean(Time_to_Recovery_Years, na.rm = TRUE),
+        Resilience_Score = (100 - Avg_Impact) + Avg_Recovery - (Avg_Time_to_Recovery * 10)
+    ) %>%
+    arrange(desc(Resilience_Score))
+
+print("Species Resilience Ranking:")
+print(resilience_ranking)
+
+# Create resilience comparison plot
+ggplot(resilience_ranking, aes(x = reorder(Species, Resilience_Score), y = Resilience_Score)) +
+    geom_bar(stat = "identity", fill = "steelblue") +
+    coord_flip() +
+    labs(title = "Drought Resilience Ranking",
+         subtitle = "Higher scores indicate better drought resilience",
+         x = "Species",
+         y = "Resilience Score") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5, size = 14, face = "bold"))
+
+# Save results
+write.csv(all_drought_analysis, "detailed_drought_analysis.csv", row.names = FALSE)
+write.csv(resilience_ranking, "resilience_ranking.csv", row.names = FALSE)
+
+print("Detailed drought analysis completed!")</code></pre>
+                    </div>
+                            
+                            <div id="timeseries-predictive-modeling" class="code-file">
+                                <pre><code class="language-r"># Predictive Modeling for Tree Growth
+# ARIMA and machine learning models for growth prediction
+
+# Load required libraries
+library(forecast)
+library(tseries)
+library(randomForest)
+library(caret)
+library(ggplot2)
+library(dplyr)
+
+# Function to fit ARIMA model
+fit_arima_model <- function(ts_data, species_name) {
+    # Check for stationarity
+    adf_test <- adf.test(ts_data)
+    print(paste("ADF Test p-value for", species_name, ":", adf_test$p.value))
+    
+    # Auto ARIMA model
+    arima_model <- auto.arima(ts_data, seasonal = FALSE)
+    print(paste("ARIMA model for", species_name, ":", arima_model))
+    
+    # Model diagnostics
+    print(paste("AIC for", species_name, ":", AIC(arima_model)))
+    print(paste("BIC for", species_name, ":", BIC(arima_model)))
+    
+    # Forecast next 10 years
+    forecast_result <- forecast(arima_model, h = 10)
+    
+    return(list(
+        model = arima_model,
+        forecast = forecast_result,
+        aic = AIC(arima_model),
+        bic = BIC(arima_model)
+    ))
+}
+
+# Fit ARIMA models for each species
+df_arima <- fit_arima_model(df_ts$ts, "Douglas Fir")
+ns_arima <- fit_arima_model(ns_ts$ts, "Norway Spruce")
+po_arima <- fit_arima_model(po_ts$ts, "Pedunculate Oak")
+
+# Function to create machine learning features
+create_ml_features <- function(ts_data) {
+    # Create lagged features
+    ts_data$lag1 <- lag(ts_data$ring_width, 1)
+    ts_data$lag2 <- lag(ts_data$ring_width, 2)
+    ts_data$lag3 <- lag(ts_data$ring_width, 3)
+    
+    # Create moving averages
+    ts_data$ma3 <- forecast::ma(ts_data$ring_width, order = 3)
+    ts_data$ma5 <- forecast::ma(ts_data$ring_width, order = 5)
+    
+    # Create trend features
+    ts_data$trend <- 1:nrow(ts_data)
+    ts_data$trend_squared <- ts_data$trend^2
+    
+    # Create seasonal features
+    ts_data$year_sin <- sin(2 * pi * ts_data$year / 10)
+    ts_data$year_cos <- cos(2 * pi * ts_data$year / 10)
+    
+    # Create drought indicators
+    ts_data$drought_1976 <- ifelse(ts_data$year == 1976, 1, 0)
+    ts_data$drought_2003 <- ifelse(ts_data$year == 2003, 1, 0)
+    
+    # Create growth rate
+    ts_data$growth_rate <- c(NA, diff(ts_data$ring_width))
+    
+    return(ts_data)
+}
+
+# Prepare ML data for each species
+df_ml <- create_ml_features(df_ts$df)
+ns_ml <- create_ml_features(ns_ts$df)
+po_ml <- create_ml_features(po_ts$df)
+
+# Function to train Random Forest model
+train_rf_model <- function(ml_data, species_name) {
+    # Remove rows with NA values
+    ml_data_clean <- na.omit(ml_data)
+    
+    # Prepare features and target
+    features <- ml_data_clean[, c("lag1", "lag2", "lag3", "ma3", "ma5", 
+                                 "trend", "trend_squared", "year_sin", "year_cos",
+                                 "drought_1976", "drought_2003")]
+    target <- ml_data_clean$ring_width
+    
+    # Split data for training and testing
+    set.seed(123)
+    train_index <- createDataPartition(target, p = 0.8, list = FALSE)
+    train_features <- features[train_index, ]
+    train_target <- target[train_index]
+    test_features <- features[-train_index, ]
+    test_target <- target[-train_index]
+    
+    # Train Random Forest model
+    rf_model <- randomForest(train_features, train_target, ntree = 500, importance = TRUE)
+    
+    # Make predictions
+    predictions <- predict(rf_model, test_features)
+    
+    # Calculate metrics
+    rmse <- sqrt(mean((test_target - predictions)^2))
+    mae <- mean(abs(test_target - predictions))
+    r_squared <- cor(test_target, predictions)^2
+    
+    print(paste("Random Forest Model for", species_name))
+    print(paste("RMSE:", round(rmse, 4)))
+    print(paste("MAE:", round(mae, 4)))
+    print(paste("R-squared:", round(r_squared, 4)))
+    
+    return(list(
+        model = rf_model,
+        rmse = rmse,
+        mae = mae,
+        r_squared = r_squared,
+        predictions = predictions,
+        actual = test_target
+    ))
+}
+
+# Train Random Forest models
+df_rf <- train_rf_model(df_ml, "Douglas Fir")
+ns_rf <- train_rf_model(ns_ml, "Norway Spruce")
+po_rf <- train_rf_model(po_ml, "Pedunculate Oak")
+
+# Create model comparison
+model_comparison <- data.frame(
+    Species = c("Douglas Fir", "Norway Spruce", "Pedunculate Oak"),
+    ARIMA_AIC = c(df_arima$aic, ns_arima$aic, po_arima$aic),
+    RF_RMSE = c(df_rf$rmse, ns_rf$rmse, po_rf$rmse),
+    RF_R_Squared = c(df_rf$r_squared, ns_rf$r_squared, po_rf$r_squared)
+)
+
+print("Model Comparison:")
+print(model_comparison)
+
+# Create prediction plots
+create_prediction_plot <- function(rf_result, species_name) {
+    plot_data <- data.frame(
+        Actual = rf_result$actual,
+        Predicted = rf_result$predictions
+    )
+    
+    ggplot(plot_data, aes(x = Actual, y = Predicted)) +
+        geom_point(alpha = 0.6) +
+        geom_abline(intercept = 0, slope = 1, color = "red", linetype = "dashed") +
+        labs(title = paste("Random Forest Predictions -", species_name),
+             x = "Actual Ring Width (mm)",
+             y = "Predicted Ring Width (mm)") +
+        theme_minimal() +
+        theme(plot.title = element_text(hjust = 0.5, size = 14, face = "bold"))
+}
+
+# Generate prediction plots
+df_pred_plot <- create_prediction_plot(df_rf, "Douglas Fir")
+ns_pred_plot <- create_prediction_plot(ns_rf, "Norway Spruce")
+po_pred_plot <- create_prediction_plot(po_rf, "Pedunculate Oak")
+
+# Save plots
+ggsave("douglas_fir_predictions.png", df_pred_plot, width = 8, height = 6, dpi = 300)
+ggsave("norway_spruce_predictions.png", ns_pred_plot, width = 8, height = 6, dpi = 300)
+ggsave("pedunculate_oak_predictions.png", po_pred_plot, width = 8, height = 6, dpi = 300)
+
+# Save results
+write.csv(model_comparison, "model_comparison.csv", row.names = FALSE)
+
+print("Predictive modeling completed successfully!")</code></pre>
+                </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Other Projects Indication -->
+            <div class="other-projects-indication">
+                <div class="indication-content">
+                    <h3 data-en="Explore More Projects" data-de="Weitere Projekte erkunden">Weitere Projekte erkunden</h3>
+                    <p data-en="Discover additional projects including 3D design with Lua programming, restaurant website development, and more engineering applications." data-de="Entdecken Sie weitere Projekte einschließlich 3D-Design mit Lua-Programmierung, Restaurant-Website-Entwicklung und weiteren Ingenieuranwendungen.">
+                        Entdecken Sie weitere Projekte einschließlich 3D-Design mit Lua-Programmierung, Restaurant-Website-Entwicklung und weiteren Ingenieuranwendungen.
+                    </p>
+                    <a href="other-projects.html" class="btn btn-primary indication-btn">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span data-en="View Other Projects" data-de="Weitere Projekte ansehen">Weitere Projekte ansehen</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title" data-en="Technical Skills & Expertise" data-de="Technische Fähigkeiten & Expertise">Technische Fähigkeiten & Expertise</h2>
+            <p class="section-subtitle" data-en="Comprehensive technical skills across data engineering, analytics, and cloud technologies." data-de="Umfassende technische Fähigkeiten in Datenengineering, Analytik und Cloud-Technologien.">
+                Umfassende technische Fähigkeiten in Datenengineering, Analytik und Cloud-Technologien.
+            </p>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> <span data-en="Programming Languages" data-de="Programmiersprachen">Programmiersprachen</span></h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-level" data-en="Expert" data-de="Experte">Experte</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">SQL</span>
+                                <span class="skill-level" data-en="Expert" data-de="Experte">Experte</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">R Programming</span>
+                                <span class="skill-level" data-en="Advanced" data-de="Fortgeschritten">Fortgeschritten</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">MATLAB</span>
+                                <span class="skill-level" data-en="Advanced" data-de="Fortgeschritten">Fortgeschritten</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">JavaScript/TypeScript</span>
+                                <span class="skill-level" data-en="Intermediate" data-de="Mittelstufe">Mittelstufe</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">C++</span>
+                                <span class="skill-level" data-en="Advanced" data-de="Fortgeschritten">Fortgeschritten</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">HTML/CSS</span>
+                                <span class="skill-level" data-en="Advanced" data-de="Fortgeschritten">Fortgeschritten</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Lua Programming</span>
+                                <span class="skill-level" data-en="Expert" data-de="Experte">Experte</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i> <span data-en="Data Tools & Technologies" data-de="Daten-Tools&Technologien">Daten-Tools & Technologien</span></h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Power BI</span>
+                                <span class="skill-level" data-en="Expert" data-de="Experte">Experte</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Elasticsearch</span>
+                                <span class="skill-level" data-en="Expert" data-de="Experte">Experte</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">ETL Pipelines</span>
+                                <span class="skill-level" data-en="Advanced" data-de="Fortgeschritten">Fortgeschritten</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">DAX Studio</span>
+                                <span class="skill-level" data-en="Advanced" data-de="Fortgeschritten">Fortgeschritten</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">PowerQuery</span>
+                                <span class="skill-level" data-en="Advanced" data-de="Fortgeschritten">Fortgeschritten</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 82%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-cloud"></i> <span data-en="Cloud & Infrastructure" data-de="Cloud & Infrastruktur">Cloud & Infrastruktur</span></h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Microsoft Azure</span>
+                                <span class="skill-level" data-en="Intermediate" data-de="Mittelstufe">Mittelstufe</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 78%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">AWS</span>
+                                <span class="skill-level" data-en="Intermediate" data-de="Mittelstufe">Mittelstufe</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">CI/CD Pipelines</span>
+                                <span class="skill-level" data-en="Advanced" data-de="Fortgeschritten">Fortgeschritten</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Docker</span>
+                                <span class="skill-level" data-en="Intermediate" data-de="Mittelstufe">Mittelstufe</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-chart-line"></i> <span data-en="Analytics & Data Science" data-de="Analytik&Datenwissenschaft">Analytik & Datenwissenschaft</span></h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">NLP</span>
+                                <span class="skill-level" data-en="Expert" data-de="Experte">Experte</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Time Series Analysis</span>
+                                <span class="skill-level" data-en="Advanced" data-de="Fortgeschritten">Fortgeschritten</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Statistical Analysis</span>
+                                <span class="skill-level" data-en="Expert" data-de="Experte">Experte</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Data Visualization</span>
+                                <span class="skill-level" data-en="Expert" data-de="Experte">Experte</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Skills & Tools Section -->
+            <div class="additional-skills">
+                <h3 data-en="Additional Skills & Tools" data-de="Zusätzliche Fähigkeiten & Tools">Zusätzliche Fähigkeiten & Tools</h3>
+                <div class="skills-tags">
+                    <span class="skill-tag">MS Office Suite</span>
+                    <span class="skill-tag">Jira & Confluence</span>
+                    <span class="skill-tag">SharePoint</span>
+                    <span class="skill-tag">Power Automate</span>
+                    <span class="skill-tag">MS Visio & Miro</span>
+                    <span class="skill-tag">MS Project</span>
+                    <span class="skill-tag">AutoCAD</span>
+                    <span class="skill-tag">Jenkins & JFrog</span>
+                    <span class="skill-tag">Selenium</span>
+                    <span class="skill-tag">Project Management</span>
+                    <span class="skill-tag">Supplier Analysis</span>
+                    <span class="skill-tag">TCO Analysis</span>
+                    <span class="skill-tag">Process Standardization</span>
+                    <span class="skill-tag">Quality Assurance</span>
+                    <span class="skill-tag">Team Collaboration</span>
+                    <span class="skill-tag">Time Management</span>
+                    </div>
+                    </div>
+
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title" data-en="Professional Experience" data-de="Berufserfahrung">Berufserfahrung</h2>
+            <p class="section-subtitle" data-en="Building data solutions and driving insights across various industries." data-de="Aufbau von Datenlösungen und Gewinnung von Erkenntnissen in verschiedenen Branchen.">
+                Aufbau von Datenlösungen und Gewinnung von Erkenntnissen in verschiedenen Branchen.
+            </p>
+            
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3 data-en="Master Thesis: Data Engineering & AI Solutions" data-de="Masterarbeit: Datenengineering & KI-Lösungen">Masterarbeit: Datenengineering & KI-Lösungen</h3>
+                        <div class="experience-meta">
+                            <span class="company"><a href="https://www.bsh-group.com/" target="_blank" rel="noopener">Bosch and Siemens Hausgeräte (BSH)</a></span>
+                            <span class="period">Aug 2024 - Jan 2025</span>
+                        </div>
+                        <div class="experience-department">
+                            <strong>Global Development Engineering Business Excellence Department</strong>
+                        </div>
+                        <div class="experience-grade">
+                            <strong data-en="Master Thesis Project - Grade: 1.2/5.0" data-de="Masterarbeit-Projekt - Note: 1,2/5,0">Masterarbeit-Projekt - Note: 1,2/5,0</strong>
+                        </div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li data-en="<strong>Data Pipeline Architecture:</strong> Designed and implemented end-to-end data pipelines processing 10GB+ data daily from SQL databases to Elasticsearch for AI-powered search capabilities" data-de="<strong>Datenpipeline-Architektur:</strong> Entwurf und Implementierung von End-to-End-Datenpipelines mit täglicher Verarbeitung von 10GB+ von SQL-Datenbanken zu Elasticsearch für KI-gestützte Suchfunktionen"><strong>Datenpipeline-Architektur:</strong> Entwurf und Implementierung von End-to-End-Datenpipelines mit täglicher Verarbeitung von 100GB+ von SQL-Datenbanken zu Elasticsearch für KI-gestützte Suchfunktionen</li>
+                        <li data-en="<strong>ETL Development:</strong> Built automated ETL workflows using Python and Elasticsearch REST APIs, reducing data processing time by 60% and ensuring 98.2% uptime" data-de="<strong>ETL-Entwicklung:</strong> Aufbau automatisierter ETL-Workflows mit Python und Elasticsearch REST APIs, Reduzierung der Datenverarbeitungszeit um 60% und Gewährleistung von 98,2% Verfügbarkeit"><strong>ETL-Entwicklung:</strong> Aufbau automatisierter ETL-Workflows mit Python und Elasticsearch REST APIs, Reduzierung der Datenverarbeitungszeit um 60% und Gewährleistung von 98,2% Verfügbarkeit</li>
+                        <li data-en="<strong>Vector Database Implementation:</strong> Migrated structured relational data to vector-based storage optimized for semantic search and RAG (Retrieval-Augmented Generation) systems" data-de="<strong>Vector-Datenbank-Implementierung:</strong> Migration strukturierter relationaler Daten zu vektorbasiertem Speicher, optimiert für semantische Suche und RAG (Retrieval-Augmented Generation) Systeme"><strong>Vector-Datenbank-Implementierung:</strong> Migration strukturierter relationaler Daten zu vektorbasiertem Speicher, optimiert für semantische Suche und RAG (Retrieval-Augmented Generation) Systeme</li>
+                        <li data-en="<strong>Data Ingestion & Web Scraping:</strong> Developed robust web scraping infrastructure to extract and preprocess data from 1,300+ dynamic HTML pages with automated quality validation" data-de="<strong>Datenerfassung & Web Scraping:</strong> Entwicklung einer robusten Web-Scraping-Infrastruktur zur Extraktion und Vorverarbeitung von Daten aus 1.300+ dynamischen HTML-Seiten mit automatisierter Qualitätsvalidierung"><strong>Datenerfassung & Web Scraping:</strong> Entwicklung einer robusten Web-Scraping-Infrastruktur zur Extraktion und Vorverarbeitung von Daten aus 1.300+ dynamischen HTML-Seiten mit automatisierter Qualitätsvalidierung</li>
+                        <li data-en="<strong>AI Integration:</strong> Integrated Azure OpenAI services with custom data processing pipelines to enable natural language queries over enterprise knowledge bases" data-de="<strong>KI-Integration:</strong> Integration von Azure OpenAI Services mit benutzerdefinierten Datenverarbeitungspipelines zur Ermöglichung natürlicher Sprachabfragen über Unternehmenswissensdatenbanken"><strong>KI-Integration:</strong> Integration von Azure OpenAI Services mit benutzerdefinierten Datenverarbeitungspipelines zur Ermöglichung natürlicher Sprachabfragen über Unternehmenswissensdatenbanken</li>
+                        <li data-en="<strong>Data Quality & Monitoring:</strong> Implemented comprehensive data validation, error handling, and monitoring systems for real-time pipeline health tracking" data-de="<strong>Datenqualität & Monitoring:</strong> Implementierung umfassender Datenvalidierung, Fehlerbehandlung und Monitoring-Systeme für Echtzeit-Pipeline-Gesundheitsverfolgung"><strong>Datenqualität & Monitoring:</strong> Implementierung umfassender Datenvalidierung, Fehlerbehandlung und Monitoring-Systeme für Echtzeit-Pipeline-Gesundheitsverfolgung</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3 data-en="Working Student - Business Intelligence & Data Analytics" data-de="Werkstudent - Business Intelligence & Datenanalytik">Werkstudent - Business Intelligence & Datenanalytik</h3>
+                        <div class="experience-meta">
+                            <span class="company"><a href="https://www.bsh-group.com/" target="_blank" rel="noopener">Bosch and Siemens Hausgeräte (BSH)</a></span>
+                            <span class="period">Sept 2023 - July 2024</span>
+                        </div>
+                        <div class="experience-department">
+                            <strong>Global Development Engineering Business Excellence Department</strong>
+                        </div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li data-en="<strong>Data Visualization & BI:</strong> Created interactive Power BI dashboards and reports serving 30+ users" data-de="<strong>Datenvisualisierung & BI:</strong> Erstellung interaktiver Power BI-Dashboards und Berichte für 30+ Benutzer."><strong>Datenvisualisierung & BI:</strong> Erstellung interaktiver Power BI-Dashboards und Berichte für 30+ Benutzer, Reduzierung der Berichtsgenerierungszeit von 8 Stunden auf 15 Minuten</li>
+                        <li data-en="<strong>Data Modeling & DAX:</strong> Developed complex data models using DAX Studio and M language, implementing advanced calculations and automated data refresh pipelines" data-de="<strong>Datenmodellierung & DAX:</strong> Entwicklung komplexer Datenmodelle mit DAX Studio und M-Sprache, Implementierung erweiterter Berechnungen und automatisierter Datenaktualisierungspipelines"><strong>Datenmodellierung & DAX:</strong> Entwicklung komplexer Datenmodelle mit DAX Studio und M-Sprache, Implementierung erweiterter Berechnungen und automatisierter Datenaktualisierungspipelines</li>
+                        <li data-en="<strong>Process Automation:</strong> Built Power Automate workflows to automate data collection, transformation, and distribution processes, reducing manual errors by 95%" data-de="<strong>Prozessautomatisierung:</strong> Aufbau von Power Automate-Workflows zur Automatisierung von Datensammlung, -transformation und -verteilungsprozessen, Reduzierung manueller Fehler um 95%"><strong>Prozessautomatisierung:</strong> Aufbau von Power Automate-Workflows zur Automatisierung von Datensammlung, -transformation und -verteilungsprozessen, Reduzierung manueller Fehler um 95%</li>
+                        <li data-en="<strong>Data Integration:</strong> Integrated multiple data sources including SQL Server, SharePoint, and external APIs to create unified data warehouses" data-de="<strong>Datenintegration:</strong> Integration mehrerer Datenquellen einschließlich SQL Server, SharePoint und externer APIs zur Erstellung einheitlicher Data Warehouses"><strong>Datenintegration:</strong> Integration mehrerer Datenquellen einschließlich SQL Server, SharePoint und externer APIs zur Erstellung einheitlicher Data Warehouses</li>
+                        <li data-en="<strong>CI/CD for Data:</strong> Implemented Jenkins and JFrog Artifactory pipelines for automated testing and deployment of data solutions" data-de="<strong>CI/CD für Daten:</strong> Implementierung von Jenkins und JFrog Artifactory Pipelines für automatisierte Tests und Bereitstellung von Datenlösungen"><strong>CI/CD für Daten:</strong> Implementierung von Jenkins und JFrog Artifactory Pipelines für automatisierte Tests und Bereitstellung von Datenlösungen</li>
+                        <li data-en="<strong>Documentation & Governance:</strong> Established data documentation standards using Jira and Confluence, improving team collaboration and knowledge sharing" data-de="<strong>Dokumentation & Governance:</strong> Etablierung von Daten-Dokumentationsstandards mit Jira und Confluence, Verbesserung der Teamzusammenarbeit und des Wissensaustauschs"><strong>Dokumentation & Governance:</strong> Etablierung von Daten-Dokumentationsstandards mit Jira und Confluence, Verbesserung der Teamzusammenarbeit und des Wissensaustauschs</li>
+                        <li data-en="<strong>Data Quality Management:</strong> Developed data validation rules and quality checks ensuring data accuracy across all business intelligence reports" data-de="<strong>Datenqualitätsmanagement:</strong> Entwicklung von Datenvalidierungsregeln und Qualitätsprüfungen zur Gewährleistung der Datenqualität in allen Business Intelligence-Berichten"><strong>Datenqualitätsmanagement:</strong> Entwicklung von Datenvalidierungsregeln und Qualitätsprüfungen zur Gewährleistung der Datenqualität in allen Business Intelligence-Berichten</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3 data-en="Intern - Data Analyst & Process Optimization Engineer" data-de="Praktikant - Datenanalyst & Prozessoptimierungsingenieur">Praktikant - Datenanalyst & Prozessoptimierungsingenieur</h3>
+                        <div class="experience-meta">
+                            <span class="company"><a href="https://www.jacobsdouweegberts.com/" target="_blank" rel="noopener">Jacobs Coffee (JDE Peets)</a></span>
+                            <span class="period">Nov 2022 - Apr 2023</span>
+                        </div>
+                        <div class="experience-department">
+                            <strong>Global Engineering Department</strong>
+                        </div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li data-en="<strong>Data Analysis & Reporting:</strong> Analyzed production data and KPIs to identify optimization opportunities." data-de="<strong>Datenanalyse & Berichterstattung:</strong> Analyse von Produktionsdaten und KPIs zur Identifizierung von Optimierungsmöglichkeiten."><strong>Datenanalyse & Berichterstattung:</strong> Analyse von Produktionsdaten und KPIs zur Identifizierung von Optimierungsmöglichkeiten.</li>
+                        <li data-en="<strong>Cost Analysis & TCO Modeling:</strong> Developed Total Cost of Ownership (TCO) models for equipment selection." data-de="<strong>Kostenanalyse & TCO-Modellierung:</strong> Entwicklung von Total Cost of Ownership (TCO) Modellen für Geräteauswahl, Einsparung von 2M$+ in Beschaffungsentscheidungen"><strong>Kostenanalyse & TCO-Modellierung:</strong> Entwicklung von Total Cost of Ownership (TCO) Modellen für Geräteauswahl, Einsparung von 2M$+ in Beschaffungsentscheidungen</li>
+                        <li data-en="<strong>Process Documentation:</strong> Created standardized data collection and analysis procedures for production workflows, improving data consistency by 40%" data-de="<strong>Prozessdokumentation:</strong> Erstellung standardisierter Datensammlungs- und Analyseverfahren für Produktionsworkflows, Verbesserung der Datenkonsistenz um 40%"><strong>Prozessdokumentation:</strong> Erstellung standardisierter Datensammlungs- und Analyseverfahren für Produktionsworkflows, Verbesserung der Datenkonsistenz um 40%</li>
+                        <li data-en="<strong>Quality Data Management:</strong> Implemented data-driven quality assurance processes for product packaging, reducing defects by 25%" data-de="<strong>Qualitätsdatenmanagement:</strong> Implementierung datengetriebener Qualitätssicherungsprozesse für Produktverpackungen, Reduzierung von Defekten um 25%"><strong>Qualitätsdatenmanagement:</strong> Implementierung datengetriebener Qualitätssicherungsprozesse für Produktverpackungen, Reduzierung von Defekten um 25%</li>
+                        <li data-en="<strong>Supply Chain Analytics:</strong> Analyzed supplier performance data and conducted comparative analysis to optimize procurement strategies" data-de="<strong>Supply Chain Analytics:</strong> Analyse von Lieferantenleistungsdaten und Durchführung vergleichender Analysen zur Optimierung von Beschaffungsstrategien"><strong>Supply Chain Analytics:</strong> Analyse von Lieferantenleistungsdaten und Durchführung vergleichender Analysen zur Optimierung von Beschaffungsstrategien</li>
+                        <li data-en="<strong>Sustainability Data Analysis:</strong> Developed data models for coffee residue pyrolysis and hydrogen energy projects, supporting environmental initiatives" data-de="<strong>Nachhaltigkeitsdatenanalyse:</strong> Entwicklung von Datenmodellen für Kaffeerückstandspyrolyse und Wasserstoffenergieprojekte, Unterstützung von Umweltinitiativen"><strong>Nachhaltigkeitsdatenanalyse:</strong> Entwicklung von Datenmodellen für Kaffeerückstandspyrolyse und Wasserstoffenergieprojekte, Unterstützung von Umweltinitiativen</li>
+                        <li data-en="<strong>Cross-functional Collaboration:</strong> Worked with engineering teams to implement data-driven decision making across multiple production facilities" data-de="<strong>Funktionsübergreifende Zusammenarbeit:</strong> Zusammenarbeit mit Entwicklungsteams zur Implementierung datengetriebener Entscheidungsfindung in mehreren Produktionsstätten"><strong>Funktionsübergreifende Zusammenarbeit:</strong> Zusammenarbeit mit Entwicklungsteams zur Implementierung datengetriebener Entscheidungsfindung in mehreren Produktionsstätten</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3 data-en="Intern - Data Collection & Systems Analysis" data-de="Praktikant - Datensammlung & Systemanalyse">Praktikant - Datensammlung & Systemanalyse</h3>
+                        <div class="experience-meta">
+                            <span class="company"><a href="https://www.aai.aero/en/airports/calicut" target="_blank" rel="noopener">Calicut International Airport</a></span>
+                            <span class="period">Oct 2020 - Jan 2021</span>
+                        </div>
+                        <div class="experience-department">
+                            <strong>Mechanical Engineering Department</strong>
+                        </div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li data-en="<strong>Data Collection & Monitoring:</strong> Collected and analyzed operational data from fire safety and mechanical systems, ensuring compliance with aviation safety standards" data-de="<strong>Datensammlung & Monitoring:</strong> Sammlung und Analyse von Betriebsdaten aus Brandschutz- und mechanischen Systemen, Gewährleistung der Einhaltung von Luftfahrtsicherheitsstandards"><strong>Datensammlung & Monitoring:</strong> Sammlung und Analyse von Betriebsdaten aus Brandschutz- und mechanischen Systemen, Gewährleistung der Einhaltung von Luftfahrtsicherheitsstandards</li>
+                        <li data-en="<strong>Technical Documentation:</strong> Created comprehensive maintenance reports and data logs for critical airport infrastructure systems" data-de="<strong>Technische Dokumentation:</strong> Erstellung umfassender Wartungsberichte und Datenprotokolle für kritische Flughafeninfrastruktursysteme"><strong>Technische Dokumentation:</strong> Erstellung umfassender Wartungsberichte und Datenprotokolle für kritische Flughafeninfrastruktursysteme</li>
+                        <li data-en="<strong>System Performance Analysis:</strong> Monitored equipment performance metrics and identified trends to optimize maintenance schedules" data-de="<strong>Systemleistungsanalyse:</strong> Überwachung von Geräteleistungsmetriken und Identifizierung von Trends zur Optimierung von Wartungsplänen"><strong>Systemleistungsanalyse:</strong> Überwachung von Geräteleistungsmetriken und Identifizierung von Trends zur Optimierung von Wartungsplänen</li>
+                        <li data-en="<strong>Safety Data Management:</strong> Maintained databases of safety incidents and equipment status, supporting regulatory compliance reporting" data-de="<strong>Sicherheitsdatenmanagement:</strong> Pflege von Datenbanken für Sicherheitsvorfälle und Gerätestatus, Unterstützung der regulatorischen Compliance-Berichterstattung"><strong>Sicherheitsdatenmanagement:</strong> Pflege von Datenbanken für Sicherheitsvorfälle und Gerätestatus, Unterstützung der regulatorischen Compliance-Berichterstattung</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title" data-en="Education & Academic Background" data-de="Bildung & Akademischer Hintergrund">Bildung & Akademischer Hintergrund</h2>
+            <p class="section-subtitle" data-en="Advanced education in mechatronics, cyber-physical systems, and mechanical engineering." data-de="Fortgeschrittene Ausbildung in Mechatronik, Cyber-Physical Systems und Maschinenbau.">
+                Fortgeschrittene Ausbildung in Mechatronik, Cyber-Physical Systems und Maschinenbau.
+            </p>
+            
+            <div class="education-timeline">
+                <div class="education-item">
+                    <div class="education-header">
+                        <h3>M.Eng. Mechatronic and Cyber-Physical Systems</h3>
+                        <div class="education-meta">
+                            <span class="institution"><a href="https://www.th-deg.de/en/" target="_blank" rel="noopener">Deggendorf Institute of Technology</a></span>
+                            <span class="period">Oct 2021 - Present</span>
+                        </div>
+                        <div class="education-location">Bavaria, Germany</div>
+                    </div>
+                    <div class="education-details">
+                        <p data-en="<strong>Focus Areas:</strong> Advanced robotics, autonomous systems, additive manufacturing, 3D printing, cyber-physical systems, and functional safety." data-de="<strong>Schwerpunkte:</strong> Fortgeschrittene Robotik, autonome Systeme, additive Fertigung, 3D-Druck, cyber-physikalische Systeme und funktionale Sicherheit.">
+                            <strong>Schwerpunkte:</strong> Fortgeschrittene Robotik, autonome Systeme, additive Fertigung, 3D-Druck, cyber-physikalische Systeme und funktionale Sicherheit.
+                        </p>
+                        <div class="education-links">
+                            <a href="https://www.th-deg.de/Studierende/Antraege-und-Organisatorisches/Modulhandbuecher/modulhandbuch_mmc_master_ws2024_mbmk.pdf" target="_blank" rel="noopener" class="btn btn-outline">
+                                <i class="fas fa-external-link-alt"></i> <span data-en="View Curriculum" data-de="Lehrplan anzeigen">Lehrplan anzeigen</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="education-item">
+                    <div class="education-header">
+                        <h3>Bachelor of Technology in Mechanical Engineering</h3>
+                        <div class="education-meta">
+                            <span class="institution"><a href="https://www.geckkd.ac.in/" target="_blank" rel="noopener">Government Engineering College, Kozhikode</a></span>
+                            <span class="period">Aug 2016 - Sept 2020</span>
+                        </div>
+                        <div class="education-location">Kerala, India</div>
+                    </div>
+                    <div class="education-details">
+                        <p data-en="<strong>Thesis:</strong> SI Engine emission and characteristics for Ethanol-Butanol & gasoline blends" data-de="<strong>Thesis:</strong> SI-Motor-Emissionen und -Eigenschaften für Ethanol-Butanol- und Benzinmischungen">
+                            <strong>Thesis:</strong> SI-Motor-Emissionen und -Eigenschaften für Ethanol-Butanol- und Benzinmischungen
+                        </p>
+                        <p data-en="<strong>Focus:</strong> Internal combustion engines, thermodynamics, fluid mechanics, and sustainable energy solutions" data-de="<strong>Schwerpunkt:</strong> Verbrennungsmotoren, Thermodynamik, Strömungsmechanik und nachhaltige Energielösungen">
+                            <strong>Schwerpunkt:</strong> Verbrennungsmotoren, Thermodynamik, Strömungsmechanik und nachhaltige Energielösungen
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Password Protection Modal -->
+    <div id="password-modal" class="password-modal">
+        <div class="password-modal-content">
+            <h3><i class="fas fa-lock"></i> Access Protected Content</h3>
+            <p>This content is password protected. Please enter the password to view the code files.</p>
+            <div class="password-input-container">
+                <input type="password" id="password-input" class="password-input" placeholder="Enter password" autocomplete="off">
+            </div>
+            <div class="password-buttons">
+                <button class="password-btn password-submit" onclick="checkPassword()">Submit</button>
+                <button class="password-btn password-cancel" onclick="closePasswordModal()">Cancel</button>
+            </div>
+            <div id="password-error" class="password-error">
+                <p>Incorrect password. Please check the password from the cover letter or <a href="#contact" class="password-contact-link" onclick="closePasswordModal()">contact me</a> for access.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Languages Section -->
+    <section id="additional-languages" class="section">
+        <div class="container">
+            <h2 class="section-title" data-en="Additional Languages" data-de="Weitere Sprachen">Weitere Sprachen</h2>
+            <p class="section-subtitle" data-en="Multilingual capabilities for global collaboration and communication." data-de="Mehrsprachige Fähigkeiten für globale Zusammenarbeit und Kommunikation.">
+                Mehrsprachige Fähigkeiten für globale Zusammenarbeit und Kommunikation.
+            </p>
+            
+            <div class="additional-languages-grid">
+                <div class="language-item">
+                    <div class="language-header">
+                        <h4>Malayalam</h4>
+                        <span class="language-level">Native</span>
+                    </div>
+                    <div class="language-progress">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+
+                <div class="language-item">
+                    <div class="language-header">
+                        <h4>Hindi</h4>
+                        <span class="language-level">B2 - Upper Intermediate</span>
+                    </div>
+                    <div class="language-progress">
+                        <div class="progress-bar" style="width: 75%"></div>
+                    </div>
+                </div>
+
+                <div class="language-item">
+                    <div class="language-header">
+                        <h4>Urdu</h4>
+                        <span class="language-level">B1 - Intermediate</span>
+                    </div>
+                    <div class="language-progress">
+                        <div class="progress-bar" style="width: 60%"></div>
+                    </div>
+                </div>
+
+                <div class="language-item">
+                    <div class="language-header">
+                        <h4>Tamil</h4>
+                        <span class="language-level">A2 - Elementary</span>
+                    </div>
+                    <div class="language-progress">
+                        <div class="progress-bar" style="width: 40%"></div>
+                    </div>
+                </div>
+
+                <div class="language-item">
+                    <div class="language-header">
+                        <h4>Arabic</h4>
+                        <span class="language-level">A2 - Elementary</span>
+                    </div>
+                    <div class="language-progress">
+                        <div class="progress-bar" style="width: 40%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Let's get in touch!" data-de="Lassen Sie uns in Kontakt treten!">Lassen Sie uns in Kontakt treten!</h2>
+            <p class="section-subtitle">
+               
+               
+            </p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <a href="mailto:kallensaleem@gmail.com" class="contact-item contact-link">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4 data-en="Email" data-de="E-Mail">E-Mail</h4>
+                            <p>kallensaleem@gmail.com</p>
+                        </div>
+                    </a>
+                    <a href="https://linkedin.com/in/muhammed-saleem-kallan" target="_blank" rel="noopener" class="contact-item contact-link">
+                        <i class="fab fa-linkedin"></i>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <p>linkedin.com/in/muhammed-saleem-kallan</p>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="contact-form-container">
+                    <h3 data-en="Send me a message" data-de="Senden Sie mir eine Nachricht">Senden Sie mir eine Nachricht</h3>
+                    <p data-en="Ready to start your data journey? Let's discuss how I can help you build robust data solutions." data-de="Bereit, Ihre Datenreise zu beginnen? Lassen Sie uns besprechen, wie ich Ihnen beim Aufbau robuster Datenlösungen helfen kann.">
+                        Bereit, Ihre Datenreise zu beginnen? Lassen Sie uns besprechen, wie ich Ihnen beim Aufbau robuster Datenlösungen helfen kann.
+                    </p>
+                    <form action="https://formspree.io/f/myzdolgb" method="POST" class="contact-form">
+                        <div class="form-group">
+                            <label for="name" data-en="Name" data-de="Name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                    </div>
+                        <div class="form-group">
+                            <label for="email" data-en="Email" data-de="E-Mail">E-Mail</label>
+                            <input type="email" id="email" name="email" required>
+                </div>
+                        <div class="form-group">
+                            <label for="subject" data-en="Subject" data-de="Betreff">Betreff</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-en="Message" data-de="Nachricht">Nachricht</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> <span data-en="Send Message" data-de="Nachricht senden">Nachricht senden</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Muhammed Saleem Kallan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language switching functionality
+        let currentLanguage = 'de'; // Default to German
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update all elements with data attributes
+            document.querySelectorAll('[data-en][data-de]').forEach(element => {
+                if (lang === 'en') {
+                    element.innerHTML = element.getAttribute('data-en');
+                } else {
+                    element.innerHTML = element.getAttribute('data-de');
+                }
+            });
+            
+            // Update language button
+            const langBtn = document.getElementById('languageToggle');
+            if (lang === 'en') {
+                langBtn.innerHTML = '<span>🇺🇸</span><span>EN</span>';
+                langBtn.setAttribute('data-lang', 'en');
+            } else {
+                langBtn.innerHTML = '<span>🇩🇪</span><span>DE</span>';
+                langBtn.setAttribute('data-lang', 'de');
+            }
+        }
+
+        // Language toggle event listener
+        document.getElementById('languageToggle').addEventListener('click', function() {
+            if (currentLanguage === 'de') {
+                switchLanguage('en');
+            } else {
+                switchLanguage('de');
+            }
+        });
+
+        // Initialize with German
+        switchLanguage('de');
+
+        // Mobile menu toggle functionality
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            
+            navMenu.classList.toggle('active');
+            
+            // Change icon based on menu state
+            const icon = mobileToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navMenu = document.getElementById('navMenu');
+                const mobileToggle = document.getElementById('mobileMenuToggle');
+                
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    const icon = mobileToggle.querySelector('i');
+                    icon.className = 'fas fa-bars';
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+            const navMenu = document.getElementById('navMenu');
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            const navContainer = document.querySelector('.nav-container');
+            
+            if (navMenu.classList.contains('active') && 
+                !navContainer.contains(event.target)) {
+                navMenu.classList.remove('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.className = 'fas fa-bars';
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Code display functionality
+        // Password protection system
+        let currentCodeId = null;
+        const CORRECT_PASSWORD = "Oranges";
+        let passwordAttempts = 0;
+        const MAX_ATTEMPTS = 3;
+        let isUnlocked = false; // Track if password has been entered successfully
+
+        function toggleCodeView(codeId) {
+            // Check if already unlocked
+            if (isUnlocked) {
+                // Directly toggle the code view
+                toggleCodeDisplay(codeId);
+            } else {
+                // Store the code ID for later use
+                currentCodeId = codeId;
+                
+                // Show password modal
+                showPasswordModal();
+            }
+        }
+
+        function toggleCodeDisplay(codeId) {
+            const codeDisplay = document.getElementById(codeId);
+            if (codeDisplay) {
+                if (codeDisplay.style.display === 'none' || codeDisplay.style.display === '') {
+                    codeDisplay.style.display = 'block';
+                    // Scroll to the code section for better visibility
+                    codeDisplay.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                } else {
+                    codeDisplay.style.display = 'none';
+                }
+            }
+        }
+
+        function showPasswordModal() {
+            const modal = document.getElementById('password-modal');
+            const passwordInput = document.getElementById('password-input');
+            const errorDiv = document.getElementById('password-error');
+            
+            modal.style.display = 'block';
+            passwordInput.value = '';
+            errorDiv.classList.remove('show');
+            passwordInput.focus();
+            
+            // Close modal when clicking outside
+            modal.onclick = function(event) {
+                if (event.target === modal) {
+                    closePasswordModal();
+                }
+            };
+        }
+
+        function closePasswordModal() {
+            const modal = document.getElementById('password-modal');
+            const passwordInput = document.getElementById('password-input');
+            const errorDiv = document.getElementById('password-error');
+            
+            modal.style.display = 'none';
+            currentCodeId = null;
+            passwordAttempts = 0; // Reset attempts when modal is closed
+            passwordInput.disabled = false;
+            errorDiv.classList.remove('show');
+        }
+
+        function checkPassword() {
+            const passwordInput = document.getElementById('password-input');
+            const errorDiv = document.getElementById('password-error');
+            const enteredPassword = passwordInput.value.trim();
+            
+            if (enteredPassword === CORRECT_PASSWORD) {
+                // Password is correct, unlock all code sections
+                isUnlocked = true;
+                passwordAttempts = 0; // Reset attempts on success
+                closePasswordModal();
+                
+                // Show the requested code and scroll to it
+                if (currentCodeId) {
+                    toggleCodeDisplay(currentCodeId);
+                }
+                
+                // Show success message briefly
+                showUnlockMessage();
+            } else {
+                // Password is incorrect
+                passwordAttempts++;
+                errorDiv.classList.add('show');
+                passwordInput.value = '';
+                passwordInput.focus();
+                
+                // Shake animation for wrong password
+                passwordInput.style.animation = 'errorShake 0.5s ease';
+                setTimeout(() => {
+                    passwordInput.style.animation = '';
+                }, 500);
+                
+                // Disable input after max attempts
+                if (passwordAttempts >= MAX_ATTEMPTS) {
+                    passwordInput.disabled = true;
+                    errorDiv.innerHTML = '<p>Too many incorrect attempts. Please <a href="#contact" class="password-contact-link" onclick="closePasswordModal()">contact me</a> for access.</p>';
+                }
+            }
+        }
+
+        function showUnlockMessage() {
+            // Create a temporary success message
+            const successMsg = document.createElement('div');
+            successMsg.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #4caf50;
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 8px;
+                z-index: 10001;
+                animation: slideInRight 0.3s ease;
+            `;
+            successMsg.innerHTML = '<i class="fas fa-check"></i> Access granted!';
+            document.body.appendChild(successMsg);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                successMsg.remove();
+            }, 3000);
+        }
+
+        function showCodeFile(fileId) {
+            // Find the parent code display container
+            const selectedFile = document.getElementById(fileId);
+            if (!selectedFile) return;
+            
+            const codeDisplay = selectedFile.closest('.code-display');
+            if (!codeDisplay) return;
+            
+            // Hide all code files in this container
+            const codeFiles = codeDisplay.querySelectorAll('.code-file');
+            codeFiles.forEach(file => {
+                file.classList.remove('active');
+            });
+
+            // Remove active class from all tabs in this container
+            const tabs = codeDisplay.querySelectorAll('.code-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected file
+            selectedFile.classList.add('active');
+
+            // Activate corresponding tab
+            const activeTab = codeDisplay.querySelector(`[onclick="showCodeFile('${fileId}')"]`);
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+        }
+
+        // Add event listener for Enter key in password input
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('password-input');
+            if (passwordInput) {
+                passwordInput.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        checkPassword();
+                    }
+                });
+            }
+        });
+
+        // Add scroll effect to navbar - hide on scroll down, show on scroll up
+        let lastScrollTop = 0;
+        let isScrolling = false;
+        let scrollTimeout;
+
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Clear existing timeout
+            clearTimeout(scrollTimeout);
+            isScrolling = true;
+
+            // Determine scroll direction
+            if (currentScroll > lastScrollTop && currentScroll > 100) {
+                // Scrolling down - hide navbar
+                navbar.style.transform = 'translateY(-100%)';
+                navbar.style.transition = 'transform 0.3s ease-in-out';
+            } else if (currentScroll < lastScrollTop) {
+                // Scrolling up - show navbar
+                navbar.style.transform = 'translateY(0)';
+                navbar.style.transition = 'transform 0.3s ease-in-out';
+            }
+
+            // Update navbar background
+            if (currentScroll > 100) {
+                navbar.style.background = 'rgba(197, 189, 189, 0.24)';
+            } else {
+                navbar.style.background = 'rgba(197, 189, 189, 0.24)';
+            }
+
+            lastScrollTop = currentScroll;
+
+            // Set timeout to detect when scrolling stops
+            scrollTimeout = setTimeout(function() {
+                isScrolling = false;
+            }, 150);
+        });
+
+        // Animate skill bars on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-progress');
+                    skillBars.forEach(bar => {
+                        bar.style.width = bar.style.width; // Trigger animation
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-category').forEach(category => {
+            observer.observe(category);
+        });
+    </script>
+</body>
+</html>

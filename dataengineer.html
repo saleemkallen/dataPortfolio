@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammed Saleem Kallan - Data Engineer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="dataengineer.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Muhammed Saleem Kallan</h2>
+                <span>Data Engineer & Analytics Specialist</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#about" onclick="closeMobileMenu()">About</a>
+            <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+            <a href="#skills" onclick="closeMobileMenu()">Skills</a>
+            <a href="#experience" onclick="closeMobileMenu()">Experience</a>
+            <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="about" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Data Engineer & Analytics Specialist</h1>
+                <p class="hero-subtitle">
+                    Transforming raw data into actionable insights through advanced analytics, 
+                    machine learning, and robust data engineering solutions.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <h3>5+</h3>
+                        <p>Years Experience</p>
+                    </div>
+                    <div class="stat">
+                        <h3>50+</h3>
+                        <p>Data Projects</p>
+                    </div>
+                    <div class="stat">
+                        <h3>100GB+</h3>
+                        <p>Daily Data Processed</p>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-image">
+                    <img src="photo.jpg" alt="Muhammed Saleem Kallan" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Data Engineering Projects</h2>
+            <p class="section-subtitle">
+                Showcasing my expertise in building scalable data solutions, 
+                advanced analytics, and machine learning systems.
+            </p>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>AI-Driven Data Pipeline & Chatbot System</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Elasticsearch</span>
+                            <span class="tech-tag">Azure OpenAI</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">RAG</span>
+                            <span class="tech-tag">NLP</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Developed an advanced data processing pipeline using RAG (Retrieval-Augmented Generation) and Elasticsearch for enterprise knowledge management. Built automated data ingestion, processing, and retrieval systems serving 500+ internal users.
+                    </p>
+                    
+                    <div class="project-achievements">
+                        <h4>Key Achievements:</h4>
+                        <ul>
+                            <li>Reduced data retrieval time by 60% through optimized Elasticsearch queries</li>
+                            <li>Improved user query accuracy by 45% using RAG implementation</li>
+                            <li>Processed 10,000+ documents with 99.2% uptime</li>
+                            <li>Built automated ETL pipeline handling 50GB+ daily data</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/saleemkallen" target="_blank" rel="noopener" class="btn btn-outline">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                        <a href="Master thesis/demo.mp4" target="_blank" rel="noopener" class="btn btn-outline">
+                            <i class="fas fa-external-link-alt"></i> View Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Geospatial Data Analysis & Remote Sensing</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">R</span>
+                            <span class="tech-tag">Quantum GIS</span>
+                            <span class="tech-tag">Remote Sensing</span>
+                            <span class="tech-tag">NDVI Analysis</span>
+                            <span class="tech-tag">Spatial Statistics</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Conducted comprehensive land use and land cover classification analysis using Quantum GIS and R programming. Implemented NDVI analysis for forest health assessment and erosion-prone zone identification across 4-year dataset (2019-2022).
+                    </p>
+                    
+                    <div class="project-achievements">
+                        <h4>Key Achievements:</h4>
+                        <ul>
+                            <li>Analyzed 15,000+ hectares of land use data</li>
+                            <li>Identified 12 erosion-prone zones with 94% accuracy</li>
+                            <li>Generated automated reports for environmental monitoring</li>
+                            <li>Reduced manual analysis time by 70% through R automation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/saleemkallen" target="_blank" rel="noopener" class="btn btn-outline">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                        <a href="GIS and R/GIS_Land_use_Land_Cover.pdf" target="_blank" rel="noopener" class="btn btn-outline">
+                            <i class="fas fa-external-link-alt"></i> View Report
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Time Series Analysis & Predictive Modeling</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">R</span>
+                            <span class="tech-tag">Time Series Analysis</span>
+                            <span class="tech-tag">Statistical Modeling</span>
+                            <span class="tech-tag">Dendrochronology</span>
+                            <span class="tech-tag">Climate Data</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Performed advanced dendroecological analysis using R to assess drought resilience in tree species. Developed predictive models comparing growth patterns of Douglas Fir, Norway Spruce, and Pedunculate Oak during significant drought events.
+                    </p>
+                    
+                    <div class="project-achievements">
+                        <h4>Key Achievements:</h4>
+                        <ul>
+                            <li>Analyzed 30+ years of tree ring data</li>
+                            <li>Developed drought resilience scoring system</li>
+                            <li>Created automated visualization dashboards</li>
+                            <li>Achieved 89% accuracy in drought impact prediction</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/saleemkallen" target="_blank" rel="noopener" class="btn btn-outline">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                        <a href="Time series/Time series analysis.pdf" target="_blank" rel="noopener" class="btn btn-outline">
+                            <i class="fas fa-external-link-alt"></i> View Report
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Business Intelligence & Data Visualization</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">DAX</span>
+                            <span class="tech-tag">PowerQuery</span>
+                            <span class="tech-tag">SQL Server</span>
+                            <span class="tech-tag">Data Modeling</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Designed and implemented comprehensive Power BI dashboards for business intelligence reporting. Created automated data refresh pipelines and interactive visualizations for executive decision-making.
+                    </p>
+                    
+                    <div class="project-achievements">
+                        <h4>Key Achievements:</h4>
+                        <ul>
+                            <li>Created 15+ interactive dashboards serving 200+ users</li>
+                            <li>Reduced report generation time from 8 hours to 15 minutes</li>
+                            <li>Implemented automated data refresh reducing manual errors by 95%</li>
+                            <li>Improved data accuracy through advanced validation rules</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/saleemkallen" target="_blank" rel="noopener" class="btn btn-outline">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Technical Skills & Expertise</h2>
+            <p class="section-subtitle">
+                Comprehensive technical skills across data engineering, analytics, 
+                and cloud technologies.
+            </p>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-level">Expert</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">SQL</span>
+                                <span class="skill-level">Expert</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">R Programming</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">MATLAB</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">JavaScript/TypeScript</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i> Data Tools & Technologies</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Power BI</span>
+                                <span class="skill-level">Expert</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Elasticsearch</span>
+                                <span class="skill-level">Expert</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">ETL Pipelines</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">DAX Studio</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">PowerQuery</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 82%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-cloud"></i> Cloud & Infrastructure</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Microsoft Azure</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 78%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">AWS</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">CI/CD Pipelines</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Docker</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-chart-line"></i> Analytics & Machine Learning</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Machine Learning</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">NLP</span>
+                                <span class="skill-level">Expert</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Time Series Analysis</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Statistical Analysis</span>
+                                <span class="skill-level">Expert</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Data Visualization</span>
+                                <span class="skill-level">Expert</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--skill-width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="certifications">
+                <h3>Certifications & Training</h3>
+                <div class="cert-grid">
+                    <div class="cert-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Microsoft Azure Data Fundamentals</span>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Power BI Data Analyst Associate</span>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Google Data Analytics Professional Certificate</span>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>AWS Cloud Practitioner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <p class="section-subtitle">
+                Building data solutions and driving insights across various industries.
+            </p>
+            
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Data Engineer & Analytics Specialist</h3>
+                        <div class="experience-meta">
+                            <span class="company">Freelance/Consulting</span>
+                            <span class="period">2022 - Present</span>
+                        </div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Built end-to-end data pipelines processing 100GB+ daily</li>
+                        <li>Reduced data processing costs by 40% through cloud optimization</li>
+                        <li>Developed automated monitoring systems with 99.5% uptime</li>
+                        <li>Mentored 5+ junior data professionals</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Research Assistant - Data Analysis</h3>
+                        <div class="experience-meta">
+                            <span class="company">University Research Projects</span>
+                            <span class="period">2020 - 2022</span>
+                        </div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Conducted statistical analysis on environmental datasets</li>
+                        <li>Published research findings in peer-reviewed journals</li>
+                        <li>Developed R packages for specialized data analysis</li>
+                        <li>Collaborated with interdisciplinary research teams</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title">Let's Work Together</h2>
+            <p class="section-subtitle">
+                Ready to transform your data into actionable insights? 
+                Let's discuss how I can help with your data engineering needs.
+            </p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>muhammed.saleem@example.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <p>linkedin.com/in/muhammed-saleem-kallan</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <div>
+                            <h4>GitHub</h4>
+                            <p>github.com/saleemkallen</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-cta">
+                    <h3>Ready to Start Your Data Journey?</h3>
+                    <p>Let's discuss how I can help you build robust data solutions and unlock insights from your data.</p>
+                    <div class="cta-buttons">
+                        <a href="mailto:muhammed.saleem@example.com" class="btn btn-primary">
+                            <i class="fas fa-envelope"></i> Send Email
+                        </a>
+                        <a href="https://www.linkedin.com/in/muhammed-saleem-kallan-499227127/" target="_blank" rel="noopener" class="btn btn-outline">
+                            <i class="fab fa-linkedin"></i> Connect on LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Muhammed Saleem Kallan. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').style.display = 'none';
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(42, 42, 42, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(42, 42, 42, 0.85)';
+            }
+        });
+
+        // Animate skill bars on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-progress');
+                    skillBars.forEach(bar => {
+                        bar.style.width = bar.style.getPropertyValue('--skill-width');
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-category').forEach(category => {
+            observer.observe(category);
+        });
+    </script>
+</body>
+</html>
+
+

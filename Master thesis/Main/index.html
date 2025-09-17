@@ -1,0 +1,747 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stages Chatbot</title>
+    <style>
+        /* Previous styles remain the same until we add reference-specific styles */
+        
+        /* Add these new styles for references */
+        .references-container {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .references-title {
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .reference-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .reference-item {
+            margin: 5px 0;
+            padding: 8px 12px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+
+        .reference-item a {
+            color: #1c088d;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .reference-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Rest of the previous styles remain the same */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2c2c2c;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            color: #ffffff;
+        }
+
+        h1 {
+            color: #d37346;
+            margin-top: 20px;
+            font-size: 36px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .chat-container {
+            flex: 1;
+            width: 95%;
+            max-width: 1200px;
+            background-color: #3a3a3a;
+            border: 1px solid #444;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 15px;
+            min-height: 60vh;
+        }
+
+        .message {
+            padding: 20px 25px;
+            border-radius: 15px;
+            max-width: 80%;
+            word-wrap: break-word;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .message ol {
+            margin: 15px 0;
+            padding-left: 35px;
+            counter-reset: item;
+            list-style-type: none;
+        }
+
+        .message ol li {
+            margin: 12px 0;
+            padding-left: 10px;
+            display: block;
+            position: relative;
+        }
+
+        .message ol li::before {
+            content: counter(item) ". ";
+            counter-increment: item;
+            position: absolute;
+            left: -25px;
+            font-weight: bold;
+        }
+
+        .message .process-step {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 4px solid #ff6600;
+        }
+
+        .message .position-reference {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .user {
+            background-color: rgba(255, 255, 255, 0.8);
+            align-self: flex-end;
+            color: #000000;
+        }
+
+        .bot {
+            background-color: rgba(255, 255, 255, 0.8);
+            align-self: flex-start;
+            color: #000000;
+        }
+
+        .input-container {
+            width: 95%;
+            max-width: 1200px;
+            padding: 15px;
+            background-color: #3a3a3a;
+            border-top: 1px solid #444;
+            display: flex;
+            gap: 10px;
+            position: sticky;
+            bottom: 0;
+            margin-bottom: 20px;
+        }
+
+        #queryInput {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid #ffcc99;
+            border-radius: 25px;
+            font-size: 18px;
+            background-color: rgba(255, 255, 255, 0.9);
+            outline: none;
+        }
+
+        button {
+            padding: 15px 20px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            min-width: 100px;
+        }
+
+        button:hover {
+            background-color: #e65c00;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .message p {
+            margin: 10px 0;
+        }
+
+        .process-intro {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .message b {
+            color: #333;
+        }
+    </style>
+
+    <script>
+        function formatMessage(text, references = []) {
+            let html = '';
+
+            // Format the main message
+            if (text.match(/\d+\.\s/)) {
+                const parts = text.split(/(?=\d+\.\s)/);
+                const intro = parts[0].trim();
+                const steps = parts.slice(1);
+
+                html = `<div class="process-intro">${intro}</div><ol>`;
+                
+                steps.forEach(step => {
+                    const positionMatch = step.match(/\[Position\s+(\d+)\]/i);
+                    const position = positionMatch ? positionMatch[1] : null;
+                    
+                    let stepText = step.replace(/^\d+\.\s*/, '')
+                                    .replace(/\[Position\s+\d+\]/i, '')
+                                    .trim();
+
+                    html += `
+                        <li>
+                            <div class="process-step">
+                                ${stepText}
+                                ${position ? `<div class="position-reference">[Position ${position}]</div>` : ''}
+                            </div>
+                        </li>`;
+                });
+                
+                html += '</ol>';
+            } else {
+                html = `<p>${text}</p>`;
+            }
+
+            // Add references if they exist
+            if (references && references.length > 0) {
+                html += `
+                    <div class="references-container">
+                        <div class="references-title">References:</div>
+                        <ul class="reference-list">
+                            ${references.map(ref => `
+                                <li class="reference-item">
+                                    <a href="${ref}" target="_blank" rel="noopener noreferrer">${ref}</a>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>`;
+            }
+
+            return html;
+        }
+
+        async function sendQuery() {
+            const userQuery = document.getElementById("queryInput").value;
+            const chatContainer = document.querySelector(".chat-container");
+
+            if (!userQuery.trim()) {
+                return;
+            }
+
+            const userMessage = document.createElement("div");
+            userMessage.className = "message user";
+            userMessage.innerHTML = `<b>You:</b> ${userQuery}`;
+            chatContainer.prepend(userMessage);
+
+            document.getElementById("queryInput").value = "";
+
+            const loadingMessage = document.createElement("div");
+            loadingMessage.className = "message bot";
+            loadingMessage.innerHTML = `<b>Chatbot:</b> Loading...`;
+            chatContainer.prepend(loadingMessage);
+
+            try {
+                const response = await fetch("/chat", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ query: userQuery })
+                });
+
+                const result = await response.json();
+                chatContainer.removeChild(loadingMessage);
+
+                const botMessage = document.createElement("div");
+                botMessage.className = "message bot";
+                let messageContent = `<b>Chatbot:</b> ${formatMessage(result.answer || "I didn't quite get that.", result.references)}`;
+                botMessage.innerHTML = messageContent;
+                chatContainer.prepend(botMessage);
+            } catch (error) {
+                chatContainer.removeChild(loadingMessage);
+
+                const errorMessage = document.createElement("div");
+                errorMessage.className = "message bot";
+                errorMessage.innerHTML = `<b>Chatbot:</b> Error: Unable to fetch response. Please try again later.`;
+                chatContainer.prepend(errorMessage);
+            }
+        }
+
+        function clearChat() {
+            const chatContainer = document.querySelector(".chat-container");
+            chatContainer.innerHTML = "";
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const queryInput = document.getElementById("queryInput");
+            queryInput.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    sendQuery();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Stages Chatbot</h1>
+    <p class="subtitle">This is a test chatbot. Please ask questions specifically!</p>
+    <div class="chat-container"></div>
+    <div class="input-container">
+        <input type="text" id="queryInput" placeholder="Type your question here">
+        <button onclick="sendQuery()">Submit</button>
+        <button onclick="clearChat()">Clear Chat</button>
+    </div>
+</body>
+</html> -->
+
+
+<!-- ---------------------------------------------------------------------------------------- -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stages Chatbot</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 165, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(255, 165, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ff8c00;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .chat-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 7rem auto 1rem;
+            padding: 1rem;
+            width: 95%;
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 1rem;
+            overflow-y: auto;
+            height: calc(100vh - 250px);
+        }
+
+        .message {
+            padding: 1.5rem;
+            border-radius: 1rem;
+            max-width: 85%;
+            animation: fadeIn 0.5s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .user {
+            background: rgba(255, 165, 0, 0.1);
+            border: 1px solid rgba(255, 165, 0, 0.2);
+            align-self: flex-end;
+            margin-left: 15%;
+        }
+
+        .bot {
+            background: #fff;
+            border: 1px solid rgba(255, 165, 0, 0.2);
+            align-self: flex-start;
+            margin-right: 15%;
+        }
+
+        /* Message Content Styles */
+        .message-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .message-header i {
+            margin-right: 0.5rem;
+            color: #ff8c00;
+        }
+
+        .message-content {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .content-header {
+            font-weight: 600;
+            color: #333;
+            margin: 12px 0 8px 0;
+            font-size: 1.05em;
+        }
+
+        .content-line {
+            margin: 8px 0;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+
+        .bullet {
+            color: #ff8c00;
+            margin-right: 10px;
+            margin-left: -20px;
+        }
+
+        .message-content strong {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .input-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 165, 0, 0.2);
+            padding: 1.5rem;
+            position: sticky;
+            bottom: 0;
+            display: flex;
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 95%;
+            box-shadow: 0 -2px 10px rgba(255, 165, 0, 0.1);
+        }
+
+        #queryInput {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 1px solid rgba(255, 165, 0, 0.3);
+            border-radius: 2rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        #queryInput:focus {
+            outline: none;
+            border-color: #ff8c00;
+            box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
+        }
+
+        button {
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #ff8c00 0%, #ff6347 100%);
+            color: white;
+        }
+
+        .clear-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #ff8c00;
+            border: 1px solid rgba(255, 165, 0, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2);
+        }
+
+        .references-container {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 165, 0, 0.2);
+        }
+
+        .references-title {
+            color: #666;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .reference-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            margin: 0.5rem 0;
+            border: 1px solid rgba(255, 165, 0, 0.2);
+        }
+
+        .reference-item a {
+            color: #002fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .message {
+                max-width: 90%;
+            }
+            
+            .input-container {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            button {
+                width: 100%;
+                justify-content: center;
+            }
+        
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Stages Chatbot</h1>
+        <p class="subtitle">Ask me anything specific about the stages!</p>
+    </div>
+    
+    <div class="chat-container"></div>
+    
+    <div class="input-container">
+        <input type="text" id="queryInput" placeholder="Type your question here...">
+        <button class="submit-btn" onclick="sendQuery()">
+            <i class="fas fa-paper-plane"></i>
+            Send
+        </button>
+        <button class="clear-btn" onclick="clearChat()">
+            <i class="fas fa-trash"></i>
+            Clear
+        </button>
+    </div>
+
+    <script>
+        function formatMessage(text, references = []) {
+            // First, properly handle markdown-style formatting
+            function formatContent(content) {
+                // Handle bold text
+                content = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                
+                // Split into lines and process each line
+                let lines = content.split('\n');
+                let formattedLines = lines.map(line => {
+                    line = line.trim();
+                    if (!line) return ''; // Skip empty lines
+                    
+                    // Handle bullet points
+                    if (line.startsWith('- ')) {
+                        return `<div class="list-item"><span class="bullet">•</span>${line.substring(2)}</div>`;
+                    }
+                    
+                    // Handle headers (lines ending with colon)
+                    if (line.includes(':')) {
+                        let [header, ...rest] = line.split(':');
+                        let restContent = rest.join(':').trim();
+                        if (restContent) {
+                            return `<div class="content-header">${header}:${restContent}</div>`;
+                        }
+                        return `<div class="content-header">${header}:</div>`;
+                    }
+                    
+                    // Regular content lines
+                    return `<div class="content-line">${line}</div>`;
+                });
+
+                return formattedLines.join('');
+            }
+
+            let formattedContent = formatContent(text);
+            
+            let html = `
+                <div class="message-header">
+                    <i class="fas fa-robot"></i> Chatbot
+                </div>
+                <div class="message-content">
+                    ${formattedContent}
+                </div>`;
+
+            // Add references if they exist and are valid
+            if (references && references.length > 0 && references.some(ref => ref && ref.trim())) {
+                html += `
+                    <div class="references-container">
+                        <div class="references-title">References:</div>
+                        <div class="reference-list">
+                            ${references.filter(ref => ref && ref.trim()).map(ref => `
+                                <div class="reference-item">
+                                    <a href="${ref}" target="_blank" rel="noopener noreferrer">
+                                        <i class="fas fa-link"></i>
+                                        ${ref}
+                                    </a>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>`;
+            }
+
+            return html;
+        }
+
+        async function sendQuery() {
+            const userQuery = document.getElementById("queryInput").value;
+            const chatContainer = document.querySelector(".chat-container");
+
+            if (!userQuery.trim()) return;
+
+            // Add user message
+            const userMessage = document.createElement("div");
+            userMessage.className = "message user";
+            userMessage.innerHTML = `
+                <div class="message-header">
+                    <i class="fas fa-user"></i> You
+                </div>
+                <div class="message-content">
+                    <div class="content-line">${userQuery}</div>
+                </div>`;
+            chatContainer.prepend(userMessage);
+
+            document.getElementById("queryInput").value = "";
+
+            // Add loading message
+            const loadingMessage = document.createElement("div");
+            loadingMessage.className = "message bot";
+            loadingMessage.innerHTML = `
+                <div class="message-header">
+                    <i class="fas fa-robot"></i> Chatbot
+                </div>
+                <div class="message-content">
+                    <div class="content-line">
+                        <i class="fas fa-spinner fa-spin"></i> Thinking...
+                    </div>
+                </div>`;
+            chatContainer.prepend(loadingMessage);
+
+            try {
+                const response = await fetch("/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ query: userQuery })
+                });
+
+                const result = await response.json();
+                chatContainer.removeChild(loadingMessage);
+
+                const botMessage = document.createElement("div");
+                botMessage.className = "message bot";
+                botMessage.innerHTML = formatMessage(result.answer || "I didn't quite get that.", result.references);
+                chatContainer.prepend(botMessage);
+
+                botMessage.scrollIntoView({ behavior: 'smooth' });
+            } catch (error) {
+                chatContainer.removeChild(loadingMessage);
+                
+                const errorMessage = document.createElement("div");
+                errorMessage.className = "message bot";
+                errorMessage.innerHTML = `
+                    <div class="message-header">
+                        <i class="fas fa-robot"></i> Chatbot
+                    </div>
+                    <div class="message-content">
+                        <div class="content-line">
+                            <i class="fas fa-exclamation-circle"></i> Error: Unable to fetch response. Please try again later.
+                        </div>
+                    </div>`;
+                chatContainer.prepend(errorMessage);
+            }
+        }
+
+        function clearChat() {
+            document.querySelector(".chat-container").innerHTML = "";
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const queryInput = document.getElementById("queryInput");
+            queryInput.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    sendQuery();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
