@@ -115,6 +115,7 @@
             gap: 0.4rem;
             font-size: 0.85rem;
             flex-shrink: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
         }
 
         .lang-btn:hover {
@@ -126,6 +127,49 @@
             background: rgba(3, 75, 27, 0.1);
             border-color: #034b1bd5;
             color: #034b1bd5;
+        }
+
+        .lang-btn span:first-child {
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        .lang-btn .flag-icon {
+            width: 20px;
+            height: 15px;
+            display: inline-block;
+            background-size: cover;
+            background-position: center;
+            border-radius: 2px;
+        }
+
+        .lang-btn .flag-de {
+            background: linear-gradient(to bottom, #000000 0%, #000000 33%, #FF0000 33%, #FF0000 66%, #FFD700 66%, #FFD700 100%);
+        }
+
+        .lang-btn .flag-us {
+            background: linear-gradient(to bottom, #B22234 0%, #B22234 7.7%, #FFFFFF 7.7%, #FFFFFF 15.4%, #B22234 15.4%, #B22234 23.1%, #FFFFFF 23.1%, #FFFFFF 30.8%, #B22234 30.8%, #B22234 38.5%, #FFFFFF 38.5%, #FFFFFF 46.2%, #B22234 46.2%, #B22234 53.9%, #FFFFFF 53.9%, #FFFFFF 61.6%, #B22234 61.6%, #B22234 69.3%, #FFFFFF 69.3%, #FFFFFF 77%, #B22234 77%, #B22234 84.7%, #FFFFFF 84.7%, #FFFFFF 92.4%, #B22234 92.4%, #B22234 100%);
+            position: relative;
+        }
+
+        .lang-btn .flag-us::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40%;
+            height: 53.9%;
+            background: #3C3B6E;
+        }
+
+        .lang-btn .flag-us::after {
+            content: '★';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            color: white;
+            font-size: 8px;
+            line-height: 1;
         }
 
         /* Hero Section */
@@ -1409,20 +1453,85 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            /* Ensure all sections have proper spacing from fixed navbar */
+            .hero,
+            .section {
+                scroll-margin-top: 100px;
+            }
             .nav-menu {
                 display: none;
                 position: absolute;
                 top: 100%;
                 left: 0;
                 right: 0;
-                background: rgba(42, 42, 42, 0.98);
+                background: rgba(255, 255, 255, 0.98);
                 -webkit-backdrop-filter: blur(15px);
                 backdrop-filter: blur(15px);
                 flex-direction: column;
-                padding: 2rem;
-                gap: 1rem;
+                padding: 0;
                 border-top: 1px solid #d0d0d0;
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                z-index: 1000;
+                border-radius: 0 0 12px 12px;
+                overflow: hidden;
+            }
+
+            .nav-menu a {
+                color: #2c2c2c;
+                font-size: 1.1rem;
+                font-weight: 600;
+                padding: 1.25rem 2rem;
+                transition: all 0.3s ease;
+                text-align: left;
+                background: transparent;
+                border: none;
+                position: relative;
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                gap: 1rem;
+            }
+
+            .nav-menu a i {
+                width: 20px;
+                text-align: center;
+                color: #034b1bd5;
+                font-size: 1rem;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu a span {
+                flex: 1;
+            }
+
+            .nav-menu a:not(:last-child)::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 2rem;
+                right: 2rem;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+            }
+
+            .nav-menu a:hover {
+                background: rgba(3, 75, 27, 0.08);
+                color: #034b1bd5;
+                transform: translateX(8px);
+            }
+
+            .nav-menu a:hover i {
+                color: #034b1bd5;
+                transform: scale(1.1);
+            }
+
+            .nav-menu a:active {
+                background: rgba(3, 75, 27, 0.12);
+                transform: translateX(4px);
+            }
+
+            .nav-menu a:active i {
+                transform: scale(0.95);
             }
 
             .nav-menu.active {
@@ -1431,10 +1540,59 @@
 
             .mobile-menu-toggle {
                 display: block;
+                background: rgba(3, 75, 27, 0.1);
+                border: 1px solid rgba(3, 75, 27, 0.3);
+                border-radius: 10px;
+                padding: 0.75rem;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .mobile-menu-toggle::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(3, 75, 27, 0.1), transparent);
+                transition: left 0.5s ease;
+            }
+
+            .mobile-menu-toggle:hover {
+                background: rgba(3, 75, 27, 0.15);
+                border-color: #034b1bd5;
+                transform: scale(1.05);
+                box-shadow: 0 4px 12px rgba(3, 75, 27, 0.2);
+            }
+
+            .mobile-menu-toggle:hover::before {
+                left: 100%;
+            }
+
+            .mobile-menu-toggle i {
+                position: relative;
+                z-index: 1;
+                transition: transform 0.3s ease;
+            }
+
+            .mobile-menu-toggle:hover i {
+                transform: rotate(90deg);
             }
 
             .nav-container {
                 position: relative;
+                padding: 1rem;
+            }
+
+            .language-switcher {
+                order: -1;
+            }
+
+            .hero {
+                padding-top: calc(80px + 2rem + 2rem);
+                margin-top: 0;
             }
 
             .hero-content {
@@ -1445,6 +1603,14 @@
             
             .hero-text h1 {
                 font-size: 2.5rem;
+            }
+            
+            .hero-text h2 {
+                font-size: 1.4rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
             }
             
             .hero-stats {
@@ -1510,6 +1676,14 @@
                 font-size: 2rem;
             }
             
+            .hero-text h2 {
+                font-size: 1.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+            
             .section-title {
                 font-size: 2rem;
             }
@@ -1533,18 +1707,39 @@
         <div class="nav-container">
             <div class="language-switcher">
                 <button id="languageToggle" class="lang-btn active" data-lang="de">
-                    <span>🇩🇪</span>
+                    <span class="flag-icon flag-de"></span>
                     <span>DE</span>
                 </button>
             </div>
             <div class="nav-menu" id="navMenu">
-                <a href="#about" data-en="About" data-de="Über mich">Über mich</a>
-                <a href="#projects" data-en="Projects" data-de="Projekte">Projekte</a>
-                <a href="#skills" data-en="Skills" data-de="Fähigkeiten">Fähigkeiten</a>
-                <a href="#experience" data-en="Experience" data-de="Berufserfahrung">Berufserfahrung</a>
-                <a href="#education" data-en="Education" data-de="Bildung">Bildung</a>
-                <a href="other-projects.html" data-en="Other Projects" data-de="Weitere Projekte">Weitere Projekte</a>
-                <a href="#contact" data-en="Contact" data-de="Kontakt">Kontakt</a>
+                <a href="#about" data-en="About" data-de="Über mich">
+                    <i class="fas fa-user"></i>
+                    <span>Über mich</span>
+                </a>
+                <a href="#projects" data-en="Projects" data-de="Projekte">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Projekte</span>
+                </a>
+                <a href="#skills" data-en="Skills" data-de="Fähigkeiten">
+                    <i class="fas fa-cogs"></i>
+                    <span>Fähigkeiten</span>
+                </a>
+                <a href="#experience" data-en="Experience" data-de="Berufserfahrung">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Berufserfahrung</span>
+                </a>
+                <a href="#education" data-en="Education" data-de="Bildung">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Bildung</span>
+                </a>
+                <a href="other-projects.html" data-en="Other Projects" data-de="Weitere Projekte">
+                    <i class="fas fa-folder-open"></i>
+                    <span>Weitere Projekte</span>
+                </a>
+                <a href="#contact" data-en="Contact" data-de="Kontakt">
+                    <i class="fas fa-envelope"></i>
+                    <span>Kontakt</span>
+                </a>
             </div>
             <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars"></i>
@@ -3435,10 +3630,10 @@ print("Predictive modeling completed successfully!")</code></pre>
             // Update language button
             const langBtn = document.getElementById('languageToggle');
             if (lang === 'en') {
-                langBtn.innerHTML = '<span>🇺🇸</span><span>EN</span>';
+                langBtn.innerHTML = '<span class="flag-icon flag-us"></span><span>EN</span>';
                 langBtn.setAttribute('data-lang', 'en');
             } else {
-                langBtn.innerHTML = '<span>🇩🇪</span><span>DE</span>';
+                langBtn.innerHTML = '<span class="flag-icon flag-de"></span><span>DE</span>';
                 langBtn.setAttribute('data-lang', 'de');
             }
         }
