@@ -1188,10 +1188,67 @@
             text-decoration: underline;
         }
 
+        /* Thesis Report Content Styling */
+        .thesis-report-content {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 1rem 0;
+        }
+
+        .report-download-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .report-preview h5 {
+            color: #034b1bd5;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            margin-top: 0;
+        }
+
+        .report-preview h6 {
+            color: #2c2c2c;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .report-preview p {
+            color: #2c2c2c;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .report-preview ul {
+            color: #2c2c2c;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .report-preview li {
+            margin-bottom: 0.5rem;
+            color: #2c2c2c;
+        }
+
+        .report-preview li::marker {
+            color: #034b1bd5;
+        }
+
         /* Code Display Styles */
         .code-display {
-            background: #1a1a1a;
-            border-radius: 8px;
+            background: #f8f9fa;
+            border-radius: 12px;
             border: 2px solid #034b1bd5;
             overflow: hidden;
             margin-top: 1rem;
@@ -1778,7 +1835,7 @@
     <!-- Projects Section -->
     <section id="projects" class="section">
         <div class="container">
-            <h2 class="section-title" data-en="Data Engineering Projects" data-de="Datenengineering-Projekte">Datenengineering-Projekte</h2>
+            <h2 class="section-title" data-en="Data Engineering Projects" data-de="Datenengineering Projekte">Datenengineering Projekte</h2>
             <p class="section-subtitle" data-en="** Some project details are withheld due to confidentiality, but the key methods, tools, and outcomes are highlighted." data-de="** Einige Projektdetails werden aus Vertraulichkeitsgründen zurückgehalten, aber die wichtigsten Methoden, Tools und Ergebnisse werden hervorgehoben.">
                 ** Einige Projektdetails werden aus Vertraulichkeitsgründen zurückgehalten, aber die wichtigsten Methoden, Tools und Ergebnisse werden hervorgehoben.
             </p>
@@ -1820,9 +1877,9 @@
                         <a href="Master thesis/demo.mp4" target="_blank" rel="noopener" class="btn btn-outline">
                             <i class="fas fa-play"></i> <span data-en="View Demo Video" data-de="Demo-Video ansehen">Demo-Video ansehen</span>
                         </a>
-                        <a href="Master thesis/Master thesis report.pdf" target="_blank" rel="noopener" class="btn btn-outline">
-                            <i class="fas fa-file-pdf"></i> <span data-en="Thesis Report" data-de="Thesis-Bericht">Thesis-Bericht</span>
-                        </a>
+                        <button class="btn btn-outline" onclick="toggleCodeView('master-thesis-report')">
+                            <i class="fas fa-lock"></i> <span data-en="Thesis Report" data-de="Thesis-Bericht">Thesis-Bericht</span>
+                        </button>
                         <a href="Master thesis/Master Thesis Presentation.pdf" target="_blank" rel="noopener" class="btn btn-outline">
                             <i class="fas fa-presentation"></i> <span data-en="Presentation" data-de="Präsentation">Präsentation</span>
                         </a>
@@ -3062,6 +3119,38 @@ print("Predictive modeling completed successfully!")</code></pre>
             </div>
         </div>
     </section>
+
+    <!-- Master Thesis Report Section (Hidden by default) -->
+    <div id="master-thesis-report" class="code-display" style="display: none; margin-top: 1rem;">
+        <div class="code-header">
+            <h4 style="color: #2c2c2c; margin-bottom: 1rem;" data-en="Master Thesis Report" data-de="Masterarbeit-Bericht">Masterarbeit-Bericht</h4>
+        </div>
+        <div class="code-content">
+            <div class="thesis-report-content">
+                <div class="report-download-section">
+                    <a href="Master thesis/Master thesis report.pdf" target="_blank" rel="noopener" class="btn btn-primary" style="margin-bottom: 1rem;">
+                        <i class="fas fa-download"></i> <span data-en="Download Full Report" data-de="Vollständigen Bericht herunterladen">Vollständigen Bericht herunterladen</span>
+                    </a>
+                </div>
+                <div class="report-preview">
+                    <h5 data-en="Report Overview" data-de="Berichtsübersicht">Berichtsübersicht</h5>
+                    <p data-en="This comprehensive thesis report documents the development and implementation of an AI-driven data pipeline and chatbot system for enterprise knowledge management at Bosch and Siemens Hausgeräte (BSH)." data-de="Dieser umfassende Thesis-Bericht dokumentiert die Entwicklung und Implementierung einer KI-gestützten Datenpipeline und Chatbot-System für Enterprise-Wissensmanagement bei Bosch und Siemens Hausgeräte (BSH).">
+                        Dieser umfassende Thesis-Bericht dokumentiert die Entwicklung und Implementierung einer KI-gestützten Datenpipeline und Chatbot-System für Enterprise-Wissensmanagement bei Bosch und Siemens Hausgeräte (BSH).
+                    </p>
+                    <h6 data-en="Key Sections Include:" data-de="Wichtige Abschnitte umfassen:">Wichtige Abschnitte umfassen:</h6>
+                    <ul>
+                        <li data-en="Executive Summary and Project Objectives" data-de="Executive Summary und Projektziele">Executive Summary und Projektziele</li>
+                        <li data-en="Literature Review and Technology Analysis" data-de="Literaturrecherche und Technologieanalyse">Literaturrecherche und Technologieanalyse</li>
+                        <li data-en="System Architecture and Implementation Details" data-de="Systemarchitektur und Implementierungsdetails">Systemarchitektur und Implementierungsdetails</li>
+                        <li data-en="RAG Pipeline Development and Optimization" data-de="RAG-Pipeline-Entwicklung und -Optimierung">RAG-Pipeline-Entwicklung und -Optimierung</li>
+                        <li data-en="Elasticsearch Integration and Performance Analysis" data-de="Elasticsearch-Integration und Leistungsanalyse">Elasticsearch-Integration und Leistungsanalyse</li>
+                        <li data-en="User Testing and Evaluation Results" data-de="Benutzertests und Evaluationsergebnisse">Benutzertests und Evaluationsergebnisse</li>
+                        <li data-en="Future Recommendations and Conclusions" data-de="Zukunftsempfehlungen und Schlussfolgerungen">Zukunftsempfehlungen und Schlussfolgerungen</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Skills Section -->
     <section id="skills" class="section">
